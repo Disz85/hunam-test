@@ -1,0 +1,2 @@
+@import 'tailwindcss' layer(base);
+@config '../tailwind.config.js';

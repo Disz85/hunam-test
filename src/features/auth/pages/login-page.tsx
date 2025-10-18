@@ -4,15 +4,11 @@ import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import {
-  type LoginFormData,
-  loginSchema,
-  useLoginMutation,
-} from '@/features/auth';
+import { type LoginFormData, loginSchema } from '@/features/auth';
+import { useAuth } from '@/hooks';
 
 /**
  * Login page component
- *
  */
 export const LoginPage = () => {
   const {
@@ -23,10 +19,10 @@ export const LoginPage = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const loginMutation = useLoginMutation();
+  const { login, isLoginPending, loginError } = useAuth();
 
   const onSubmit = (data: LoginFormData) => {
-    loginMutation.mutate(data);
+    login(data);
   };
 
   return (
@@ -107,7 +103,7 @@ export const LoginPage = () => {
               </div>
             </Field>
 
-            {loginMutation.isError && (
+            {loginError && (
               <div className="rounded-md bg-red-50 p-4">
                 <div className="flex">
                   <div className="flex-shrink-0">
@@ -127,13 +123,13 @@ export const LoginPage = () => {
           <div className="mt-10">
             <Button
               type="submit"
-              disabled={loginMutation.isPending}
+              disabled={isLoginPending}
               className="flex w-full items-center justify-center gap-2 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:bg-indigo-400"
             >
-              {loginMutation.isPending && (
+              {isLoginPending && (
                 <ArrowPathIcon className="h-5 w-5 animate-spin" />
               )}
-              {loginMutation.isPending ? 'Signing in...' : 'Sign in'}
+              {isLoginPending ? 'Signing in...' : 'Sign in'}
             </Button>
           </div>
         </form>

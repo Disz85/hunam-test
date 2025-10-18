@@ -1,7 +1,6 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Outlet, useNavigate } from '@tanstack/react-router';
+import { Outlet } from '@tanstack/react-router';
 
-import { authService } from '@/api';
+import { useAuth } from '@/hooks';
 
 /**
  * Employees layout component
@@ -9,26 +8,14 @@ import { authService } from '@/api';
  * Protected layout with navigation and logout functionality
  */
 export const EmployeesLayout = () => {
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
-
-  const logoutMutation = useMutation({
-    mutationFn: () => authService.logout(),
-    onSettled: () => {
-      queryClient.removeQueries({ queryKey: ['auth'] });
-      void navigate({ to: '/login' });
-    },
-  });
+  const { logout, isLogoutPending } = useAuth();
 
   return (
     <div>
       <nav>
         <h1>Employee Management</h1>
-        <button
-          onClick={() => logoutMutation.mutate()}
-          disabled={logoutMutation.isPending}
-        >
-          {logoutMutation.isPending ? 'Logging out...' : 'Logout'}
+        <button onClick={() => logout()} disabled={isLogoutPending}>
+          {isLogoutPending ? 'Logging out...' : 'Logout'}
         </button>
       </nav>
       <main>

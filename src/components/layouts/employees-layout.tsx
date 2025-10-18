@@ -1,23 +1,37 @@
-import { Outlet } from '@tanstack/react-router';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Outlet, useNavigate } from '@tanstack/react-router';
 
+import { authService } from '@/api';
 import { TokenStorage } from '@/lib/token-storage';
 
 /**
  * Employees layout component
  *
- * Protected layout with basic navigation and logout
+ * Protected layout with navigation and logout functionality
  */
 export const EmployeesLayout = () => {
-  const handleLogout = () => {
-    TokenStorage.removeToken();
-    window.location.href = '/login';
-  };
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const logoutMutation = useMutation({
+    mutationFn: () => authService.logout(),
+    onSettled: () => {
+      TokenStorage.removeAuthenticated();
+      queryClient.removeQueries({ queryKey: ['auth'] });
+      void navigate({ to: '/login' });
+    },
+  });
 
   return (
     <div>
       <nav>
         <h1>Employee Management</h1>
-        <button onClick={handleLogout}>Logout</button>
+        <button
+          onClick={() => logoutMutation.mutate()}
+          disabled={logoutMutation.isPending}
+        >
+          {logoutMutation.isPending ? 'Logging out...' : 'Logout'}
+        </button>
       </nav>
       <main>
         <Outlet />

@@ -1,7 +1,10 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
+import { authService } from '@/api';
 import { EmployeesLayout } from '@/components/layouts/employees-layout';
-import { TokenStorage } from '@/lib/token-storage';
+import { RouterHelpers, TokenStorage } from '@/lib';
+
+const AUTH_CACHE_TIME = 5 * 60 * 1000;
 
 /**
  * Employees layout route - protected parent route
@@ -9,13 +12,27 @@ import { TokenStorage } from '@/lib/token-storage';
  * All child routes (/employees/*) inherit the authentication check
  */
 export const Route = createFileRoute('/employees')({
-  beforeLoad: ({ location }) => {
-    if (!TokenStorage.hasToken()) {
+  beforeLoad: async ({ context, location }) => {
+    if (!TokenStorage.isAuthenticated()) {
       throw redirect({
         to: '/login',
-        search: {
-          redirect: location.href,
-        },
+        search: { redirect: location.href },
+      });
+    }
+
+    const queryClient = RouterHelpers.getQueryClient(context);
+
+    try {
+      await queryClient.ensureQueryData({
+        queryKey: ['auth', 'currentUser'],
+        queryFn: () => authService.getCurrentUser(),
+        staleTime: AUTH_CACHE_TIME,
+      });
+    } catch (_error) {
+      TokenStorage.removeAuthenticated();
+      throw redirect({
+        to: '/login',
+        search: { redirect: location.href },
       });
     }
   },

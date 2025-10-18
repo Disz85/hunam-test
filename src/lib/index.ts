@@ -5,4 +5,5 @@
  */
 
 export { ApiError } from './api-error';
+export { RouterHelpers } from './router-helpers';
 export { TokenStorage } from './token-storage';

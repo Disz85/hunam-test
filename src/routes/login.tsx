@@ -5,12 +5,10 @@ import { LoginPage } from '@/pages/login-page';
 
 /**
  * Login route - public route for authentication
- *
- * Redirects to /employees if already authenticated
  */
 export const Route = createFileRoute('/login')({
   beforeLoad: () => {
-    if (TokenStorage.hasToken()) {
+    if (TokenStorage.isAuthenticated()) {
       throw redirect({ to: '/employees' });
     }
   },

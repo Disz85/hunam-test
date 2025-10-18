@@ -103,7 +103,10 @@ export class ApiClient {
   }
 
   /**
-   * Setup request interceptor to automatically inject auth token
+   * Setup request interceptor
+   *
+   * For HttpOnly cookie-based auth, we don't need to inject tokens manually.
+   * The browser automatically sends cookies with withCredentials: true.
    *
    * @private
    * @param {AxiosInstance} client - Axios instance to configure
@@ -111,13 +114,8 @@ export class ApiClient {
   private static setupRequestInterceptor(client: AxiosInstance): void {
     client.interceptors.request.use(
       config => {
-        const token = TokenStorage.getToken();
-
-        if (token === null || token.trim().length === 0) {
-          return config;
-        }
-
-        config.headers.Authorization = `Bearer ${token}`;
+        // HttpOnly cookie auth: browser sends cookie automatically
+        // No manual Authorization header needed
         return config;
       },
       (error: AxiosError) => Promise.reject(error)
@@ -154,6 +152,7 @@ export class ApiClient {
         'Content-Type': 'application/json',
       },
       timeout: API_CONFIG.TIMEOUT,
+      withCredentials: true,
     });
 
     this.setupRequestInterceptor(client);

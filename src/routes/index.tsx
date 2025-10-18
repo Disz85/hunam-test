@@ -4,13 +4,10 @@ import { TokenStorage } from '@/lib/token-storage';
 
 /**
  * Index route - redirects based on authentication status
- *
- * - Authenticated users → /employees
- * - Unauthenticated users → /login
  */
 export const Route = createFileRoute('/')({
   beforeLoad: () => {
-    if (TokenStorage.hasToken()) {
+    if (TokenStorage.isAuthenticated()) {
       throw redirect({ to: '/employees' });
     }
     throw redirect({ to: '/login' });

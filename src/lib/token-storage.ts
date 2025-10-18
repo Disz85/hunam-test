@@ -1,46 +1,55 @@
 /**
- * Token storage utility for managing authentication tokens
+ * Auth storage utility for HttpOnly cookie-based authentication
  *
- * Provides a centralized, type-safe interface for auth token operations.
- * Abstracts localStorage implementation for easier testing and potential migration.
+ * Manages a simple localStorage flag for optimistic auth state.
+ * The actual authentication is validated by the backend via HttpOnly cookies.
+ *
+ * This flag is used for:
+ * - Quick redirect on index route (before API call)
+ * - Optimistic UI state
+ *
+ * The real auth validation happens in route loaders via API calls.
  */
 export class TokenStorage {
-  private static readonly AUTH_TOKEN_KEY = 'auth_token' as const;
+  private static readonly AUTH_FLAG_KEY = 'isAuthenticated' as const;
 
   /**
-   * Get the authentication token from storage
-   *
-   * @returns {string | null} The stored token, or null if not found
+   * Set authentication flag after successful login
    */
+  public static setAuthenticated(): void {
+    localStorage.setItem(this.AUTH_FLAG_KEY, 'true');
+  }
+
+  /**
+   * Remove authentication flag on logout
+   */
+  public static removeAuthenticated(): void {
+    localStorage.removeItem(this.AUTH_FLAG_KEY);
+  }
+
+  /**
+   * Check if authentication flag is set (optimistic check)
+   *
+   * Note: This is NOT a guarantee of valid authentication.
+   * Protected routes must validate via API call.
+   */
+  public static isAuthenticated(): boolean {
+    return localStorage.getItem(this.AUTH_FLAG_KEY) === 'true';
+  }
+
   public static getToken(): string | null {
-    return localStorage.getItem(this.AUTH_TOKEN_KEY);
+    return this.isAuthenticated() ? 'authenticated' : null;
   }
 
-  /**
-   * Store the authentication token
-   *
-   * @param {string} token - The JWT token to store
-   */
-  public static setToken(token: string): void {
-    localStorage.setItem(this.AUTH_TOKEN_KEY, token);
+  public static setToken(_token: string): void {
+    this.setAuthenticated();
   }
 
-  /**
-   * Remove the authentication token from storage
-   *
-   * Used during logout or when token is invalid
-   */
   public static removeToken(): void {
-    localStorage.removeItem(this.AUTH_TOKEN_KEY);
+    this.removeAuthenticated();
   }
 
-  /**
-   * Check if a valid token exists in storage
-   *
-   * @returns {boolean} True if a non-empty token exists
-   */
   public static hasToken(): boolean {
-    const token = this.getToken();
-    return token !== null && token.trim().length > 0;
+    return this.isAuthenticated();
   }
 }

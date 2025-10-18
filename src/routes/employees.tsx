@@ -1,7 +1,7 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
 import { authService } from '@/api';
-import { EmployeesLayout } from '@/components/layouts/employees-layout';
+import { EmployeesLayout } from '@/features/employees/components/employees-layout';
 import { RouterHelpers, TokenStorage } from '@/lib';
 
 const AUTH_CACHE_TIME = 5 * 60 * 1000;

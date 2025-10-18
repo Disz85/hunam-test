@@ -1,7 +1,7 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
+import { LoginPage } from '@/features/auth/pages/login-page';
 import { TokenStorage } from '@/lib/token-storage';
-import { LoginPage } from '@/pages/login-page';
 
 /**
  * Login route - public route for authentication

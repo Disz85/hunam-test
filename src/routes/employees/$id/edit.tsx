@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 
+import { EmployeeEditPage } from '@/features/employees/pages/employee-edit-page';
 import { RouterHelpers } from '@/lib';
-import { EmployeeEditPage } from '@/pages/employee-edit-page';
 
 /**
  * Edit employee route - dynamic parameter: $id

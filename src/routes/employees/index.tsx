@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import { EmployeeListPage } from '@/pages/employee-list-page';
+import { EmployeeListPage } from '@/features/employees/pages/employee-list-page';
 
 /**
  * Employees list route

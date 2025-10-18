@@ -11,7 +11,13 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import unusedImports from 'eslint-plugin-unused-imports';
 
 export default defineConfig([
-  globalIgnores(['dist', 'node_modules', '.husky', 'src/api/__generated__/**']),
+  globalIgnores([
+    'dist',
+    'node_modules',
+    '.husky',
+    'src/api/__generated__/**',
+    'src/route-tree.gen.ts',
+  ]),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -72,6 +78,13 @@ export default defineConfig([
 
       // React specific
       'react-hooks/exhaustive-deps': 'warn',
+    },
+  },
+  {
+    files: ['src/routes/**/*.{ts,tsx}'],
+    rules: {
+      // TanStack Router uses throw redirect() pattern which is not an Error
+      '@typescript-eslint/only-throw-error': 'off',
     },
   },
 ]);

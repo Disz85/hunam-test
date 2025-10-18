@@ -1,9 +1,8 @@
 /**
  * Utility libraries and helpers
  *
- * Exports shared utility functions, error handling, and storage utilities
+ * Exports shared utility functions, error handling, and router utilities
  */
 
 export { ApiError } from './api-error';
 export { RouterHelpers } from './router-helpers';
-export { TokenStorage } from './token-storage';

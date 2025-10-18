@@ -2,14 +2,15 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 
 import { authService } from '@/api';
-import { ApiError, TokenStorage } from '@/lib';
+import { ApiError } from '@/lib';
 
 import type { LoginFormData } from '../schemas/login-schema';
 
 /**
  * Login mutation hook
  *
- * Handles user authentication with HttpOnly cookie-based auth
+ * Handles user authentication with HttpOnly cookie-based auth.
+ * Authentication state is managed by React Query cache.
  */
 export const useLoginMutation = () => {
   const navigate = useNavigate();
@@ -19,7 +20,6 @@ export const useLoginMutation = () => {
     mutationFn: (data: LoginFormData) => authService.login(data),
 
     onSuccess: response => {
-      TokenStorage.setAuthenticated();
       queryClient.setQueryData(['auth', 'currentUser'], response);
       void navigate({ to: '/employees' });
     },

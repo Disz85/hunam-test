@@ -21,8 +21,6 @@ import axios, {
   type AxiosRequestConfig,
 } from 'axios';
 
-import { TokenStorage } from '@/lib/token-storage';
-
 /**
  * API client configuration constants
  */
@@ -91,8 +89,6 @@ export class ApiClient {
     if (error.response?.status !== 401) {
       return;
     }
-
-    TokenStorage.removeToken();
 
     // Don't redirect if already on login page
     if (window.location.pathname === '/login') {

@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Outlet, useNavigate } from '@tanstack/react-router';
 
 import { authService } from '@/api';
-import { TokenStorage } from '@/lib/token-storage';
 
 /**
  * Employees layout component
@@ -16,7 +15,6 @@ export const EmployeesLayout = () => {
   const logoutMutation = useMutation({
     mutationFn: () => authService.logout(),
     onSettled: () => {
-      TokenStorage.removeAuthenticated();
       queryClient.removeQueries({ queryKey: ['auth'] });
       void navigate({ to: '/login' });
     },

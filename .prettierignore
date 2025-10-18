@@ -22,3 +22,6 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
+# Generated code
+src/api/__generated__/
+

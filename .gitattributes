@@ -1,0 +1,6 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Generated code - collapse diff in PRs
+src/api/__generated__/** linguist-generated=true
+

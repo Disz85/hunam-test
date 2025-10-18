@@ -31,6 +31,11 @@
     "**/dist": true
   },
 
+  // Read-only files (generated code)
+  "files.readonlyInclude": {
+    "src/api/__generated__/**": true
+  },
+
   // Search
   "search.exclude": {
     "**/node_modules": true,

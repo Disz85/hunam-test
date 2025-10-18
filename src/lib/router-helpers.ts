@@ -29,4 +29,18 @@ export class RouterHelpers {
     }
     return context.queryClient;
   }
+
+  /**
+   * Type-safe helper to extract route params
+   *
+   * @throws {Error} If params are invalid
+   */
+  public static getRouteParams<T extends Record<string, unknown>>(
+    params: unknown
+  ): T {
+    if (typeof params !== 'object' || params === null) {
+      throw new Error('Invalid route params');
+    }
+    return params as T;
+  }
 }

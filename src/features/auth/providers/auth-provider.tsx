@@ -69,6 +69,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const authState: AuthState = {
     // User data
     user: user ?? null,
+    currentUser: user?.[0] ?? null,
 
     // Loading state (either fetching user or login in progress)
     isLoading: isLoading || loginMutation.isPending,

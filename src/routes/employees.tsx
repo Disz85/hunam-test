@@ -23,9 +23,11 @@ export const Route = createFileRoute('/employees')({
       });
 
       // Redirect to login if no user
-      if (user === null || user === undefined || user.length === 0) {
-        throw redirect({ to: '/login' });
+      if (user !== null || user !== undefined || user.length > 0) {
+        return;
       }
+
+      throw redirect({ to: '/login' });
     } catch (_error) {
       // If auth check fails, redirect to login
       throw redirect({ to: '/login' });

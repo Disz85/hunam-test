@@ -13,6 +13,7 @@ export type LoginCredentials = {
  */
 export type AuthState = {
   user: UserDto[] | null;
+  currentUser: UserDto | null;
   isLoading: boolean;
   isAuthenticated: boolean;
   error: string | null;

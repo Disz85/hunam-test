@@ -5,7 +5,8 @@ import { LoginPage } from '@/features/auth/pages/login-page';
 /**
  * Login route - public route for authentication
  *
- * No redirect logic - let the backend handle authentication
+ * For HttpOnly cookie auth
+ * If user is already authenticated, the backend will handle it.
  */
 export const Route = createFileRoute('/login')({
   component: LoginPage,

@@ -65,6 +65,15 @@ export class ApiClient {
       return;
     }
 
+    // Don't log 401 as error - it's just failed authentication
+    if (error.response?.status === 401) {
+      console.warn('[API] Authentication failed:', {
+        status: error.response?.status,
+        url: error.config?.url,
+      });
+      return;
+    }
+
     console.error('[API Error]', {
       status: error.response?.status,
       data: error.response?.data,
@@ -92,7 +101,10 @@ export class ApiClient {
   }
 
   /**
-   * Setup request interceptor to automatically inject auth token
+   * Setup request interceptor
+   *
+   * For HttpOnly cookie-based auth, we don't need to inject tokens manually.
+   * The browser automatically sends cookies with withCredentials: true.
    *
    * @private
    * @param {AxiosInstance} client - Axios instance to configure

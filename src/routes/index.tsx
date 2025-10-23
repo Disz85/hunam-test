@@ -1,12 +1,13 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
 /**
- * Index route - redirects to employees page
+ * Index route - redirects to login
  *
- * Simple redirect to the main application area
+ * For HttpOnly cookie auth, we don't need to check localStorage.
+ * The protected routes will handle auth validation via API calls.
  */
 export const Route = createFileRoute('/')({
   beforeLoad: () => {
-    throw redirect({ to: '/employees' });
+    throw redirect({ to: '/login' });
   },
 });

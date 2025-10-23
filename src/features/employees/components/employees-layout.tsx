@@ -1,27 +1,29 @@
-import { Outlet } from '@tanstack/react-router';
+import { Outlet, useNavigate } from '@tanstack/react-router';
 
-import { authService } from '@/api/auth';
+import { useAuth } from '@/features/auth/hooks/use-auth';
 
 /**
  * Employees layout component
  *
- * Protected layout with basic navigation and logout
+ * Protected layout with navigation and logout functionality
  */
 export const EmployeesLayout = () => {
-  const handleLogout = async () => {
-    try {
-      await authService.logout();
-    } catch (_error) {
-      // Ignore logout errors - redirect anyway
-    }
-    window.location.href = '/login';
+  const { logout, isLoading } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    void logout().then(() => {
+      void navigate({ to: '/login' });
+    });
   };
 
   return (
     <div>
       <nav>
         <h1>Employee Management</h1>
-        <button onClick={() => void handleLogout()}>Logout</button>
+        <button onClick={handleLogout} disabled={isLoading}>
+          {isLoading ? 'Logging out...' : 'Logout'}
+        </button>
       </nav>
       <main>
         <Outlet />

@@ -1,6 +1,7 @@
 import { RouterProvider } from '@tanstack/react-router';
 
 import { router } from './config/router-config';
+import { AuthProvider } from './features/auth/providers/auth-provider';
 import { QueryProvider } from './providers/query-provider';
 
 /**
@@ -11,7 +12,9 @@ import { QueryProvider } from './providers/query-provider';
 export function App() {
   return (
     <QueryProvider>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </QueryProvider>
   );
 }

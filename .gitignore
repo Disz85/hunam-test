@@ -31,3 +31,6 @@ route-tree.gen.ts
 *.njsproj
 *.sln
 *.sw?
+
+# ESLint cache
+.eslintcache

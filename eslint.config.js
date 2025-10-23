@@ -26,6 +26,7 @@ export default defineConfig([
     'package-lock.json',
     'yarn.lock',
     'pnpm-lock.yaml',
+    'src/route-tree.gen.ts',
   ]),
   {
     files: ['**/*.{ts,tsx}'],
@@ -87,6 +88,13 @@ export default defineConfig([
 
       // React specific
       'react-hooks/exhaustive-deps': 'warn',
+    },
+  },
+  {
+    files: ['src/routes/**/*.{ts,tsx}'],
+    rules: {
+      // TanStack Router uses throw redirect() pattern which is not an Error
+      '@typescript-eslint/only-throw-error': 'off',
     },
   },
 ]);

@@ -1,0 +1,13 @@
+import { createRootRoute } from '@tanstack/react-router';
+
+import { RootLayout } from '@/components/layouts/root-layout';
+
+/**
+ * Root route - parent of all routes
+ *
+ * Provides the base layout structure for the entire application.
+ * Includes Router DevTools in development mode.
+ */
+export const Route = createRootRoute({
+  component: RootLayout,
+});

@@ -11,7 +11,22 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import unusedImports from 'eslint-plugin-unused-imports';
 
 export default defineConfig([
-  globalIgnores(['dist', 'node_modules', '.husky', 'src/api/__generated__/**']),
+  globalIgnores([
+    'dist',
+    'node_modules',
+    '.husky',
+    'src/api/__generated__/**',
+    'build',
+    '.vite',
+    '*.log',
+    '.DS_Store',
+    '.vscode',
+    '.idea',
+    'bun.lock',
+    'package-lock.json',
+    'yarn.lock',
+    'pnpm-lock.yaml',
+  ]),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [

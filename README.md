@@ -21,7 +21,8 @@ React + TypeScript + Vite application with employee CRUD functionality.
 - **ESLint** (strict TypeScript rules) + **Prettier** - code quality and formatting
 - **Husky** + **lint-staged** - pre-commit hooks
 - **Commitlint** - conventional commits validation
-- **TypeScript** - strict type safety
+- **Commitizen** - interactive commit message creation
+- **TypeScript** - strict type safety with pre-commit checking
 - **Import sorting** - automatic import organization
 - **JSX A11y** - accessibility checks
 - **EditorConfig** - consistent editor settings
@@ -62,13 +63,29 @@ Note: While this project uses Bun for package management and running scripts, Or
 
 ## Available Scripts
 
+### Development
+
 - `bun run dev` - Start development server with hot reload
 - `bun run build` - Create production build (TypeScript type-check + build)
 - `bun run preview` - Preview production build locally
-- `bun run generate:api` - Generate API types from OpenAPI specification
+
+### Code Quality
+
 - `bun run lint` - Run ESLint on all files
 - `bun run lint:fix` - Auto-fix ESLint issues
 - `bun run type-check` - Run TypeScript compiler without emitting files
+- `bun run check` - Run all checks (TypeScript + ESLint + Prettier)
+- `bun run format` - Format all files with Prettier
+
+### API & Commits
+
+- `bun run generate:api` - Generate API types from OpenAPI specification
+- `bun run commit` - Interactive commit with Commitizen
+- `bun run commit:retry` - Amend last commit
+
+### Utilities
+
+- `bun run clean` - Clean build cache and node_modules/.vite
 
 ## Folder Structure
 
@@ -163,19 +180,30 @@ The project uses Husky for automatic validation:
 
 ### Pre-commit Hook
 
-- ESLint auto-fix (import sorting, unused imports, etc.)
-- Prettier formatting
+- **TypeScript type checking** (`tsc --noEmit`)
+- **ESLint auto-fix** (import sorting, unused imports, etc.)
+- **Prettier formatting**
 
 ### Commit-msg Hook
 
-- Conventional commits validation
-
-### Pre-push Hook
-
-- Full TypeScript type checking
-- Full ESLint validation
+- **Conventional commits validation** (commitlint)
 
 These hooks ensure code quality before committing and pushing.
+
+### Interactive Commits
+
+Use `bun run commit` for guided commit message creation with Commitizen:
+
+```bash
+bun run commit
+```
+
+This will guide you through:
+
+- Commit type selection (feat, fix, docs, etc.)
+- Scope definition
+- Description writing
+- Breaking changes detection
 
 ## Commit Guidelines
 

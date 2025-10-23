@@ -74,13 +74,35 @@ Note: While this project uses Bun for package management and running scripts, Or
 
 ```
 src/
-├── api/         # API client and calls
-├── components/  # Reusable UI components
-├── features/    # Feature-specific code (auth, employees)
-├── hooks/       # Custom React hooks
-├── i18n/        # Translation files
-├── lib/         # Helper classes and utility functions
-└── types/       # TypeScript type definitions
+├── api/                            # API layer (client, base, services, generated types)
+│   ├── api-client.ts               # Axios client (cookie-based auth, interceptors)
+│   ├── base-service.ts             # Shared error handling (ApiError mapping)
+│   ├── auth/                       # Auth services
+│   │   ├── auth-service.ts
+│   │   └── index.ts
+│   ├── employees/                  # Employee services
+│   │   ├── employee-service.ts
+│   │   └── index.ts
+│   └── __generated__/              # Orval-generated types and endpoint defs (types source)
+├── components/
+│   └── ui/                         # Reusable, headless UI primitives
+├── features/                       # Feature-based domain structure
+│   ├── auth/
+│   │   ├── components/ pages/ schemas/ hooks/ context/ providers/
+│   │   └── domain/                 # enums, types, mappers (feature-level)
+│   └── employees/
+│       ├── components/ pages/ schemas/ hooks/ api/
+│       └── domain/                 # enums, types, mappers (feature-level)
+├── hooks/                          # App-wide reusable hooks
+├── i18n/
+│   └── locales/                    # en, hu locales
+├── lib/                            # Helpers (ApiError, etc.)
+├── providers/                      # App-level providers (Query, Auth, i18n)
+├── routes/                         # TanStack Router file-based routes
+│   └── employees/$id/
+├── config/
+│   └── env.ts                      # Zod-validated env config (fail-fast)
+└── types/                          # Global TypeScript types (if needed)
 ```
 
 ## Path Aliases
@@ -121,15 +143,15 @@ The project uses a **hybrid approach** for API integration:
 
 **Generated (Automated):**
 
-- TypeScript types and interfaces (`__generated__/api.schemas.ts`)
-- API endpoint definitions and structures
+- TypeScript types and interfaces (e.g. `__generated__/api.schemas.ts`)
+- Endpoint definitions (used as reference; calls go through custom services)
 
 **Manual (Custom Implementation):**
 
-- Custom enums with descriptive names (`enums/`)
-- API services with error handling (`services/`)
-- Axios client with interceptors (`client.ts`)
-- React Query hooks for data fetching (`hooks/api/`)
+- Axios client with interceptors and cookie-based auth (`src/api/api-client.ts`)
+- Unified error handling base (`src/api/base-service.ts`)
+- Service layer (`src/api/auth/*`, `src/api/employees/*`)
+- Feature-level domain structure (enums, types, mappers under `src/features/*/domain`)
 
 **Why This Approach?**
 

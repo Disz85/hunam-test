@@ -11,7 +11,7 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import unusedImports from 'eslint-plugin-unused-imports';
 
 export default defineConfig([
-  globalIgnores(['dist', 'node_modules', '.husky']),
+  globalIgnores(['dist', 'node_modules', '.husky', 'src/api/__generated__/**']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -60,6 +60,15 @@ export default defineConfig([
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
+      '@typescript-eslint/explicit-member-accessibility': [
+        'error',
+        {
+          accessibility: 'explicit',
+          overrides: {
+            constructors: 'no-public',
+          },
+        },
+      ],
 
       // React specific
       'react-hooks/exhaustive-deps': 'warn',

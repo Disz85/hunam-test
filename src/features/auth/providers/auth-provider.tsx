@@ -94,6 +94,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     checkAuth: async () => {
       await refetch();
     },
+
+    clearError: () => {
+      loginMutation.reset();
+    },
   };
 
   return (

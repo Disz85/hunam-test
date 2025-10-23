@@ -1,6 +1,8 @@
 import { useSearch } from '@tanstack/react-router';
 
+import { EmployeeTable } from '../components/employee-table';
 import { useEmployeeList } from '../hooks/use-employee-list';
+import { useEmployeeTableColumns } from '../hooks/use-employee-table';
 
 /**
  * Employee list page component
@@ -24,18 +26,26 @@ export const EmployeeListPage = () => {
     Offset: (page - 1) * limit,
   });
 
+  // Table columns
+  const columns = useEmployeeTableColumns();
+
   if (isLoading) {
     return (
-      <div className="p-8">
-        <p>Loading employees...</p>
+      <div className="flex items-center justify-center py-12">
+        <div className="text-center">
+          <div className="inline-block size-8 animate-spin rounded-full border-4 border-solid border-indigo-600 border-r-transparent" />
+          <p className="mt-4 text-sm text-gray-600">Loading employees...</p>
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="p-8">
-        <p className="text-red-600">Error loading employees: {String(error)}</p>
+      <div className="rounded-lg border border-red-200 bg-red-50 p-4">
+        <p className="text-sm text-red-800">
+          Error loading employees: {String(error)}
+        </p>
       </div>
     );
   }
@@ -44,33 +54,19 @@ export const EmployeeListPage = () => {
   const total = data?.total ?? 0;
 
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">Employee List</h1>
-      <p className="mb-4">Total employees: {total}</p>
-
-      <div className="space-y-4">
-        {employees.length === 0 ? (
-          <p>No employees found.</p>
-        ) : (
-          employees.map(employee => (
-            <div key={employee.id} className="border p-4 rounded">
-              <p>
-                <strong>Name:</strong> {employee.firstName} {employee.lastName}
-              </p>
-              <p>
-                <strong>Email:</strong> {employee.email}
-              </p>
-            </div>
-          ))
-        )}
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold text-gray-900">Employees</h1>
+          <p className="mt-1 text-sm text-gray-500">
+            {total} {total === 1 ? 'employee' : 'employees'} total
+          </p>
+        </div>
       </div>
 
-      {/* Debug info */}
-      <div className="mt-8 p-4 bg-gray-100 rounded">
-        <p className="text-sm text-gray-600">
-          Debug: Page {page}, Limit {limit}, Total {total}
-        </p>
-      </div>
+      {/* Table */}
+      <EmployeeTable data={employees} columns={columns} />
     </div>
   );
 };

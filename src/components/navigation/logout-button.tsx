@@ -1,3 +1,4 @@
+import { Button } from '@headlessui/react';
 import { ArrowRightStartOnRectangleIcon } from '@heroicons/react/24/outline';
 
 type LogoutButtonProps = {
@@ -8,11 +9,11 @@ type LogoutButtonProps = {
 /**
  * Logout button component
  *
- * Handles user logout with loading state
+ * Handles user logout with loading state using Headless UI Button
  */
 export const LogoutButton = ({ isLoading, onLogout }: LogoutButtonProps) => {
   return (
-    <button
+    <Button
       onClick={onLogout}
       disabled={isLoading}
       className="group flex w-full gap-x-3 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900 disabled:opacity-50"
@@ -22,6 +23,6 @@ export const LogoutButton = ({ isLoading, onLogout }: LogoutButtonProps) => {
         aria-hidden="true"
       />
       {isLoading ? 'Logging out...' : 'Logout'}
-    </button>
+    </Button>
   );
 };

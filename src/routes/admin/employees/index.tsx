@@ -8,7 +8,7 @@ import { employeeListSearchSchema } from '@/features/employees/schemas/employee-
  *
  * Child route of /admin, inherits AdminLayout and auth check
  */
-export const Route = createFileRoute('/admin/employees')({
+export const Route = createFileRoute('/admin/employees/')({
   component: EmployeeListPage,
   validateSearch: employeeListSearchSchema,
 });

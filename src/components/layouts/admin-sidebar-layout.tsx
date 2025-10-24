@@ -8,12 +8,12 @@ import { useAuth } from '@/features/auth/hooks/use-auth';
 import { AdminNavigation } from '../navigation/admin-navigation';
 
 /**
- * Admin layout component
+ * Admin sidebar layout component
  *
  * Protected layout with sidebar navigation and logout functionality
  * Used across all admin features (employees, etc.)
  */
-export const AdminLayout = () => {
+export const AdminSidebarLayout = () => {
   const { logout, isLoading, currentUser } = useAuth();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);

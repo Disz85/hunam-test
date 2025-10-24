@@ -1,7 +1,7 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
 import { authService } from '@/api';
-import { AdminLayout } from '@/components/layouts/admin-layout';
+import { AdminSidebarLayout } from '@/components/layouts/admin-sidebar-layout';
 import { EMPLOYEE_LIST_CACHE_TIME } from '@/features/employees/hooks/use-employee-list';
 import { getQueryClient } from '@/lib/router-helpers';
 
@@ -12,7 +12,7 @@ import { getQueryClient } from '@/lib/router-helpers';
  * Provides AdminLayout for all child routes
  */
 export const Route = createFileRoute('/admin')({
-  component: AdminLayout,
+  component: AdminSidebarLayout,
   beforeLoad: async ({ context }) => {
     const queryClient = getQueryClient(context);
 

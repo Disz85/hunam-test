@@ -1,19 +1,19 @@
-import { Bars3Icon, UsersIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Outlet, useNavigate } from '@tanstack/react-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
+import { adminNavigation } from '@/config/navigation-config';
 import { useAuth } from '@/features/auth/hooks/use-auth';
 
-import { NavigationMenu } from './navigation-menu';
-
-const navigation = [{ name: 'Employees', href: '/employees', icon: UsersIcon }];
+import { AdminNavigation } from '../navigation/admin-navigation';
 
 /**
- * Employees layout component
+ * Admin layout component
  *
  * Protected layout with sidebar navigation and logout functionality
+ * Used across all admin features (employees, etc.)
  */
-export const EmployeesLayout = () => {
+export const AdminLayout = () => {
   const { logout, isLoading, currentUser } = useAuth();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -24,8 +24,18 @@ export const EmployeesLayout = () => {
     });
   };
 
+  // Listen for sidebar open events from child components
+  useEffect(() => {
+    const handleOpenSidebar = () => {
+      setSidebarOpen(true);
+    };
+
+    window.addEventListener('openSidebar', handleOpenSidebar);
+    return () => window.removeEventListener('openSidebar', handleOpenSidebar);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-gray-50">
       {sidebarOpen && (
         <button
           type="button"
@@ -54,8 +64,8 @@ export const EmployeesLayout = () => {
               <XMarkIcon className="size-6" aria-hidden="true" />
             </button>
           </div>
-          <NavigationMenu
-            navigation={navigation}
+          <AdminNavigation
+            navigation={adminNavigation}
             currentUser={currentUser}
             isLoading={isLoading}
             onLogout={handleLogout}
@@ -65,31 +75,8 @@ export const EmployeesLayout = () => {
       </div>
 
       <div className="lg:pl-64">
-        <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 rounded-md p-2.5 text-indigo-600 transition-colors hover:text-indigo-500"
-            onClick={() => setSidebarOpen(true)}
-          >
-            <span className="sr-only">Open sidebar</span>
-            <Bars3Icon className="size-6" aria-hidden="true" />
-          </button>
-
-          <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-            <div className="flex flex-1 items-center">
-              <h1 className="text-sm font-semibold text-gray-900">
-                Employee Management
-              </h1>
-            </div>
-          </div>
-        </div>
-
-        <main className="py-6">
-          <div className="px-4 sm:px-6 lg:px-8">
-            <Outlet />
-          </div>
-        </main>
+        <Outlet />
       </div>
-    </div>
+    </main>
   );
 };

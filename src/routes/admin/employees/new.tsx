@@ -5,6 +5,6 @@ import { EmployeeCreatePage } from '@/features/employees/pages/employee-create-p
 /**
  * Create new employee route
  */
-export const Route = createFileRoute('/employees/new')({
+export const Route = createFileRoute('/admin/employees/new')({
   component: EmployeeCreatePage,
 });

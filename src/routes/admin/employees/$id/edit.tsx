@@ -7,7 +7,7 @@ import { EmployeeEditPage } from '@/features/employees/pages/employee-edit-page'
  *
  * Dynamic route parameter: $id
  */
-export const Route = createFileRoute('/employees/$id/edit')({
+export const Route = createFileRoute('/admin/employees/$id/edit')({
   component: function EmployeeEditPageWrapper() {
     const params = Route.useParams() as unknown as { id: string };
     const id = params.id;

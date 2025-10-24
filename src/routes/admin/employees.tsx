@@ -4,11 +4,11 @@ import { EmployeeListPage } from '@/features/employees/pages/employee-list-page'
 import { employeeListSearchSchema } from '@/features/employees/schemas/employee-list-search-schema';
 
 /**
- * Employees list route
+ * Employees route - displays employee list
  *
- * Displays all employees in a table with search params support
+ * Child route of /admin, inherits AdminLayout and auth check
  */
-export const Route = createFileRoute('/employees/')({
+export const Route = createFileRoute('/admin/employees')({
   component: EmployeeListPage,
   validateSearch: employeeListSearchSchema,
 });

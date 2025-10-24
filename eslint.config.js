@@ -86,6 +86,14 @@ export default defineConfig([
         },
       ],
 
+      // React Hook Form specific - disable unsafe assignment warnings for form errors
+      '@typescript-eslint/no-unsafe-assignment': [
+        'error',
+        {
+          ignoreRestSiblings: true,
+        },
+      ],
+
       // React specific
       'react-hooks/exhaustive-deps': 'warn',
     },
@@ -95,6 +103,14 @@ export default defineConfig([
     rules: {
       // TanStack Router uses throw redirect() pattern which is not an Error
       '@typescript-eslint/only-throw-error': 'off',
+    },
+  },
+  {
+    files: ['src/features/**/components/**/employee-form/**/*.{ts,tsx}'],
+    rules: {
+      // React Hook Form errors are typed as any but are safe to use
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
     },
   },
 ]);

@@ -4,11 +4,10 @@ import {
   UsersIcon,
 } from '@heroicons/react/24/outline';
 
-import { PageHeader } from '@/components/layouts/page-header';
+import { AdminPageLayout } from '@/components/layouts/admin-page-layout';
 
 import { DashboardCard } from '../components/dashboard-card';
 import { DashboardGrid } from '../components/dashboard-grid';
-import { DashboardHeader } from '../components/dashboard-header';
 
 /**
  * Admin dashboard page component
@@ -17,35 +16,32 @@ import { DashboardHeader } from '../components/dashboard-header';
  */
 export const DashboardPage = () => {
   return (
-    <>
-      <PageHeader />
+    <AdminPageLayout
+      title="Dashboard"
+      description="Welcome to the admin dashboard. Manage your employees and view system overview."
+    >
+      <DashboardGrid>
+        <DashboardCard
+          title="Employees"
+          description="Manage employees"
+          to="/admin/employees"
+          icon={<UsersIcon />}
+        />
 
-      <section className="p-6">
-        <DashboardHeader />
+        <DashboardCard
+          title="Coming Soon..."
+          description="New features"
+          disabled
+          icon={<BuildingOfficeIcon />}
+        />
 
-        <DashboardGrid>
-          <DashboardCard
-            title="Employees"
-            description="Manage employees"
-            to="/admin/employees"
-            icon={<UsersIcon />}
-          />
-
-          <DashboardCard
-            title="Coming Soon..."
-            description="New features"
-            disabled
-            icon={<BuildingOfficeIcon />}
-          />
-
-          <DashboardCard
-            title="Coming Soon..."
-            description="New features"
-            disabled
-            icon={<ChartBarIcon />}
-          />
-        </DashboardGrid>
-      </section>
-    </>
+        <DashboardCard
+          title="Coming Soon..."
+          description="New features"
+          disabled
+          icon={<ChartBarIcon />}
+        />
+      </DashboardGrid>
+    </AdminPageLayout>
   );
 };

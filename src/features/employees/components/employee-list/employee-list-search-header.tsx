@@ -1,9 +1,10 @@
 import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from '@tanstack/react-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { FormInput } from '@/components/ui/form-input';
 import { ResponsiveActionButton } from '@/components/ui/responsive-action-button';
+import { useDebounce } from '@/hooks/use-debounce';
 
 type EmployeeListSearchHeaderProps = {
   searchValue: string;
@@ -21,6 +22,21 @@ export const EmployeeListSearchHeader = ({
 }: EmployeeListSearchHeaderProps) => {
   const navigate = useNavigate();
   const [localSearch, setLocalSearch] = useState(searchValue);
+
+  // Debounce the search input
+  const debouncedSearch = useDebounce(localSearch, 300);
+
+  // Trigger search when debounced value changes
+  useEffect(() => {
+    if (debouncedSearch !== searchValue) {
+      onSearchChange(debouncedSearch);
+    }
+  }, [debouncedSearch, searchValue, onSearchChange]);
+
+  // Sync local state when searchValue changes from outside
+  useEffect(() => {
+    setLocalSearch(searchValue);
+  }, [searchValue]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();

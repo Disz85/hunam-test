@@ -6,7 +6,7 @@ import { employeeService } from '@/api';
 /**
  * Cache configuration
  */
-const EMPLOYEE_LIST_CACHE_TIME = 5 * 60 * 1000; // 5 minutes
+export const EMPLOYEE_LIST_CACHE_TIME = 5 * 60 * 1000; // 5 minutes
 const EMPLOYEE_LIST_RETRY_COUNT = 1;
 
 /**

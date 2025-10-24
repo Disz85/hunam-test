@@ -29,7 +29,7 @@ export const LoginPage = () => {
   const onSubmit = async (data: LoginCredentials) => {
     try {
       await login(data);
-      void navigate({ to: '/employees' });
+      void navigate({ to: '/admin' });
     } catch (_error) {
       // Error handling is done in AuthProvider
     }

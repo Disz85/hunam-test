@@ -1,10 +1,11 @@
 import { useNavigate, useSearch } from '@tanstack/react-router';
 
-import { EmployeeListContent } from '../components/employee-list/content';
-import { EmployeeListHeader } from '../components/employee-list/header';
-import { EmployeeListLayout } from '../components/employee-list/layout';
-import { EmployeeListStates } from '../components/employee-list/states';
-import { EmployeeTable } from '../components/employee-table/table';
+import { AdminPageLayout } from '@/components/layouts/admin-page-layout';
+
+import { EmployeeListContent } from '../components/employee-list/employee-list-content';
+import { EmployeeListSearchHeader } from '../components/employee-list/employee-list-search-header';
+import { EmployeeListStates } from '../components/employee-list/employee-list-states';
+import { EmployeeTable } from '../components/employee-table/employee-table';
 import { useEmployeeList } from '../hooks/use-employee-list';
 import { useEmployeeTableColumns } from '../hooks/use-employee-table';
 
@@ -15,7 +16,9 @@ import { useEmployeeTableColumns } from '../hooks/use-employee-table';
  */
 export const EmployeeListPage = () => {
   // Get search params from URL (typed by route validation)
-  const searchParams = useSearch({ from: '/admin/employees' });
+  const searchParams = useSearch({
+    from: '/admin/employees/',
+  });
   const navigate = useNavigate();
 
   const page = searchParams.page ?? 1;
@@ -37,8 +40,12 @@ export const EmployeeListPage = () => {
   // Handle search change
   const handleSearchChange = (newSearch: string) => {
     void navigate({
-      to: '/admin/employees',
-      search: { ...searchParams, search: newSearch, page: 1 },
+      to: '/admin/employees/',
+      search: {
+        ...searchParams,
+        search: newSearch,
+        page: 1,
+      },
     });
   };
 
@@ -46,9 +53,11 @@ export const EmployeeListPage = () => {
   const total = data?.total ?? 0;
 
   return (
-    <EmployeeListLayout
+    <AdminPageLayout
+      title="Employees"
+      description="Manage your employees. View, create, edit, and delete employee records."
       header={
-        <EmployeeListHeader
+        <EmployeeListSearchHeader
           searchValue={search}
           onSearchChange={handleSearchChange}
         />
@@ -59,6 +68,6 @@ export const EmployeeListPage = () => {
           <EmployeeTable data={employees} columns={columns} />
         </EmployeeListContent>
       </EmployeeListStates>
-    </EmployeeListLayout>
+    </AdminPageLayout>
   );
 };

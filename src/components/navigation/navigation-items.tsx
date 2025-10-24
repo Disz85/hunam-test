@@ -25,25 +25,13 @@ export const NavigationItems = ({
           to: item.href,
         });
 
-        const linkClasses = {
-          base: 'group flex gap-x-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-indigo-50 hover:text-indigo-600',
-          active: 'bg-indigo-50 text-gray-900',
-          inactive: 'text-gray-700',
-        };
+        const linkClassName = isActive
+          ? 'group flex gap-x-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-indigo-50 hover:text-indigo-600 bg-indigo-50 text-gray-900'
+          : 'group flex gap-x-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-indigo-50 hover:text-indigo-600 text-gray-700';
 
-        const iconClasses = {
-          base: 'size-5 shrink-0 transition-colors group-hover:text-indigo-600',
-          active: 'text-indigo-600',
-          inactive: 'text-gray-400',
-        };
-
-        const linkClassName = `${linkClasses.base} ${
-          isActive ? linkClasses.active : linkClasses.inactive
-        }`;
-
-        const iconClassName = `${iconClasses.base} ${
-          isActive ? iconClasses.active : iconClasses.inactive
-        }`;
+        const iconClassName = isActive
+          ? 'size-5 shrink-0 transition-colors group-hover:text-indigo-600 text-indigo-600'
+          : 'size-5 shrink-0 transition-colors group-hover:text-indigo-600 text-gray-400';
 
         return (
           <li key={item.name}>

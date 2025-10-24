@@ -87,12 +87,7 @@ export default defineConfig([
       ],
 
       // React Hook Form specific - disable unsafe assignment warnings for form errors
-      '@typescript-eslint/no-unsafe-assignment': [
-        'error',
-        {
-          ignoreRestSiblings: true,
-        },
-      ],
+      '@typescript-eslint/no-unsafe-assignment': 'off',
 
       // React specific
       'react-hooks/exhaustive-deps': 'warn',

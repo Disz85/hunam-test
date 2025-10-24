@@ -33,7 +33,7 @@ export const ContactAndDetailsFields = ({
 
     <div className="sm:col-span-3">
       <FormField label="Sex" required>
-        <FormSelect {...register('sex')}>
+        <FormSelect {...register('sex', { valueAsNumber: true })}>
           <option value="">Select sex</option>
           {Object.entries(SexLabels).map(([value, label]) => (
             <option key={value} value={value}>
@@ -47,7 +47,7 @@ export const ContactAndDetailsFields = ({
 
     <div className="sm:col-span-6">
       <FormField label="Education Level" required>
-        <FormSelect {...register('education')}>
+        <FormSelect {...register('education', { valueAsNumber: true })}>
           <option value="">Select education level</option>
           {Object.entries(EducationLabels).map(([value, label]) => (
             <option key={value} value={value}>

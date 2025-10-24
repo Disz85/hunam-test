@@ -4,7 +4,7 @@ import { type ComponentProps, forwardRef } from 'react';
 /**
  * FormInput props
  */
-type FormInputProps = ComponentProps<typeof Input> & {
+type FormInputProps = ComponentProps<'input'> & {
   hasError?: boolean;
 };
 

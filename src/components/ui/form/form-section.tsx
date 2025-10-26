@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ComponentType, ReactNode } from 'react';
 
 /**
  * FormSection props
@@ -6,6 +6,7 @@ import type { ReactNode } from 'react';
 type FormSectionProps = {
   title: string;
   description?: string;
+  icon?: ComponentType<{ className?: string }>;
   children: ReactNode;
 };
 
@@ -17,11 +18,13 @@ type FormSectionProps = {
 export const FormSection = ({
   title,
   description,
+  icon: Icon,
   children,
 }: FormSectionProps) => {
   return (
     <fieldset>
-      <legend className="text-base font-semibold leading-7 text-gray-900">
+      <legend className="flex items-center gap-2 text-base font-semibold leading-7 text-gray-900">
+        {Icon && <Icon className="h-5 w-5 text-indigo-600" />}
         {title}
       </legend>
       {description && (

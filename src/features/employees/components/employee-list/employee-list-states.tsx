@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 
+import { PageSpinner } from '@/components/ui/loading/page-spinner';
+
 type EmployeeListStatesProps = {
   isLoading: boolean;
   error: unknown;
@@ -17,14 +19,7 @@ export const EmployeeListStates = ({
   children,
 }: EmployeeListStatesProps) => {
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center py-12">
-        <div className="text-center">
-          <div className="inline-block size-8 animate-spin rounded-full border-4 border-solid border-indigo-600 border-r-transparent" />
-          <p className="mt-4 text-sm text-gray-600">Loading employees...</p>
-        </div>
-      </div>
-    );
+    return <PageSpinner text="Loading employees..." />;
   }
 
   if (error) {

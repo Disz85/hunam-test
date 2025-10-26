@@ -5,6 +5,7 @@ type SpinnerProps = {
   text?: string;
   size?: 'sm' | 'md' | 'lg';
   variant?: 'primary' | 'secondary';
+  className?: string;
 };
 
 /**
@@ -31,6 +32,7 @@ export const Spinner = ({
   text,
   size = 'md',
   variant = 'primary',
+  className = '',
 }: SpinnerProps) => {
   const sizeClasses = getSizeClasses(size);
   const colorClasses =
@@ -38,15 +40,25 @@ export const Spinner = ({
       ? 'border-white border-r-transparent'
       : 'border-indigo-600 border-r-transparent';
 
+  const spinnerElement = (
+    <div
+      className={`inline-block ${sizeClasses} animate-spin rounded-full border-4 border-solid ${colorClasses} ${className}`}
+      role="status"
+      aria-label="Loading"
+    />
+  );
+
+  // Simple spinner without wrapper for inline use
+  if (!text) {
+    return spinnerElement;
+  }
+
+  // Full spinner with text (for page-level loading)
   return (
     <div className="flex items-center justify-center">
       <div className="flex flex-col items-center gap-2">
-        <div
-          className={`inline-block ${sizeClasses} animate-spin rounded-full border-4 border-solid ${colorClasses}`}
-          role="status"
-          aria-label="Loading"
-        />
-        {text && <p className="text-sm text-gray-600">{text}</p>}
+        {spinnerElement}
+        <p className="text-sm text-gray-600">{text}</p>
       </div>
     </div>
   );

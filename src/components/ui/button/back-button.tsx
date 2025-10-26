@@ -1,0 +1,26 @@
+import { Button } from '@headlessui/react';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { useNavigate } from '@tanstack/react-router';
+
+/**
+ * Back button component
+ *
+ * Navigates back to the employee list
+ */
+export const BackButton = () => {
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    void navigate({ to: '/admin/employees' });
+  };
+
+  return (
+    <Button
+      onClick={handleBack}
+      className="flex items-center gap-x-2 text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700"
+    >
+      <ArrowLeftIcon className="size-5" aria-hidden="true" />
+      <span>Back</span>
+    </Button>
+  );
+};

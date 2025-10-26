@@ -7,6 +7,17 @@ import {
 
 import type { EmployeeDto } from '@/api';
 
+type ColumnMetadata = {
+  align?: 'left' | 'right';
+};
+
+/**
+ * Get alignment class based on column metadata
+ */
+const getAlignClass = (metadata?: ColumnMetadata): string => {
+  return metadata?.align === 'right' ? 'text-right' : 'text-left';
+};
+
 type EmployeeTableProps = {
   data: EmployeeDto[];
   columns: ColumnDef<EmployeeDto>[];
@@ -34,7 +45,7 @@ export const EmployeeTable = ({ data, columns }: EmployeeTableProps) => {
                 {headerGroup.headers.map(header => (
                   <th
                     key={header.id}
-                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                    className={`px-6 py-3 text-xs font-medium uppercase tracking-wider text-gray-500 ${getAlignClass(header.column.columnDef.meta)}`}
                   >
                     {header.isPlaceholder
                       ? null
@@ -53,7 +64,7 @@ export const EmployeeTable = ({ data, columns }: EmployeeTableProps) => {
                 {row.getVisibleCells().map(cell => (
                   <td
                     key={cell.id}
-                    className="whitespace-nowrap px-6 py-4 text-sm text-gray-900"
+                    className={`whitespace-nowrap px-6 py-4 text-sm text-gray-900 ${getAlignClass(cell.column.columnDef.meta)}`}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>

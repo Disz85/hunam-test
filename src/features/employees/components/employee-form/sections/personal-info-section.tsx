@@ -1,5 +1,8 @@
 import { useFormContext } from 'react-hook-form';
 
+import { Card } from '@/components/ui/card/card';
+import { FormSection } from '@/components/ui/form/form-section';
+
 import type { CreateEmployeeFormData } from '../../../schemas/create-employee-schema';
 import { BirthFields } from '../personal-info-fields/birth-fields';
 import { ContactAndDetailsFields } from '../personal-info-fields/contact-and-details-fields';
@@ -15,21 +18,17 @@ export const PersonalInfoSection = () => {
   const { errors } = formState;
 
   return (
-    <fieldset className="col-span-full">
-      <legend className="text-base font-semibold leading-7 text-gray-900">
-        Personal Information
-      </legend>
-      <p className="mt-1 text-sm leading-6 text-gray-600">
-        Basic personal details about the employee.
-      </p>
-
-      <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
+    <Card className="col-span-full">
+      <FormSection
+        title="Personal Information"
+        description="Basic personal details about the employee."
+      >
         <EmailField register={register} errors={errors} />
         <NameFields register={register} errors={errors} />
         <BirthFields register={register} errors={errors} />
         <MothersNameFields register={register} errors={errors} />
         <ContactAndDetailsFields register={register} errors={errors} />
-      </div>
-    </fieldset>
+      </FormSection>
+    </Card>
   );
 };

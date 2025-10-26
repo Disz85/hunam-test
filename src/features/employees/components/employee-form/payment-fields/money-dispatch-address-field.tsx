@@ -18,19 +18,17 @@ export const MoneyDispatchAddressField = ({
   register,
   errors,
 }: MoneyDispatchAddressFieldProps) => (
-  <div className="sm:col-span-6">
-    <FormField label="Money Dispatch Address" required>
-      <FormTextarea
-        rows={3}
-        placeholder="Enter the complete address where salary should be sent..."
-        {...register('moneyDispatchAddress')}
-      />
-      <p className="mt-1 text-xs text-gray-500">
-        Complete address where the salary should be sent
-      </p>
-      {errors.moneyDispatchAddress?.message && (
-        <ErrorMessage message={errors.moneyDispatchAddress.message} />
-      )}
-    </FormField>
-  </div>
+  <FormField label="Money Dispatch Address" required colSpan="full">
+    <FormTextarea
+      rows={3}
+      placeholder="Enter the complete address where salary should be sent..."
+      {...register('moneyDispatchAddress')}
+    />
+    <p className="mt-1 text-xs text-gray-500">
+      Complete address where the salary should be sent
+    </p>
+    {errors.moneyDispatchAddress?.message && (
+      <ErrorMessage message={errors.moneyDispatchAddress.message} />
+    )}
+  </FormField>
 );

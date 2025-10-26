@@ -19,47 +19,35 @@ export const BuildingDetailsFields = ({
   errors,
 }: BuildingDetailsFieldsProps) => (
   <>
-    <div className="sm:col-span-2">
-      <FormField label="House Number" required>
-        <FormInput {...register('houseNumber')} />
-        {errors.houseNumber?.message && (
-          <ErrorMessage message={errors.houseNumber.message} />
-        )}
-      </FormField>
-    </div>
+    <FormField label="House Number" required colSpan={2}>
+      <FormInput {...register('houseNumber')} />
+      {errors.houseNumber?.message && (
+        <ErrorMessage message={errors.houseNumber.message} />
+      )}
+    </FormField>
 
-    <div className="sm:col-span-2">
-      <FormField label="Building">
-        <FormInput {...register('building')} />
-        {errors.building?.message && (
-          <ErrorMessage message={errors.building.message} />
-        )}
-      </FormField>
-    </div>
+    <FormField label="Building" colSpan={2}>
+      <FormInput {...register('building')} />
+      {errors.building?.message && (
+        <ErrorMessage message={errors.building.message} />
+      )}
+    </FormField>
 
-    <div className="sm:col-span-2">
-      <FormField label="Staircase">
-        <FormInput {...register('staircase')} />
-        {errors.staircase?.message && (
-          <ErrorMessage message={errors.staircase.message} />
-        )}
-      </FormField>
-    </div>
+    <FormField label="Staircase" colSpan={2}>
+      <FormInput {...register('staircase')} />
+      {errors.staircase?.message && (
+        <ErrorMessage message={errors.staircase.message} />
+      )}
+    </FormField>
 
-    <div className="sm:col-span-2">
-      <FormField label="Floor">
-        <FormInput {...register('floor')} />
-        {errors.floor?.message && (
-          <ErrorMessage message={errors.floor.message} />
-        )}
-      </FormField>
-    </div>
+    <FormField label="Floor" colSpan={2}>
+      <FormInput {...register('floor')} />
+      {errors.floor?.message && <ErrorMessage message={errors.floor.message} />}
+    </FormField>
 
-    <div className="sm:col-span-2">
-      <FormField label="Door">
-        <FormInput {...register('door')} />
-        {errors.door?.message && <ErrorMessage message={errors.door.message} />}
-      </FormField>
-    </div>
+    <FormField label="Door" colSpan={2}>
+      <FormInput {...register('door')} />
+      {errors.door?.message && <ErrorMessage message={errors.door.message} />}
+    </FormField>
   </>
 );

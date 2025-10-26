@@ -18,18 +18,16 @@ export const BankAccountField = ({
   register,
   errors,
 }: BankAccountFieldProps) => (
-  <div className="sm:col-span-6">
-    <FormField label="Bank Account Number" required>
-      <FormInput
-        placeholder="e.g. 12345678-12345678-12345678"
-        {...register('bankAccountNumber')}
-      />
-      <p className="mt-1 text-xs text-gray-500">
-        Required for bank transfer payments
-      </p>
-      {errors.bankAccountNumber?.message && (
-        <ErrorMessage message={errors.bankAccountNumber.message} />
-      )}
-    </FormField>
-  </div>
+  <FormField label="Bank Account Number" required colSpan="full">
+    <FormInput
+      placeholder="e.g. 12345678-12345678-12345678"
+      {...register('bankAccountNumber')}
+    />
+    <p className="mt-1 text-xs text-gray-500">
+      Required for bank transfer payments
+    </p>
+    {errors.bankAccountNumber?.message && (
+      <ErrorMessage message={errors.bankAccountNumber.message} />
+    )}
+  </FormField>
 );

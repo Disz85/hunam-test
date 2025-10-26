@@ -19,19 +19,17 @@ export const PaymentMethodField = ({
   register,
   errors,
 }: PaymentMethodFieldProps) => (
-  <div className="sm:col-span-3">
-    <FormField label="Payment Method" required>
-      <FormSelect {...register('paymentMethod', { valueAsNumber: true })}>
-        <option value="">Select payment method</option>
-        {Object.entries(PaymentMethodLabels).map(([value, label]) => (
-          <option key={value} value={value}>
-            {label}
-          </option>
-        ))}
-      </FormSelect>
-      {errors.paymentMethod?.message && (
-        <ErrorMessage message={errors.paymentMethod.message} />
-      )}
-    </FormField>
-  </div>
+  <FormField label="Payment Method" required colSpan={3}>
+    <FormSelect {...register('paymentMethod', { valueAsNumber: true })}>
+      <option value="">Select payment method</option>
+      {Object.entries(PaymentMethodLabels).map(([value, label]) => (
+        <option key={value} value={value}>
+          {label}
+        </option>
+      ))}
+    </FormSelect>
+    {errors.paymentMethod?.message && (
+      <ErrorMessage message={errors.paymentMethod.message} />
+    )}
+  </FormField>
 );

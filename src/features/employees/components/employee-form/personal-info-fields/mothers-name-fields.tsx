@@ -19,22 +19,18 @@ export const MothersNameFields = ({
   errors,
 }: MothersNameFieldsProps) => (
   <>
-    <div className="sm:col-span-3">
-      <FormField label="Mother's First Name" required>
-        <FormInput {...register('mothersFirstName')} />
-        {errors.mothersFirstName?.message && (
-          <ErrorMessage message={errors.mothersFirstName.message} />
-        )}
-      </FormField>
-    </div>
+    <FormField label="Mother's First Name" required colSpan={3}>
+      <FormInput {...register('mothersFirstName')} />
+      {errors.mothersFirstName?.message && (
+        <ErrorMessage message={errors.mothersFirstName.message} />
+      )}
+    </FormField>
 
-    <div className="sm:col-span-3">
-      <FormField label="Mother's Last Name" required>
-        <FormInput {...register('mothersLastName')} />
-        {errors.mothersLastName?.message && (
-          <ErrorMessage message={errors.mothersLastName.message} />
-        )}
-      </FormField>
-    </div>
+    <FormField label="Mother's Last Name" required colSpan={3}>
+      <FormInput {...register('mothersLastName')} />
+      {errors.mothersLastName?.message && (
+        <ErrorMessage message={errors.mothersLastName.message} />
+      )}
+    </FormField>
   </>
 );

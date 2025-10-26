@@ -16,22 +16,18 @@ type BirthFieldsProps = {
  */
 export const BirthFields = ({ register, errors }: BirthFieldsProps) => (
   <>
-    <div className="sm:col-span-3">
-      <FormField label="Date of Birth" required>
-        <FormInput type="date" {...register('dateOfBirth')} />
-        {errors.dateOfBirth?.message && (
-          <ErrorMessage message={errors.dateOfBirth.message} />
-        )}
-      </FormField>
-    </div>
+    <FormField label="Date of Birth" required colSpan={3}>
+      <FormInput type="date" {...register('dateOfBirth')} />
+      {errors.dateOfBirth?.message && (
+        <ErrorMessage message={errors.dateOfBirth.message} />
+      )}
+    </FormField>
 
-    <div className="sm:col-span-3">
-      <FormField label="Place of Birth" required>
-        <FormInput {...register('placeOfBirth')} />
-        {errors.placeOfBirth?.message && (
-          <ErrorMessage message={errors.placeOfBirth.message} />
-        )}
-      </FormField>
-    </div>
+    <FormField label="Place of Birth" required colSpan={3}>
+      <FormInput {...register('placeOfBirth')} />
+      {errors.placeOfBirth?.message && (
+        <ErrorMessage message={errors.placeOfBirth.message} />
+      )}
+    </FormField>
   </>
 );

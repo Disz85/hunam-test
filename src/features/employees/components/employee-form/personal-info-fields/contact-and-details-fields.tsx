@@ -22,43 +22,35 @@ export const ContactAndDetailsFields = ({
   errors,
 }: ContactAndDetailsFieldsProps) => (
   <>
-    <div className="sm:col-span-3">
-      <FormField label="Phone Number" required>
-        <FormInput type="tel" autoComplete="tel" {...register('phone')} />
-        {errors.phone?.message && (
-          <ErrorMessage message={errors.phone.message} />
-        )}
-      </FormField>
-    </div>
+    <FormField label="Phone Number" required colSpan={3}>
+      <FormInput type="tel" autoComplete="tel" {...register('phone')} />
+      {errors.phone?.message && <ErrorMessage message={errors.phone.message} />}
+    </FormField>
 
-    <div className="sm:col-span-3">
-      <FormField label="Sex" required>
-        <FormSelect {...register('sex', { valueAsNumber: true })}>
-          <option value="">Select sex</option>
-          {Object.entries(SexLabels).map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
-        </FormSelect>
-        {errors.sex?.message && <ErrorMessage message={errors.sex.message} />}
-      </FormField>
-    </div>
+    <FormField label="Sex" required colSpan={3}>
+      <FormSelect {...register('sex', { valueAsNumber: true })}>
+        <option value="">Select sex</option>
+        {Object.entries(SexLabels).map(([value, label]) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
+        ))}
+      </FormSelect>
+      {errors.sex?.message && <ErrorMessage message={errors.sex.message} />}
+    </FormField>
 
-    <div className="sm:col-span-6">
-      <FormField label="Education Level" required>
-        <FormSelect {...register('education', { valueAsNumber: true })}>
-          <option value="">Select education level</option>
-          {Object.entries(EducationLabels).map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
-        </FormSelect>
-        {errors.education?.message && (
-          <ErrorMessage message={errors.education.message} />
-        )}
-      </FormField>
-    </div>
+    <FormField label="Education Level" required colSpan="full">
+      <FormSelect {...register('education', { valueAsNumber: true })}>
+        <option value="">Select education level</option>
+        {Object.entries(EducationLabels).map(([value, label]) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
+        ))}
+      </FormSelect>
+      {errors.education?.message && (
+        <ErrorMessage message={errors.education.message} />
+      )}
+    </FormField>
   </>
 );

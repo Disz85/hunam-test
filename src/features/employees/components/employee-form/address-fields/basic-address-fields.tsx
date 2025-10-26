@@ -19,29 +19,23 @@ export const BasicAddressFields = ({
   errors,
 }: BasicAddressFieldsProps) => (
   <>
-    <div className="sm:col-span-3">
-      <FormField label="Country" required>
-        <FormInput autoComplete="country" {...register('country')} />
-        {errors.country?.message && (
-          <ErrorMessage message={errors.country.message} />
-        )}
-      </FormField>
-    </div>
+    <FormField label="Country" required colSpan={3}>
+      <FormInput autoComplete="country" {...register('country')} />
+      {errors.country?.message && (
+        <ErrorMessage message={errors.country.message} />
+      )}
+    </FormField>
 
-    <div className="sm:col-span-3">
-      <FormField label="ZIP Code" required>
-        <FormInput autoComplete="postal-code" {...register('zipCode')} />
-        {errors.zipCode?.message && (
-          <ErrorMessage message={errors.zipCode.message} />
-        )}
-      </FormField>
-    </div>
+    <FormField label="ZIP Code" required colSpan={3}>
+      <FormInput autoComplete="postal-code" {...register('zipCode')} />
+      {errors.zipCode?.message && (
+        <ErrorMessage message={errors.zipCode.message} />
+      )}
+    </FormField>
 
-    <div className="sm:col-span-3">
-      <FormField label="City" required>
-        <FormInput autoComplete="address-level2" {...register('city')} />
-        {errors.city?.message && <ErrorMessage message={errors.city.message} />}
-      </FormField>
-    </div>
+    <FormField label="City" required colSpan={3}>
+      <FormInput autoComplete="address-level2" {...register('city')} />
+      {errors.city?.message && <ErrorMessage message={errors.city.message} />}
+    </FormField>
   </>
 );

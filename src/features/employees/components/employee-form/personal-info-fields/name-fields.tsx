@@ -16,22 +16,18 @@ type NameFieldsProps = {
  */
 export const NameFields = ({ register, errors }: NameFieldsProps) => (
   <>
-    <div className="sm:col-span-3">
-      <FormField label="First Name" required>
-        <FormInput autoComplete="given-name" {...register('firstName')} />
-        {errors.firstName?.message && (
-          <ErrorMessage message={errors.firstName.message} />
-        )}
-      </FormField>
-    </div>
+    <FormField label="First Name" required colSpan={3}>
+      <FormInput autoComplete="given-name" {...register('firstName')} />
+      {errors.firstName?.message && (
+        <ErrorMessage message={errors.firstName.message} />
+      )}
+    </FormField>
 
-    <div className="sm:col-span-3">
-      <FormField label="Last Name" required>
-        <FormInput autoComplete="family-name" {...register('lastName')} />
-        {errors.lastName?.message && (
-          <ErrorMessage message={errors.lastName.message} />
-        )}
-      </FormField>
-    </div>
+    <FormField label="Last Name" required colSpan={3}>
+      <FormInput autoComplete="family-name" {...register('lastName')} />
+      {errors.lastName?.message && (
+        <ErrorMessage message={errors.lastName.message} />
+      )}
+    </FormField>
   </>
 );

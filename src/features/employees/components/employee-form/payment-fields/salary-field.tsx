@@ -15,22 +15,18 @@ type SalaryFieldProps = {
  * Salary input field component
  */
 export const SalaryField = ({ register, errors }: SalaryFieldProps) => (
-  <div className="sm:col-span-3">
-    <FormField label="Salary (HUF)" required>
-      <FormInput
-        type="number"
-        min="200000"
-        max="500000"
-        step="1000"
-        placeholder="e.g. 300000"
-        {...register('salary', { valueAsNumber: true })}
-      />
-      <p className="mt-1 text-xs text-gray-500">
-        Must be between 200,000 and 500,000 HUF
-      </p>
-      {errors.salary?.message && (
-        <ErrorMessage message={errors.salary.message} />
-      )}
-    </FormField>
-  </div>
+  <FormField label="Salary (HUF)" required colSpan={3}>
+    <FormInput
+      type="number"
+      min="200000"
+      max="500000"
+      step="1000"
+      placeholder="e.g. 300000"
+      {...register('salary', { valueAsNumber: true })}
+    />
+    <p className="mt-1 text-xs text-gray-500">
+      Must be between 200,000 and 500,000 HUF
+    </p>
+    {errors.salary?.message && <ErrorMessage message={errors.salary.message} />}
+  </FormField>
 );

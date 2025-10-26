@@ -18,21 +18,19 @@ export const CashPaymentDayField = ({
   register,
   errors,
 }: CashPaymentDayFieldProps) => (
-  <div className="sm:col-span-3">
-    <FormField label="Cash Payment Day" required>
-      <FormInput
-        type="number"
-        min="1"
-        max="31"
-        placeholder="e.g. 15"
-        {...register('cashPaymentDay', { valueAsNumber: true })}
-      />
-      <p className="mt-1 text-xs text-gray-500">
-        Day of the month (1-31) when cash payment is made
-      </p>
-      {errors.cashPaymentDay?.message && (
-        <ErrorMessage message={errors.cashPaymentDay.message} />
-      )}
-    </FormField>
-  </div>
+  <FormField label="Cash Payment Day" required colSpan={3}>
+    <FormInput
+      type="number"
+      min="1"
+      max="31"
+      placeholder="e.g. 15"
+      {...register('cashPaymentDay', { valueAsNumber: true })}
+    />
+    <p className="mt-1 text-xs text-gray-500">
+      Day of the month (1-31) when cash payment is made
+    </p>
+    {errors.cashPaymentDay?.message && (
+      <ErrorMessage message={errors.cashPaymentDay.message} />
+    )}
+  </FormField>
 );

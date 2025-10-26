@@ -5,8 +5,8 @@ import { useNavigate } from '@tanstack/react-router';
 import { FormProvider, useForm, type UseFormReturn } from 'react-hook-form';
 
 import { employeeService } from '@/api/employees';
-import { ErrorAlert } from '@/components/ui/error-alert';
-import { FormButton } from '@/components/ui/form-button';
+import { ErrorAlert } from '@/components/ui/error/error-alert';
+import { FormButton } from '@/components/ui/form/form-button';
 
 import {
   type CreateEmployeeFormData,

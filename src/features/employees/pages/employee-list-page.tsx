@@ -40,7 +40,7 @@ export const EmployeeListPage = () => {
   // Handle search change
   const handleSearchChange = (newSearch: string) => {
     void navigate({
-      to: '/admin/employees/',
+      to: '/admin/employees',
       search: {
         ...searchParams,
         search: newSearch,

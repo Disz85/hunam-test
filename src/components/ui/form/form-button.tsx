@@ -1,6 +1,7 @@
 import { Button } from '@headlessui/react';
-import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { type ComponentProps, type ReactNode } from 'react';
+
+import { Spinner } from '../loading/spinner';
 
 /**
  * FormButton props
@@ -33,8 +34,8 @@ export const FormButton = ({
       className={`${baseClasses} ${className}`}
       {...props}
     >
+      {isLoading && <Spinner size="sm" />}
       {isLoading ? loadingText : children}
-      {isLoading && <ArrowPathIcon className="h-5 w-5 animate-spin" />}
     </Button>
   );
 };

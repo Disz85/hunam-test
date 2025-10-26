@@ -1,9 +1,9 @@
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
-import { ErrorMessage } from '@/components/ui/error-message';
-import { FormField } from '@/components/ui/form-field';
-import { FormInput } from '@/components/ui/form-input';
-import { FormSelect } from '@/components/ui/form-select';
+import { ErrorMessage } from '@/components/ui/error/error-message';
+import { FormField } from '@/components/ui/form/form-field';
+import { FormInput } from '@/components/ui/form/form-input';
+import { FormSelect } from '@/components/ui/form/form-select';
 
 import { EducationLabels } from '../../../domain/enums/education-enum';
 import { SexLabels } from '../../../domain/enums/sex-enum';

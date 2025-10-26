@@ -1,8 +1,8 @@
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
-import { ErrorMessage } from '@/components/ui/error-message';
-import { FormField } from '@/components/ui/form-field';
-import { FormTextarea } from '@/components/ui/form-textarea';
+import { ErrorMessage } from '@/components/ui/error/error-message';
+import { FormField } from '@/components/ui/form/form-field';
+import { FormTextarea } from '@/components/ui/form/form-textarea';
 
 import type { CreateEmployeeFormData } from '../../../schemas/create-employee-schema';
 

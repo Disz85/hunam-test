@@ -2,8 +2,8 @@ import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 
-import { FormInput } from '@/components/ui/form-input';
-import { ResponsiveActionButton } from '@/components/ui/responsive-action-button';
+import { ResponsiveActionButton } from '@/components/ui/button/responsive-action-button';
+import { FormInput } from '@/components/ui/form/form-input';
 import { useDebounce } from '@/hooks/use-debounce';
 
 type EmployeeListSearchHeaderProps = {

@@ -2,11 +2,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 
-import { ErrorAlert } from '@/components/ui/error-alert';
-import { ErrorMessage } from '@/components/ui/error-message';
-import { FormButton } from '@/components/ui/form-button';
-import { FormField } from '@/components/ui/form-field';
-import { FormInput } from '@/components/ui/form-input';
+import { ErrorAlert } from '@/components/ui/error/error-alert';
+import { ErrorMessage } from '@/components/ui/error/error-message';
+import { FormButton } from '@/components/ui/form/form-button';
+import { FormField } from '@/components/ui/form/form-field';
+import { FormInput } from '@/components/ui/form/form-input';
 import type { LoginCredentials } from '@/features/auth/domain/types/auth-state';
 import { useAuth } from '@/features/auth/hooks/use-auth';
 import { loginSchema } from '@/features/auth/schemas/login-schema';

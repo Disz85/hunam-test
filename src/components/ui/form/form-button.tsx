@@ -34,7 +34,7 @@ export const FormButton = ({
       className={`${baseClasses} ${className}`}
       {...props}
     >
-      {isLoading && <Spinner size="sm" />}
+      {isLoading && <Spinner size="sm" variant="secondary" />}
       {isLoading ? loadingText : children}
     </Button>
   );

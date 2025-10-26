@@ -1,3 +1,4 @@
+import { BanknotesIcon } from '@heroicons/react/24/outline';
 import { useFormContext } from 'react-hook-form';
 
 import { Card } from '@/components/ui/card/card';
@@ -24,10 +25,11 @@ export const PaymentSection = ({ paymentMethod }: PaymentSectionProps) => {
   const { register, formState } = useFormContext<CreateEmployeeFormData>();
   const { errors } = formState;
   return (
-    <Card className="col-span-full">
+    <Card className="h-fit">
       <FormSection
         title="Payment Information"
         description="Salary and payment method details."
+        icon={BanknotesIcon}
       >
         <PaymentMethodField register={register} errors={errors} />
         <SalaryField register={register} errors={errors} />

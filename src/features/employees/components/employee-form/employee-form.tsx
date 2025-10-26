@@ -65,12 +65,8 @@ export const EmployeeForm = ({
     }
   };
 
-  const handleCancel = () => {
-    void navigate({ to: '/admin/employees' });
-  };
-
   return (
-    <main className="mx-auto max-w-2xl">
+    <main className="mx-auto">
       {mutation.error && (
         <div className="mb-6">
           <ErrorAlert message={mutation.error.message} />
@@ -83,7 +79,6 @@ export const EmployeeForm = ({
           onSubmit={e => {
             void handleSubmit(onSubmit)(e);
           }}
-          onCancel={handleCancel}
           isLoading={mutation.isPending}
           isEdit={isEdit}
         />

@@ -19,7 +19,7 @@ export const PaymentMethodField = ({
   register,
   errors,
 }: PaymentMethodFieldProps) => (
-  <FormField label="Payment Method" required colSpan={3}>
+  <FormField label="Payment Method" required colSpan="full">
     <FormSelect {...register('paymentMethod', { valueAsNumber: true })}>
       <option value="">Select payment method</option>
       {Object.entries(PaymentMethodLabels).map(([value, label]) => (

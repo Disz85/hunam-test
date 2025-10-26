@@ -1,4 +1,4 @@
-import { Button } from '@headlessui/react';
+import { CheckIcon } from '@heroicons/react/24/outline';
 
 import { FormButton } from '@/components/ui/form/form-button';
 
@@ -6,7 +6,6 @@ import { FormButton } from '@/components/ui/form/form-button';
  * Props for the EmployeeFormActions component
  */
 export type EmployeeFormActionsProps = {
-  onCancel: () => void;
   isLoading: boolean;
   isEdit: boolean;
 };
@@ -14,23 +13,21 @@ export type EmployeeFormActionsProps = {
 /**
  * EmployeeFormActions component
  *
- * Renders the cancel and submit buttons
+ * Renders submit button at the end of the form
  */
 export const EmployeeFormActions = ({
-  onCancel,
   isLoading,
   isEdit,
 }: EmployeeFormActionsProps) => (
-  <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 pt-6">
-    <Button
-      type="button"
-      onClick={onCancel}
-      className="text-sm font-semibold leading-6 text-gray-900"
+  <div className="flex sm:w-auto">
+    <FormButton
+      type="submit"
+      isLoading={isLoading}
+      loadingText={isEdit ? 'Updating...' : 'Creating...'}
+      className="w-full sm:w-auto sm:min-w-[160px]"
     >
-      Cancel
-    </Button>
-    <FormButton type="submit" isLoading={isLoading} disabled={isLoading}>
-      {isEdit ? 'Update Employee' : 'Create Employee'}
+      <CheckIcon className="size-5" aria-hidden="true" />
+      <span>{isEdit ? 'Update Employee' : 'Create Employee'}</span>
     </FormButton>
   </div>
 );

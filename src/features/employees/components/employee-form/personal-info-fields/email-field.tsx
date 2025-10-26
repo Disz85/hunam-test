@@ -15,7 +15,7 @@ type EmailFieldProps = {
  * Email address field component
  */
 export const EmailField = ({ register, errors }: EmailFieldProps) => (
-  <FormField label="Email Address" required colSpan="full">
+  <FormField label="Email Address" required colSpan={3}>
     <FormInput type="email" autoComplete="email" {...register('email')} />
     {errors.email?.message && <ErrorMessage message={errors.email.message} />}
   </FormField>

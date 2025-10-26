@@ -1,3 +1,4 @@
+import { UserIcon } from '@heroicons/react/24/outline';
 import { useFormContext } from 'react-hook-form';
 
 import { Card } from '@/components/ui/card/card';
@@ -18,15 +19,16 @@ export const PersonalInfoSection = () => {
   const { errors } = formState;
 
   return (
-    <Card className="col-span-full">
+    <Card>
       <FormSection
         title="Personal Information"
         description="Basic personal details about the employee."
+        icon={UserIcon}
       >
-        <EmailField register={register} errors={errors} />
         <NameFields register={register} errors={errors} />
         <BirthFields register={register} errors={errors} />
         <MothersNameFields register={register} errors={errors} />
+        <EmailField register={register} errors={errors} />
         <ContactAndDetailsFields register={register} errors={errors} />
       </FormSection>
     </Card>

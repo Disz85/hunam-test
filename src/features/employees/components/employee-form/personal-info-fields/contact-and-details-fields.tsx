@@ -39,7 +39,7 @@ export const ContactAndDetailsFields = ({
       {errors.sex?.message && <ErrorMessage message={errors.sex.message} />}
     </FormField>
 
-    <FormField label="Education Level" required colSpan="full">
+    <FormField label="Education Level" required colSpan={3}>
       <FormSelect {...register('education', { valueAsNumber: true })}>
         <option value="">Select education level</option>
         {Object.entries(EducationLabels).map(([value, label]) => (

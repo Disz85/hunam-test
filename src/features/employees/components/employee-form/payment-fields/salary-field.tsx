@@ -15,7 +15,7 @@ type SalaryFieldProps = {
  * Salary input field component
  */
 export const SalaryField = ({ register, errors }: SalaryFieldProps) => (
-  <FormField label="Salary (HUF)" required colSpan={3}>
+  <FormField label="Salary (HUF)" required colSpan="full">
     <FormInput
       type="number"
       min="200000"

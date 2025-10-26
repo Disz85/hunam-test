@@ -9,7 +9,6 @@ import { PersonalInfoSection } from './sections/personal-info-section';
 export type EmployeeFormContentProps = {
   paymentMethod: number | undefined;
   onSubmit: (e: React.FormEvent) => void;
-  onCancel: () => void;
   isLoading: boolean;
   isEdit: boolean;
 };
@@ -22,18 +21,17 @@ export type EmployeeFormContentProps = {
 export const EmployeeFormContent = ({
   paymentMethod,
   onSubmit,
-  onCancel,
   isLoading,
   isEdit,
 }: EmployeeFormContentProps) => (
-  <form onSubmit={onSubmit} className="col-span-full space-y-8">
-    <PersonalInfoSection />
-    <AddressSection />
-    <PaymentSection paymentMethod={paymentMethod} />
-    <EmployeeFormActions
-      onCancel={onCancel}
-      isLoading={isLoading}
-      isEdit={isEdit}
-    />
+  <form onSubmit={onSubmit} className="space-y-8">
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+      <div className="space-y-8 lg:col-span-2">
+        <PersonalInfoSection />
+        <AddressSection />
+      </div>
+      <PaymentSection paymentMethod={paymentMethod} />
+    </div>
+    <EmployeeFormActions isLoading={isLoading} isEdit={isEdit} />
   </form>
 );

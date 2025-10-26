@@ -1,3 +1,4 @@
+import { MapPinIcon } from '@heroicons/react/24/outline';
 import { useFormContext } from 'react-hook-form';
 
 import { Card } from '@/components/ui/card/card';
@@ -15,10 +16,11 @@ export const AddressSection = () => {
   const { register, formState } = useFormContext<CreateEmployeeFormData>();
   const { errors } = formState;
   return (
-    <Card className="col-span-full">
+    <Card>
       <FormSection
         title="Address Information"
         description="Complete address details for the employee."
+        icon={MapPinIcon}
       >
         <BasicAddressFields register={register} errors={errors} />
         <AdministrativeFields register={register} errors={errors} />

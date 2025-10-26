@@ -12,6 +12,20 @@ type FormFieldProps = {
 };
 
 /**
+ * Column span class mapping
+ * Note: Tailwind requires explicit class names for purging
+ */
+const colSpanClasses: Record<number | 'full', string> = {
+  1: 'sm:col-span-1',
+  2: 'sm:col-span-2',
+  3: 'sm:col-span-3',
+  4: 'sm:col-span-4',
+  5: 'sm:col-span-5',
+  6: 'sm:col-span-6',
+  full: 'sm:col-span-6',
+};
+
+/**
  * FormField component
  *
  * Wraps Field + Label for consistent form field styling with optional grid column span
@@ -22,11 +36,7 @@ export const FormField = ({
   required = false,
   colSpan,
 }: FormFieldProps) => {
-  const colSpanClass = colSpan
-    ? colSpan === 'full'
-      ? 'sm:col-span-6'
-      : `sm:col-span-${colSpan}`
-    : '';
+  const colSpanClass = colSpan ? colSpanClasses[colSpan] || '' : '';
 
   return (
     <div className={colSpanClass}>

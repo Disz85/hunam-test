@@ -1,11 +1,19 @@
+import { AdminPageLayout } from '@/components/layouts/admin-page-layout';
+import { BackButton } from '@/components/ui/button/back-button';
+
+import { EmployeeForm } from '../components/employee-form/employee-form';
+
 /**
  * Employee edit page component
  */
 export const EmployeeEditPage = ({ id }: { id: string }) => {
   return (
-    <div>
-      <h1>Edit Employee</h1>
-      <p>Editing employee with ID: {id}</p>
-    </div>
+    <AdminPageLayout
+      title="Edit Employee"
+      description="Update the employee information below."
+      header={<BackButton />}
+    >
+      <EmployeeForm isEdit={true} employeeId={Number.parseInt(id)} />
+    </AdminPageLayout>
   );
 };

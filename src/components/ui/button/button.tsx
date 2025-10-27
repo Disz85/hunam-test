@@ -1,18 +1,24 @@
 import { Button as HeadlessButton } from '@headlessui/react';
 import { type ComponentProps, type ReactNode } from 'react';
 
+import { cn } from '@/lib/cn';
+
 import { Spinner } from '../loading/spinner';
 
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
-type ButtonProps = ComponentProps<typeof HeadlessButton> & {
+type ButtonProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
   isLoading?: boolean;
   loadingText?: string;
   children: ReactNode;
-};
+  className?: string;
+} & Omit<ComponentProps<typeof HeadlessButton>, 'className'>;
+
+const BASE_CLASSES =
+  'inline-flex items-center justify-center gap-2 rounded-md font-semibold shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50';
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
@@ -40,19 +46,21 @@ export const Button = ({
   isLoading = false,
   loadingText,
   children,
-  className = '',
+  className,
   disabled,
   ...props
 }: ButtonProps) => {
-  const baseClasses =
-    'inline-flex items-center justify-center gap-2 rounded-md font-semibold shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50';
-
   const displayText = isLoading && loadingText ? loadingText : children;
 
   return (
     <HeadlessButton
       disabled={disabled || isLoading}
-      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
+      className={cn(
+        BASE_CLASSES,
+        variantClasses[variant],
+        sizeClasses[size],
+        className
+      )}
       {...props}
     >
       {isLoading && <Spinner size="sm" variant="secondary" />}

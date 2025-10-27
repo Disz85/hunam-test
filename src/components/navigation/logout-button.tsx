@@ -1,10 +1,18 @@
 import { Button } from '@headlessui/react';
 import { ArrowRightStartOnRectangleIcon } from '@heroicons/react/24/outline';
 
+import { cn } from '@/lib/cn';
+
 type LogoutButtonProps = {
   isLoading: boolean;
   onLogout: () => void;
 };
+
+const BASE_BUTTON_CLASSES =
+  'group flex w-full gap-x-3 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900 disabled:opacity-50';
+
+const ICON_CLASSES =
+  'size-5 shrink-0 text-gray-400 transition-colors group-hover:text-gray-600';
 
 /**
  * Logout button component
@@ -16,10 +24,10 @@ export const LogoutButton = ({ isLoading, onLogout }: LogoutButtonProps) => {
     <Button
       onClick={onLogout}
       disabled={isLoading}
-      className="group flex w-full gap-x-3 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900 disabled:opacity-50"
+      className={cn(BASE_BUTTON_CLASSES)}
     >
       <ArrowRightStartOnRectangleIcon
-        className="size-5 shrink-0 text-gray-400 transition-colors group-hover:text-gray-600"
+        className={ICON_CLASSES}
         aria-hidden="true"
       />
       {isLoading ? 'Logging out...' : 'Logout'}

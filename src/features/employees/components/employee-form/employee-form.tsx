@@ -1,11 +1,16 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
-import { FormProvider, useForm, type UseFormReturn } from 'react-hook-form';
+import { useMemo } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import { employeeService } from '@/api/employees';
 import { ErrorAlert } from '@/components/ui/error/error-alert';
+import { PageSpinner } from '@/components/ui/loading/page-spinner';
 
+import { mapEmployeeDtoToFormData } from '../../domain/mappers/employee-mapper';
+import { employeeQueryKeys } from '../../domain/query-keys/employee-query-keys';
+import { useEmployee } from '../../hooks/use-employee';
 import {
   type CreateEmployeeFormData,
   createEmployeeSchema,
@@ -34,11 +39,23 @@ export const EmployeeForm = ({
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const form: UseFormReturn<CreateEmployeeFormData> =
-    useForm<CreateEmployeeFormData>({
-      resolver: zodResolver(createEmployeeSchema),
-      defaultValues: initialData,
-    });
+  const {
+    data: employee,
+    isLoading: isLoadingEmployee,
+    error: employeeError,
+  } = useEmployee(isEdit ? employeeId : undefined);
+
+  // Memoize form values to prevent unnecessary re-renders
+  const formValues = useMemo(
+    () => (isEdit && employee ? mapEmployeeDtoToFormData(employee) : undefined),
+    [isEdit, employee]
+  );
+
+  const form = useForm<CreateEmployeeFormData>({
+    resolver: zodResolver(createEmployeeSchema),
+    defaultValues: initialData,
+    values: formValues,
+  });
 
   const { handleSubmit, watch } = form;
 
@@ -46,13 +63,16 @@ export const EmployeeForm = ({
 
   const mutation = useMutation({
     mutationFn: async (data: CreateEmployeeFormData) => {
-      if (isEdit && employeeId) {
+      if (isEdit && employeeId !== undefined) {
         return employeeService.update(employeeId, data);
       }
       return employeeService.create(data);
     },
     onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ['employees'] });
+      // Invalidate all employee queries (both lists and details)
+      void queryClient.invalidateQueries({
+        queryKey: employeeQueryKeys.all,
+      });
       void navigate({ to: '/admin/employees' });
     },
   });
@@ -65,11 +85,21 @@ export const EmployeeForm = ({
     }
   };
 
+  // Show loading spinner while fetching employee data
+  if (isEdit && isLoadingEmployee) {
+    return <PageSpinner />;
+  }
+
+  // Determine error message
+  const errorMessage = employeeError
+    ? 'Failed to load employee data. Please try again.'
+    : mutation.error?.message;
+
   return (
     <main className="mx-auto">
-      {mutation.error && (
+      {errorMessage && (
         <div className="mb-6">
-          <ErrorAlert message={mutation.error.message} />
+          <ErrorAlert message={errorMessage} />
         </div>
       )}
 

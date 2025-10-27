@@ -64,6 +64,18 @@ export const EmployeeListPage = () => {
     });
   };
 
+  // Handle orderBy change
+  const handleOrderByChange = (newOrderBy: string) => {
+    void navigate({
+      to: '/admin/employees',
+      search: {
+        ...searchParams,
+        orderBy: newOrderBy,
+        page: 1, // Reset to first page when sorting changes
+      },
+    });
+  };
+
   const employees = data?.data ?? [];
   const total = data?.total ?? 0;
   const totalPages = Math.ceil(total / limit);
@@ -76,6 +88,8 @@ export const EmployeeListPage = () => {
         <EmployeeListSearchHeader
           searchValue={search}
           onSearchChange={handleSearchChange}
+          orderBy={orderBy}
+          onOrderByChange={handleOrderByChange}
         />
       }
     >

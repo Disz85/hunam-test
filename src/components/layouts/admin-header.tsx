@@ -3,7 +3,7 @@ import { Bars3Icon } from '@heroicons/react/24/outline';
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { LanguageSwitcher } from '../ui/language-switcher';
+import { LanguageSwitcher } from '../ui/switcher/language-switcher';
 
 type AdminHeaderProps = {
   children?: ReactNode;

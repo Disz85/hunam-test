@@ -21,5 +21,14 @@
   "of": "of",
   "results": "results",
   "employee": "employee",
-  "employees": "employees"
+  "employees": "employees",
+  "sort": {
+    "default": "Default",
+    "firstNameAsc": "First Name A-Z",
+    "firstNameDesc": "First Name Z-A",
+    "lastNameAsc": "Last Name A-Z",
+    "lastNameDesc": "Last Name Z-A",
+    "emailAsc": "Email A-Z",
+    "emailDesc": "Email Z-A"
+  }
 }

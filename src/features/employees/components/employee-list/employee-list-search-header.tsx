@@ -7,19 +7,25 @@ import { ResponsiveActionButton } from '@/components/ui/button/responsive-action
 import { FormInput } from '@/components/ui/form/form-input';
 import { useDebounce } from '@/hooks/use-debounce';
 
+import { SortDropdown } from './sort-dropdown';
+
 type EmployeeListSearchHeaderProps = {
   searchValue: string;
   onSearchChange: (value: string) => void;
+  orderBy: string;
+  onOrderByChange: (orderBy: string) => void;
 };
 
 /**
  * Employee list search header component
  *
- * Contains search input and create button
+ * Contains search input, sort dropdown, and create button
  */
 export const EmployeeListSearchHeader = ({
   searchValue,
   onSearchChange,
+  orderBy,
+  onOrderByChange,
 }: EmployeeListSearchHeaderProps) => {
   const { t } = useTranslation('employees');
   const navigate = useNavigate();
@@ -50,8 +56,8 @@ export const EmployeeListSearchHeader = ({
   };
 
   return (
-    <>
-      <div className="flex w-full items-center justify-between gap-x-4">
+    <div className="flex w-full items-center justify-between gap-x-4">
+      <div className="flex flex-1 items-center gap-x-2">
         <form onSubmit={handleSearchSubmit} className="flex-1 max-w-lg">
           <div className="relative">
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -72,15 +78,17 @@ export const EmployeeListSearchHeader = ({
           </div>
         </form>
 
-        <ResponsiveActionButton
-          type="button"
-          icon={PlusIcon}
-          onClick={handleCreateClick}
-          aria-label={t('newEmployee')}
-        >
-          {t('newEmployee')}
-        </ResponsiveActionButton>
+        <SortDropdown currentOrderBy={orderBy} onSortChange={onOrderByChange} />
       </div>
-    </>
+
+      <ResponsiveActionButton
+        type="button"
+        icon={PlusIcon}
+        onClick={handleCreateClick}
+        aria-label={t('newEmployee')}
+      >
+        {t('newEmployee')}
+      </ResponsiveActionButton>
+    </div>
   );
 };

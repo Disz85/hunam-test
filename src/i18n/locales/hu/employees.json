@@ -21,5 +21,14 @@
   "of": "összesen",
   "results": "eredmény",
   "employee": "alkalmazott",
-  "employees": "alkalmazottak"
+  "employees": "alkalmazottak",
+  "sort": {
+    "default": "Alapértelmezett",
+    "firstNameAsc": "Keresztnév A-Z",
+    "firstNameDesc": "Keresztnév Z-A",
+    "lastNameAsc": "Vezetéknév A-Z",
+    "lastNameDesc": "Vezetéknév Z-A",
+    "emailAsc": "Email A-Z",
+    "emailDesc": "Email Z-A"
+  }
 }

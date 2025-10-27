@@ -31,16 +31,6 @@ export const LANGUAGES: Record<
  *
  * Provides language switching functionality and current language state
  *
- * @example
- * ```tsx
- * const { currentLanguage, changeLanguage, t } = useLanguage();
- *
- * return (
- *   <button onClick={() => changeLanguage('hu')}>
- *     Switch to Hungarian
- *   </button>
- * );
- * ```
  */
 export const useLanguage = () => {
   const { i18n: i18nInstance, t } = useTranslation();

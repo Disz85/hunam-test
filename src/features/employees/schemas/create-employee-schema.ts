@@ -8,32 +8,30 @@ import { Sex } from '@/features/employees/domain/enums/sex-enum';
  * Employee form validation schema
  *
  * Validates employee data with conditional fields based on PaymentMethod
+ * Note: Error messages use i18n keys, actual translations happen in form components
  */
 export const createEmployeeSchema = z
   .object({
     // Personal Information
-    email: z
-      .string()
-      .email('Invalid email address')
-      .min(1, 'Email is required'),
-    firstName: z.string().min(1, 'First name is required'),
-    lastName: z.string().min(1, 'Last name is required'),
-    dateOfBirth: z.string().min(1, 'Date of birth is required'),
-    placeOfBirth: z.string().min(1, 'Place of birth is required'),
-    mothersFirstName: z.string().min(1, "Mother's first name is required"),
-    mothersLastName: z.string().min(1, "Mother's last name is required"),
-    phone: z.string().min(1, 'Phone number is required'),
-    sex: z.nativeEnum(Sex, { message: 'Sex is required' }),
-    education: z.nativeEnum(Education, { message: 'Education is required' }),
+    email: z.string().email('errors.invalidEmail').min(1, 'errors.required'),
+    firstName: z.string().min(1, 'errors.required'),
+    lastName: z.string().min(1, 'errors.required'),
+    dateOfBirth: z.string().min(1, 'errors.required'),
+    placeOfBirth: z.string().min(1, 'errors.required'),
+    mothersFirstName: z.string().min(1, 'errors.required'),
+    mothersLastName: z.string().min(1, 'errors.required'),
+    phone: z.string().min(1, 'errors.invalidPhone'),
+    sex: z.nativeEnum(Sex, { message: 'errors.required' }),
+    education: z.nativeEnum(Education, { message: 'errors.required' }),
 
     // Address Information
-    country: z.string().min(1, 'Country is required'),
-    zipCode: z.string().min(1, 'ZIP code is required'),
+    country: z.string().min(1, 'errors.required'),
+    zipCode: z.string().min(1, 'errors.required'),
     parcelNumber: z.string().optional(),
-    city: z.string().min(1, 'City is required'),
+    city: z.string().min(1, 'errors.required'),
     administrativeArea: z.string().optional(),
     administrativeAreaType: z.string().optional(),
-    houseNumber: z.string().min(1, 'House number is required'),
+    houseNumber: z.string().min(1, 'errors.required'),
     building: z.string().optional(),
     staircase: z.string().optional(),
     floor: z.string().optional(),
@@ -41,12 +39,12 @@ export const createEmployeeSchema = z
 
     // Payment Information
     paymentMethod: z.nativeEnum(PaymentMethod, {
-      message: 'Payment method is required',
+      message: 'errors.required',
     }),
     salary: z
       .number()
-      .min(200000, 'Salary must be at least 200,000 HUF')
-      .max(500000, 'Salary must not exceed 500,000 HUF'),
+      .min(200000, 'errors.salaryMin')
+      .max(500000, 'errors.salaryMax'),
 
     // Conditional fields
     bankAccountNumber: z.string().optional(),
@@ -62,7 +60,7 @@ export const createEmployeeSchema = z
       return true;
     },
     {
-      message: 'Bank account number is required for transfer payment',
+      message: 'errors.bankAccountRequired',
       path: ['bankAccountNumber'],
     }
   )
@@ -77,7 +75,7 @@ export const createEmployeeSchema = z
       return true;
     },
     {
-      message: 'Cash payment day is required for cash payment',
+      message: 'errors.cashPaymentDayRequired',
       path: ['cashPaymentDay'],
     }
   )
@@ -92,7 +90,7 @@ export const createEmployeeSchema = z
       return true;
     },
     {
-      message: 'Money dispatch address is required for dispatch payment',
+      message: 'errors.moneyDispatchAddressRequired',
       path: ['moneyDispatchAddress'],
     }
   );

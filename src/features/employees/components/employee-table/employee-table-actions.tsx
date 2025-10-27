@@ -1,6 +1,7 @@
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type { EmployeeDto } from '@/api/__generated__/api.schemas';
 import { IconButton } from '@/components/ui/button/icon-button';
@@ -21,6 +22,7 @@ export const EmployeeTableActions = ({
   employee,
 }: EmployeeTableActionsProps) => {
   const navigate = useNavigate();
+  const { t } = useTranslation('common');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const deleteMutation = useDeleteEmployee();
 
@@ -56,13 +58,13 @@ export const EmployeeTableActions = ({
       <div className="flex items-center justify-end gap-x-2">
         <IconButton
           icon={PencilIcon}
-          label="Edit"
+          label={t('form.edit')}
           variant="primary"
           onClick={handleEdit}
         />
         <IconButton
           icon={TrashIcon}
-          label="Delete"
+          label={t('form.delete')}
           variant="danger"
           onClick={handleDelete}
         />

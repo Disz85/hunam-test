@@ -1,6 +1,9 @@
 import { Button } from '@headlessui/react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import type { ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { LanguageSwitcher } from '../ui/language-switcher';
 
 type AdminHeaderProps = {
   children?: ReactNode;
@@ -14,6 +17,8 @@ type AdminHeaderProps = {
  * Automatically handles sidebar opening using Headless UI Button
  */
 export const AdminHeader = ({ children }: AdminHeaderProps) => {
+  const { t } = useTranslation('common');
+
   const handleMenuOpen = () => {
     const event = new CustomEvent('openSidebar');
     window.dispatchEvent(event);
@@ -26,10 +31,13 @@ export const AdminHeader = ({ children }: AdminHeaderProps) => {
         className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
         onClick={handleMenuOpen}
       >
-        <span className="sr-only">Open sidebar</span>
+        <span className="sr-only">{t('openSidebar')}</span>
         <Bars3Icon className="h-6 w-6" aria-hidden="true" />
       </Button>
       {children && <div className="flex-1">{children}</div>}
+      <div className="ml-auto">
+        <LanguageSwitcher />
+      </div>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { useNavigate, useSearch } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 
 import { AdminPageLayout } from '@/components/layouts/admin-page-layout';
 import { Pagination } from '@/components/ui/pagination/pagination';
@@ -16,6 +17,8 @@ import { useEmployeeTableColumns } from '../hooks/use-employee-table';
  * Displays employees in a table with search, pagination, and sorting
  */
 export const EmployeeListPage = () => {
+  const { t } = useTranslation('employees');
+
   // Get search params from URL (typed by route validation)
   const searchParams = useSearch({
     from: '/admin/employees/',
@@ -67,8 +70,8 @@ export const EmployeeListPage = () => {
 
   return (
     <AdminPageLayout
-      title="Employees"
-      description="Manage your employees. View, create, edit, and delete employee records."
+      title={t('title')}
+      description={t('description')}
       header={
         <EmployeeListSearchHeader
           searchValue={search}

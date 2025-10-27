@@ -1,4 +1,5 @@
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { ErrorMessage } from '@/components/ui/error/error-message';
 import { FormField } from '@/components/ui/form/form-field';
@@ -17,25 +18,29 @@ type BasicAddressFieldsProps = {
 export const BasicAddressFields = ({
   register,
   errors,
-}: BasicAddressFieldsProps) => (
-  <>
-    <FormField label="Country" required colSpan={3}>
-      <FormInput autoComplete="country" {...register('country')} />
-      {errors.country?.message && (
-        <ErrorMessage message={errors.country.message} />
-      )}
-    </FormField>
+}: BasicAddressFieldsProps) => {
+  const { t } = useTranslation('common');
 
-    <FormField label="ZIP Code" required colSpan={3}>
-      <FormInput autoComplete="postal-code" {...register('zipCode')} />
-      {errors.zipCode?.message && (
-        <ErrorMessage message={errors.zipCode.message} />
-      )}
-    </FormField>
+  return (
+    <>
+      <FormField label={t('fields.country')} required colSpan={3}>
+        <FormInput autoComplete="country" {...register('country')} />
+        {errors.country?.message && (
+          <ErrorMessage message={errors.country.message} />
+        )}
+      </FormField>
 
-    <FormField label="City" required colSpan={3}>
-      <FormInput autoComplete="address-level2" {...register('city')} />
-      {errors.city?.message && <ErrorMessage message={errors.city.message} />}
-    </FormField>
-  </>
-);
+      <FormField label={t('fields.zipCode')} required colSpan={3}>
+        <FormInput autoComplete="postal-code" {...register('zipCode')} />
+        {errors.zipCode?.message && (
+          <ErrorMessage message={errors.zipCode.message} />
+        )}
+      </FormField>
+
+      <FormField label={t('fields.city')} required colSpan={3}>
+        <FormInput autoComplete="address-level2" {...register('city')} />
+        {errors.city?.message && <ErrorMessage message={errors.city.message} />}
+      </FormField>
+    </>
+  );
+};

@@ -1,5 +1,6 @@
 import { Button } from '@headlessui/react';
 import { ArrowRightStartOnRectangleIcon } from '@heroicons/react/24/outline';
+import { useTranslation } from 'react-i18next';
 
 import { cn } from '@/lib/cn';
 
@@ -20,6 +21,8 @@ const ICON_CLASSES =
  * Handles user logout with loading state using Headless UI Button
  */
 export const LogoutButton = ({ isLoading, onLogout }: LogoutButtonProps) => {
+  const { t } = useTranslation('auth');
+
   return (
     <Button
       onClick={onLogout}
@@ -30,7 +33,7 @@ export const LogoutButton = ({ isLoading, onLogout }: LogoutButtonProps) => {
         className={ICON_CLASSES}
         aria-hidden="true"
       />
-      {isLoading ? 'Logging out...' : 'Logout'}
+      {isLoading ? t('loggingOut') : t('logout')}
     </Button>
   );
 };

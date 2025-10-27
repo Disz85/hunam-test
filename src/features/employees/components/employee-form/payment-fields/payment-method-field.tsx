@@ -1,4 +1,5 @@
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { ErrorMessage } from '@/components/ui/error/error-message';
 import { FormField } from '@/components/ui/form/form-field';
@@ -18,15 +19,19 @@ type PaymentMethodFieldProps = {
 export const PaymentMethodField = ({
   register,
   errors,
-}: PaymentMethodFieldProps) => (
-  <FormField label="Payment Method" required colSpan="full">
-    <FormSelect
-      options={PaymentMethodLabels}
-      placeholder="Select payment method"
-      {...register('paymentMethod', { valueAsNumber: true })}
-    />
-    {errors.paymentMethod?.message && (
-      <ErrorMessage message={errors.paymentMethod.message} />
-    )}
-  </FormField>
-);
+}: PaymentMethodFieldProps) => {
+  const { t } = useTranslation('common');
+
+  return (
+    <FormField label={t('fields.paymentMethod')} required colSpan="full">
+      <FormSelect
+        options={PaymentMethodLabels}
+        placeholder={t('formLabels.selectPaymentMethod')}
+        {...register('paymentMethod', { valueAsNumber: true })}
+      />
+      {errors.paymentMethod?.message && (
+        <ErrorMessage message={errors.paymentMethod.message} />
+      )}
+    </FormField>
+  );
+};

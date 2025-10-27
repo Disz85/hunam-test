@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Button } from '@/components/ui/button/button';
 
 import { NextIcon, PaginationButton, PrevIcon } from './pagination-button';
@@ -96,27 +98,31 @@ const MobilePagination = ({
   canGoNext,
   onPrev,
   onNext,
-}: MobilePaginationProps) => (
-  <div className="flex flex-1 justify-between sm:hidden">
-    <Button
-      onClick={onPrev}
-      disabled={!canGoPrev}
-      variant="secondary"
-      size="md"
-    >
-      Previous
-    </Button>
-    <Button
-      onClick={onNext}
-      disabled={!canGoNext}
-      variant="secondary"
-      size="md"
-      className="ml-3"
-    >
-      Next
-    </Button>
-  </div>
-);
+}: MobilePaginationProps) => {
+  const { t } = useTranslation('common');
+
+  return (
+    <div className="flex flex-1 justify-between sm:hidden">
+      <Button
+        onClick={onPrev}
+        disabled={!canGoPrev}
+        variant="secondary"
+        size="md"
+      >
+        {t('pagination.previous')}
+      </Button>
+      <Button
+        onClick={onNext}
+        disabled={!canGoNext}
+        variant="secondary"
+        size="md"
+        className="ml-3"
+      >
+        {t('pagination.next')}
+      </Button>
+    </div>
+  );
+};
 
 /**
  * Desktop Pagination - Full pagination with page numbers
@@ -213,12 +219,16 @@ type ResultsInfoProps = {
   totalItems: number;
 };
 
-const ResultsInfo = ({ startItem, endItem, totalItems }: ResultsInfoProps) => (
-  <div>
-    <p className="text-sm text-gray-700">
-      Showing <span className="font-medium">{startItem}</span> to{' '}
-      <span className="font-medium">{endItem}</span> of{' '}
-      <span className="font-medium">{totalItems}</span> results
-    </p>
-  </div>
-);
+const ResultsInfo = ({ startItem, endItem, totalItems }: ResultsInfoProps) => {
+  const { t } = useTranslation('employees');
+
+  return (
+    <div>
+      <p className="text-sm text-gray-700">
+        {t('showing')} <span className="font-medium">{startItem}</span>{' '}
+        {t('to')} <span className="font-medium">{endItem}</span> {t('of')}{' '}
+        <span className="font-medium">{totalItems}</span> {t('results')}
+      </p>
+    </div>
+  );
+};

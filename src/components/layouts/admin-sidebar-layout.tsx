@@ -1,6 +1,7 @@
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Outlet, useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { adminNavigation } from '@/config/navigation-config';
 import { useAuth } from '@/features/auth/hooks/use-auth';
@@ -16,6 +17,7 @@ import { AdminNavigation } from '../navigation/admin-navigation';
 export const AdminSidebarLayout = () => {
   const { logout, isLoading, currentUser } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation('common');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogout = () => {
@@ -41,7 +43,7 @@ export const AdminSidebarLayout = () => {
           type="button"
           className="fixed inset-0 z-40 bg-gray-900/80 lg:hidden"
           onClick={() => setSidebarOpen(false)}
-          aria-label="Close sidebar"
+          aria-label={t('closeSidebar')}
         />
       )}
 
@@ -53,14 +55,14 @@ export const AdminSidebarLayout = () => {
         <div className="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4">
           <div className="flex h-16 shrink-0 items-center justify-between">
             <h1 className="text-base font-semibold text-gray-900">
-              Employee Management
+              {t('appName')}
             </h1>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-indigo-600 hover:text-indigo-500 lg:hidden"
               onClick={() => setSidebarOpen(false)}
             >
-              <span className="sr-only">Close sidebar</span>
+              <span className="sr-only">{t('closeSidebar')}</span>
               <XMarkIcon className="size-6" aria-hidden="true" />
             </button>
           </div>

@@ -1,4 +1,5 @@
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { ErrorMessage } from '@/components/ui/error/error-message';
 import { FormField } from '@/components/ui/form/form-field';
@@ -17,18 +18,22 @@ type MoneyDispatchAddressFieldProps = {
 export const MoneyDispatchAddressField = ({
   register,
   errors,
-}: MoneyDispatchAddressFieldProps) => (
-  <FormField label="Money Dispatch Address" required colSpan="full">
-    <FormTextarea
-      rows={3}
-      placeholder="Enter the complete address where salary should be sent..."
-      {...register('moneyDispatchAddress')}
-    />
-    <p className="mt-1 text-xs text-gray-500">
-      Complete address where the salary should be sent
-    </p>
-    {errors.moneyDispatchAddress?.message && (
-      <ErrorMessage message={errors.moneyDispatchAddress.message} />
-    )}
-  </FormField>
-);
+}: MoneyDispatchAddressFieldProps) => {
+  const { t } = useTranslation('common');
+
+  return (
+    <FormField label={t('fields.moneyDispatchAddress')} required colSpan="full">
+      <FormTextarea
+        rows={3}
+        placeholder={t('fields.moneyDispatchAddressPlaceholder')}
+        {...register('moneyDispatchAddress')}
+      />
+      <p className="mt-1 text-xs text-gray-500">
+        {t('fields.moneyDispatchAddressDesc')}
+      </p>
+      {errors.moneyDispatchAddress?.message && (
+        <ErrorMessage message={errors.moneyDispatchAddress.message} />
+      )}
+    </FormField>
+  );
+};

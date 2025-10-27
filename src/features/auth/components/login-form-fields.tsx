@@ -1,4 +1,5 @@
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { ErrorMessage } from '@/components/ui/error/error-message';
 import { FormField } from '@/components/ui/form/form-field';
@@ -24,6 +25,9 @@ export const LoginFormFields = ({
   error,
   clearError,
 }: LoginFormFieldsProps) => {
+  const { t: tAuth } = useTranslation('auth');
+  const { t: tErrors } = useTranslation('errors');
+
   const handleInputChange = () => {
     if (error !== null) {
       clearError();
@@ -32,7 +36,7 @@ export const LoginFormFields = ({
 
   return (
     <>
-      <FormField label="Username" required>
+      <FormField label={tAuth('username')} required>
         <FormInput
           type="text"
           autoComplete="username"
@@ -47,12 +51,12 @@ export const LoginFormFields = ({
         {errors.username && (
           <ErrorMessage
             id="username-error"
-            message={errors.username.message || 'Username is required'}
+            message={errors.username.message || tErrors('required')}
           />
         )}
       </FormField>
 
-      <FormField label="Password" required>
+      <FormField label={tAuth('password')} required>
         <FormInput
           type="password"
           autoComplete="current-password"
@@ -67,7 +71,7 @@ export const LoginFormFields = ({
         {errors.password && (
           <ErrorMessage
             id="password-error"
-            message={errors.password.message || 'Password is required'}
+            message={errors.password.message || tErrors('required')}
           />
         )}
       </FormField>

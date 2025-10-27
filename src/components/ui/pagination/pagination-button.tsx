@@ -96,16 +96,22 @@ export const PaginationButton = ({
 /**
  * Navigation Icons
  */
-export const PrevIcon = () => (
-  <>
-    <span className="sr-only">Previous</span>
-    <ChevronLeftIcon aria-hidden="true" className="size-5" />
-  </>
-);
+export const PrevIcon = () => {
+  // Note: Translations are handled in pagination.tsx where these icons are used
+  return (
+    <>
+      <span className="sr-only">Previous</span>
+      <ChevronLeftIcon aria-hidden="true" className="size-5" />
+    </>
+  );
+};
 
-export const NextIcon = () => (
-  <>
-    <span className="sr-only">Next</span>
-    <ChevronRightIcon aria-hidden="true" className="size-5" />
-  </>
-);
+export const NextIcon = () => {
+  // Note: Translations are handled in pagination.tsx where these icons are used
+  return (
+    <>
+      <span className="sr-only">Next</span>
+      <ChevronRightIcon aria-hidden="true" className="size-5" />
+    </>
+  );
+};

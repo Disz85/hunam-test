@@ -1,0 +1,13 @@
+{
+  "required": "Ez a mező kötelező",
+  "invalidEmail": "Érvénytelen email cím",
+  "invalidPhone": "Érvénytelen telefonszám",
+  "genericError": "Hiba történt. Kérlek próbáld újra.",
+  "loadingEmployees": "Hiba az alkalmazottak betöltésekor",
+  "unknown": "Ismeretlen hiba",
+  "salaryMin": "A fizetés legalább 200.000 HUF kell legyen",
+  "salaryMax": "A fizetés legfeljebb 500.000 HUF lehet",
+  "bankAccountRequired": "A bankszámlaszám kötelező banki átutalás esetén",
+  "cashPaymentDayRequired": "A készpénzes fizetés napja kötelező készpénzes fizetés esetén",
+  "moneyDispatchAddressRequired": "Az utalási cím kötelező postai utalás esetén"
+}

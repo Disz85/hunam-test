@@ -1,4 +1,5 @@
 import { Link, useMatchRoute } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 
 import type { NavigationItem } from '@/config/navigation-config';
 import { cn } from '@/lib/cn';
@@ -24,6 +25,7 @@ export const NavigationItems = ({
   onNavigate,
 }: NavigationItemsProps) => {
   const matchRoute = useMatchRoute();
+  const { t } = useTranslation('common');
 
   return (
     <ul className="space-y-0.5">
@@ -34,6 +36,13 @@ export const NavigationItems = ({
             fuzzy: !item.exactMatch,
           })
         );
+
+        // Get translated name
+        const translationKey =
+          item.href === '/admin'
+            ? 'navigation.dashboard'
+            : 'navigation.employees';
+        const translatedName = t(translationKey);
 
         return (
           <li key={item.name}>
@@ -52,7 +61,7 @@ export const NavigationItems = ({
                 )}
                 aria-hidden="true"
               />
-              {item.name}
+              {translatedName}
             </Link>
           </li>
         );

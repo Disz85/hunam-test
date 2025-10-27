@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import type { EmployeeDto } from '@/api';
 import { ConfirmationModal } from '@/components/ui/modal/confirmation-modal';
 
@@ -21,6 +23,8 @@ export const DeleteEmployeeModal = ({
   employee,
   isDeleting,
 }: DeleteEmployeeModalProps) => {
+  const { t } = useTranslation('common');
+
   if (!employee) {
     return null;
   }
@@ -30,26 +34,26 @@ export const DeleteEmployeeModal = ({
       isOpen={isOpen}
       onClose={onClose}
       onConfirm={onConfirm}
-      title="Delete Employee"
+      title={t('modals.deleteEmployee')}
       description={
         <div className="space-y-2 text-sm">
           <p className="text-gray-500">
-            Are you sure you want to delete{' '}
+            {t('modals.deleteEmployeeConfirm')}{' '}
             <span className="font-medium text-gray-900">
               {employee.firstName} {employee.lastName}
             </span>
             ?
           </p>
           <p className="font-semibold text-red-600">
-            This action cannot be undone.
+            {t('modals.deleteEmployeeWarning')}
           </p>
         </div>
       }
-      confirmText="Delete"
-      cancelText="Cancel"
+      confirmText={t('form.delete')}
+      cancelText={t('cancel')}
       variant="danger"
       isLoading={isDeleting}
-      loadingText="Deleting..."
+      loadingText={t('modals.deleting')}
     />
   );
 };

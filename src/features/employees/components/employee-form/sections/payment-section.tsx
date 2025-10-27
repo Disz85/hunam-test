@@ -1,5 +1,6 @@
 import { BanknotesIcon } from '@heroicons/react/24/outline';
 import { useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { Card } from '@/components/ui/card/card';
 import { FormSection } from '@/components/ui/form/form-section';
@@ -24,11 +25,13 @@ type PaymentSectionProps = {
 export const PaymentSection = ({ paymentMethod }: PaymentSectionProps) => {
   const { register, formState } = useFormContext<CreateEmployeeFormData>();
   const { errors } = formState;
+  const { t } = useTranslation('common');
+
   return (
     <Card className="h-fit">
       <FormSection
-        title="Payment Information"
-        description="Salary and payment method details."
+        title={t('sections.paymentInformation')}
+        description={t('sections.paymentInformationDesc')}
         icon={BanknotesIcon}
       >
         <PaymentMethodField register={register} errors={errors} />

@@ -1,6 +1,7 @@
 import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { ResponsiveActionButton } from '@/components/ui/button/responsive-action-button';
 import { FormInput } from '@/components/ui/form/form-input';
@@ -20,6 +21,7 @@ export const EmployeeListSearchHeader = ({
   searchValue,
   onSearchChange,
 }: EmployeeListSearchHeaderProps) => {
+  const { t } = useTranslation('employees');
   const navigate = useNavigate();
   const [localSearch, setLocalSearch] = useState(searchValue);
 
@@ -64,7 +66,7 @@ export const EmployeeListSearchHeader = ({
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setLocalSearch(e.target.value)
               }
-              placeholder="Search employees..."
+              placeholder={t('search')}
               className="pl-10"
             />
           </div>
@@ -74,9 +76,9 @@ export const EmployeeListSearchHeader = ({
           type="button"
           icon={PlusIcon}
           onClick={handleCreateClick}
-          aria-label="New Employee"
+          aria-label={t('newEmployee')}
         >
-          New Employee
+          {t('newEmployee')}
         </ResponsiveActionButton>
       </div>
     </>

@@ -1,5 +1,6 @@
 import type { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type { EmployeeDto } from '@/api';
 
@@ -9,37 +10,39 @@ import { EmployeeTableActions } from '../components/employee-table/employee-tabl
  * Employee table columns definition
  */
 export const useEmployeeTableColumns = (): ColumnDef<EmployeeDto>[] => {
+  const { t } = useTranslation('common');
+
   return useMemo<ColumnDef<EmployeeDto>[]>(
     () => [
       {
         accessorKey: 'firstName',
-        header: 'First Name',
+        header: t('fields.firstName'),
         cell: info => info.getValue(),
       },
       {
         accessorKey: 'lastName',
-        header: 'Last Name',
+        header: t('fields.lastName'),
         cell: info => info.getValue(),
       },
       {
         accessorKey: 'email',
-        header: 'Email',
+        header: t('fields.email'),
         cell: info => info.getValue(),
       },
       {
         accessorKey: 'phone',
-        header: 'Phone',
+        header: t('fields.phoneNumber'),
         cell: info => info.getValue(),
       },
       {
         id: 'actions',
-        header: 'Actions',
+        header: t('actions'),
         cell: ({ row }) => <EmployeeTableActions employee={row.original} />,
         meta: {
           align: 'right',
         },
       },
     ],
-    []
+    [t]
   );
 };

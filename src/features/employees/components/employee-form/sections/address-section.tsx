@@ -1,5 +1,6 @@
 import { MapPinIcon } from '@heroicons/react/24/outline';
 import { useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { Card } from '@/components/ui/card/card';
 import { FormSection } from '@/components/ui/form/form-section';
@@ -15,11 +16,13 @@ import { BuildingDetailsFields } from '../address-fields/building-details-fields
 export const AddressSection = () => {
   const { register, formState } = useFormContext<CreateEmployeeFormData>();
   const { errors } = formState;
+  const { t } = useTranslation('common');
+
   return (
     <Card>
       <FormSection
-        title="Address Information"
-        description="Complete address details for the employee."
+        title={t('sections.addressInformation')}
+        description={t('sections.addressInformationDesc')}
         icon={MapPinIcon}
       >
         <BasicAddressFields register={register} errors={errors} />

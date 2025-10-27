@@ -1,0 +1,13 @@
+{
+  "required": "This field is required",
+  "invalidEmail": "Invalid email address",
+  "invalidPhone": "Invalid phone number",
+  "genericError": "An error occurred. Please try again.",
+  "loadingEmployees": "Error loading employees",
+  "unknown": "Unknown error",
+  "salaryMin": "Salary must be at least 200,000 HUF",
+  "salaryMax": "Salary must not exceed 500,000 HUF",
+  "bankAccountRequired": "Bank account number is required for transfer payment",
+  "cashPaymentDayRequired": "Cash payment day is required for cash payment",
+  "moneyDispatchAddressRequired": "Money dispatch address is required for dispatch payment"
+}

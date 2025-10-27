@@ -1,0 +1,99 @@
+{
+  "loading": "Betöltés...",
+  "save": "Mentés",
+  "cancel": "Mégse",
+  "signIn": "Jelentkezz be a fiókodba",
+  "total": "összesen",
+  "appName": "Alkalmazotti Rendszer",
+  "closeSidebar": "Oldalsáv bezárása",
+  "openSidebar": "Oldalsáv megnyitása",
+  "back": "Vissza",
+  "user": "Felhasználó",
+  "actions": "Műveletek",
+  "dashboard": {
+    "description": "Üdvözöljük az admin irányítópultnál. Kezeld alkalmazottaidat és nézd meg a rendszer áttekintését.",
+    "comingSoon": "Hamarosan...",
+    "newFeatures": "Új funkciók"
+  },
+  "form": {
+    "submit": "Küldés",
+    "cancel": "Mégse",
+    "create": "Létrehozás",
+    "update": "Frissítés",
+    "delete": "Törlés",
+    "edit": "Szerkesztés",
+    "required": "Kötelező",
+    "optional": "Opcionális"
+  },
+  "sections": {
+    "personalInformation": "Személyes Adatok",
+    "personalInformationDesc": "Az alkalmazott alapvető személyes adatai.",
+    "addressInformation": "Lakcím Adatok",
+    "addressInformationDesc": "Az alkalmazott teljes lakcíme.",
+    "paymentInformation": "Fizetési Adatok",
+    "paymentInformationDesc": "Fizetés és fizetési mód részletei."
+  },
+  "fields": {
+    "firstName": "Keresztnév",
+    "lastName": "Vezetéknév",
+    "email": "Email",
+    "phoneNumber": "Telefonszám",
+    "phonePlaceholder": "pl. +36 20 123 4567",
+    "sex": "Nem",
+    "sexPlaceholder": "Nem kiválasztása",
+    "education": "Iskolai Végzettség",
+    "educationPlaceholder": "Végzettség kiválasztása",
+    "dateOfBirth": "Születési Dátum",
+    "placeOfBirth": "Születési Hely",
+    "mothersFirstName": "Anyja Keresztneve",
+    "mothersLastName": "Anyja Vezetékneve",
+    "country": "Ország",
+    "zipCode": "Irányítószám",
+    "city": "Város",
+    "houseNumber": "Házszám",
+    "parcelNumber": "Házszám (parcella)",
+    "administrativeArea": "Megye",
+    "administrativeAreaType": "Megye Típusa",
+    "building": "Épület",
+    "staircase": "Lépcsőház",
+    "floor": "Emelet",
+    "door": "Ajtó",
+    "paymentMethod": "Fizetési Mód",
+    "salary": "Fizetés (HUF)",
+    "bankAccountNumber": "Bankszámlaszám",
+    "moneyDispatchAddress": "Utalási Cím",
+    "moneyDispatchAddressPlaceholder": "Add meg a teljes címet, ahová a fizetést küldjük...",
+    "moneyDispatchAddressDesc": "Teljes cím, ahová a fizetést küldjük",
+    "cashPaymentDay": "Készpénzes Fizetés Napja",
+    "cashPaymentDayDesc": "A hónap napja (1-31), amikor a készpénzes fizetés történik",
+    "salaryDesc": "200.000 és 500.000 HUF közötti érték lehet",
+    "bankAccountNumberDesc": "Kötelező banki átutalás esetén",
+    "streetAddress": "Utca, Házszám"
+  },
+  "formLabels": {
+    "selectPaymentMethod": "Fizetési mód kiválasztása"
+  },
+  "modals": {
+    "deleteEmployee": "Alkalmazott Törlése",
+    "deleteEmployeeConfirm": "Biztosan törölni szeretnéd",
+    "deleteEmployeeWarning": "Ez a művelet nem visszavonható.",
+    "deleting": "Törlés...",
+    "confirm": "Megerősítés"
+  },
+  "navigation": {
+    "dashboard": "Irányítópult",
+    "dashboardDesc": "Áttekintés és statisztikák",
+    "employees": "Alkalmazottak",
+    "employeesDesc": "Alkalmazottak kezelése"
+  },
+  "pagination": {
+    "previous": "Előző",
+    "next": "Következő"
+  },
+  "notFound": {
+    "title": "Az oldal nem található",
+    "description": "Sajnáljuk, nem találjuk a keresett oldalt.",
+    "goToEmployees": "Ugrás az Alkalmazottakhoz",
+    "backToLogin": "Vissza a Bejelentkezéshez"
+  }
+}

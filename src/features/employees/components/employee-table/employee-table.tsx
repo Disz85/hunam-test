@@ -4,6 +4,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { useTranslation } from 'react-i18next';
 
 import type { EmployeeDto } from '@/api';
 
@@ -28,13 +29,17 @@ type EmployeeTableProps = {
 /**
  * Empty State Component
  */
-const EmptyState = () => (
-  <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
-    <div className="px-6 py-12 text-center">
-      <p className="text-sm text-gray-500">No employees found</p>
+const EmptyState = () => {
+  const { t } = useTranslation('employees');
+
+  return (
+    <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+      <div className="px-6 py-12 text-center">
+        <p className="text-sm text-gray-500">{t('noEmployees')}</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 /**
  * Mobile Card List Component

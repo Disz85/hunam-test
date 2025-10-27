@@ -3,6 +3,7 @@ import {
   ChartBarIcon,
   UsersIcon,
 } from '@heroicons/react/24/outline';
+import { useTranslation } from 'react-i18next';
 
 import { AdminPageLayout } from '@/components/layouts/admin-page-layout';
 
@@ -15,29 +16,32 @@ import { DashboardGrid } from '../components/dashboard-grid';
  * Main admin page with overview and navigation cards
  */
 export const DashboardPage = () => {
+  const { t: tCommon } = useTranslation('common');
+  const { t: tEmployees } = useTranslation('employees');
+
   return (
     <AdminPageLayout
-      title="Dashboard"
-      description="Welcome to the admin dashboard. Manage your employees and view system overview."
+      title={tCommon('navigation.dashboard')}
+      description={tCommon('dashboard.description')}
     >
       <DashboardGrid>
         <DashboardCard
-          title="Employees"
-          description="Manage employees"
+          title={tEmployees('title')}
+          description={tEmployees('description')}
           to="/admin/employees"
           icon={<UsersIcon />}
         />
 
         <DashboardCard
-          title="Coming Soon..."
-          description="New features"
+          title={tCommon('dashboard.comingSoon')}
+          description={tCommon('dashboard.newFeatures')}
           disabled
           icon={<BuildingOfficeIcon />}
         />
 
         <DashboardCard
-          title="Coming Soon..."
-          description="New features"
+          title={tCommon('dashboard.comingSoon')}
+          description={tCommon('dashboard.newFeatures')}
           disabled
           icon={<ChartBarIcon />}
         />

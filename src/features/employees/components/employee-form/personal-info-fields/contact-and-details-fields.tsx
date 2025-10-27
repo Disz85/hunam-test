@@ -1,4 +1,5 @@
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { ErrorMessage } from '@/components/ui/error/error-message';
 import { FormField } from '@/components/ui/form/form-field';
@@ -20,37 +21,43 @@ type ContactAndDetailsFieldsProps = {
 export const ContactAndDetailsFields = ({
   register,
   errors,
-}: ContactAndDetailsFieldsProps) => (
-  <>
-    <FormField label="Phone Number" required colSpan={3}>
-      <FormMaskedInput
-        maskType="phone"
-        type="tel"
-        autoComplete="tel"
-        placeholder="e.g. +36 20 123 4567"
-        {...register('phone')}
-      />
-      {errors.phone?.message && <ErrorMessage message={errors.phone.message} />}
-    </FormField>
+}: ContactAndDetailsFieldsProps) => {
+  const { t } = useTranslation('common');
 
-    <FormField label="Sex" required colSpan={3}>
-      <FormSelect
-        options={SexLabels}
-        placeholder="Select sex"
-        {...register('sex', { valueAsNumber: true })}
-      />
-      {errors.sex?.message && <ErrorMessage message={errors.sex.message} />}
-    </FormField>
+  return (
+    <>
+      <FormField label={t('fields.phoneNumber')} required colSpan={3}>
+        <FormMaskedInput
+          maskType="phone"
+          type="tel"
+          autoComplete="tel"
+          placeholder={t('fields.phonePlaceholder')}
+          {...register('phone')}
+        />
+        {errors.phone?.message && (
+          <ErrorMessage message={errors.phone.message} />
+        )}
+      </FormField>
 
-    <FormField label="Education Level" required colSpan={3}>
-      <FormSelect
-        options={EducationLabels}
-        placeholder="Select education level"
-        {...register('education', { valueAsNumber: true })}
-      />
-      {errors.education?.message && (
-        <ErrorMessage message={errors.education.message} />
-      )}
-    </FormField>
-  </>
-);
+      <FormField label={t('fields.sex')} required colSpan={3}>
+        <FormSelect
+          options={SexLabels}
+          placeholder={t('fields.sexPlaceholder')}
+          {...register('sex', { valueAsNumber: true })}
+        />
+        {errors.sex?.message && <ErrorMessage message={errors.sex.message} />}
+      </FormField>
+
+      <FormField label={t('fields.education')} required colSpan={3}>
+        <FormSelect
+          options={EducationLabels}
+          placeholder={t('fields.educationPlaceholder')}
+          {...register('education', { valueAsNumber: true })}
+        />
+        {errors.education?.message && (
+          <ErrorMessage message={errors.education.message} />
+        )}
+      </FormField>
+    </>
+  );
+};

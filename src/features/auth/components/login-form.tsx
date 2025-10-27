@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { ErrorAlert } from '@/components/ui/error/error-alert';
 import { FormButton } from '@/components/ui/form/form-button';
@@ -26,6 +27,8 @@ export const LoginForm = () => {
 
   const { login, isLoading, error, clearError } = useAuth();
   const navigate = useNavigate();
+  const { t: tAuth } = useTranslation('auth');
+  const { t: tForm } = useTranslation('common');
 
   const onSubmit = async (data: LoginCredentials) => {
     try {
@@ -50,18 +53,16 @@ export const LoginForm = () => {
           clearError={clearError}
         />
 
-        {error && (
-          <ErrorAlert message="Login failed. Please check your credentials and try again." />
-        )}
+        {error && <ErrorAlert message={tAuth('loginFailed')} />}
       </div>
       <div className="mt-10">
         <FormButton
           type="submit"
           isLoading={isLoading}
-          loadingText="Signing in..."
+          loadingText={tAuth('signingIn')}
           aria-live="polite"
         >
-          Sign in
+          {tForm('form.submit')}
         </FormButton>
       </div>
     </form>

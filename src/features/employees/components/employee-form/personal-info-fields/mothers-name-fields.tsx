@@ -1,4 +1,5 @@
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { ErrorMessage } from '@/components/ui/error/error-message';
 import { FormField } from '@/components/ui/form/form-field';
@@ -17,20 +18,24 @@ type MothersNameFieldsProps = {
 export const MothersNameFields = ({
   register,
   errors,
-}: MothersNameFieldsProps) => (
-  <>
-    <FormField label="Mother's First Name" required colSpan={3}>
-      <FormInput {...register('mothersFirstName')} />
-      {errors.mothersFirstName?.message && (
-        <ErrorMessage message={errors.mothersFirstName.message} />
-      )}
-    </FormField>
+}: MothersNameFieldsProps) => {
+  const { t } = useTranslation('common');
 
-    <FormField label="Mother's Last Name" required colSpan={3}>
-      <FormInput {...register('mothersLastName')} />
-      {errors.mothersLastName?.message && (
-        <ErrorMessage message={errors.mothersLastName.message} />
-      )}
-    </FormField>
-  </>
-);
+  return (
+    <>
+      <FormField label={t('fields.mothersFirstName')} required colSpan={3}>
+        <FormInput {...register('mothersFirstName')} />
+        {errors.mothersFirstName?.message && (
+          <ErrorMessage message={errors.mothersFirstName.message} />
+        )}
+      </FormField>
+
+      <FormField label={t('fields.mothersLastName')} required colSpan={3}>
+        <FormInput {...register('mothersLastName')} />
+        {errors.mothersLastName?.message && (
+          <ErrorMessage message={errors.mothersLastName.message} />
+        )}
+      </FormField>
+    </>
+  );
+};

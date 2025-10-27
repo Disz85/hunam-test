@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { PageSpinner } from '@/components/ui/loading/page-spinner';
 
@@ -18,16 +19,19 @@ export const EmployeeListStates = ({
   error,
   children,
 }: EmployeeListStatesProps) => {
+  const { t: tCommon } = useTranslation('common');
+  const { t: tErrors } = useTranslation('errors');
+
   if (isLoading) {
-    return <PageSpinner text="Loading employees..." />;
+    return <PageSpinner text={tCommon('loading')} />;
   }
 
   if (error) {
     return (
       <div className="rounded-lg border border-red-200 bg-red-50 p-4">
         <p className="text-sm text-red-800">
-          Error loading employees:{' '}
-          {error instanceof Error ? error.message : 'Unknown error'}
+          {tErrors('loadingEmployees')}:{' '}
+          {error instanceof Error ? error.message : tErrors('unknown')}
         </p>
       </div>
     );

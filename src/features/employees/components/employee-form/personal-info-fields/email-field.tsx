@@ -1,4 +1,5 @@
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { ErrorMessage } from '@/components/ui/error/error-message';
 import { FormField } from '@/components/ui/form/form-field';
@@ -14,9 +15,13 @@ type EmailFieldProps = {
 /**
  * Email address field component
  */
-export const EmailField = ({ register, errors }: EmailFieldProps) => (
-  <FormField label="Email Address" required colSpan={3}>
-    <FormInput type="email" autoComplete="email" {...register('email')} />
-    {errors.email?.message && <ErrorMessage message={errors.email.message} />}
-  </FormField>
-);
+export const EmailField = ({ register, errors }: EmailFieldProps) => {
+  const { t } = useTranslation('common');
+
+  return (
+    <FormField label={t('fields.email')} required colSpan={3}>
+      <FormInput type="email" autoComplete="email" {...register('email')} />
+      {errors.email?.message && <ErrorMessage message={errors.email.message} />}
+    </FormField>
+  );
+};

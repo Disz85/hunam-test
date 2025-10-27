@@ -1,4 +1,5 @@
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { ErrorMessage } from '@/components/ui/error/error-message';
 import { FormField } from '@/components/ui/form/form-field';
@@ -14,19 +15,23 @@ type SalaryFieldProps = {
 /**
  * Salary input field component
  */
-export const SalaryField = ({ register, errors }: SalaryFieldProps) => (
-  <FormField label="Salary (HUF)" required colSpan="full">
-    <FormInput
-      type="number"
-      min="200000"
-      max="500000"
-      step="1000"
-      placeholder="e.g. 300000"
-      {...register('salary', { valueAsNumber: true })}
-    />
-    <p className="mt-1 text-xs text-gray-500">
-      Must be between 200,000 and 500,000 HUF
-    </p>
-    {errors.salary?.message && <ErrorMessage message={errors.salary.message} />}
-  </FormField>
-);
+export const SalaryField = ({ register, errors }: SalaryFieldProps) => {
+  const { t } = useTranslation('common');
+
+  return (
+    <FormField label={t('fields.salary')} required colSpan="full">
+      <FormInput
+        type="number"
+        min="200000"
+        max="500000"
+        step="1000"
+        placeholder="e.g. 300000"
+        {...register('salary', { valueAsNumber: true })}
+      />
+      <p className="mt-1 text-xs text-gray-500">{t('fields.salaryDesc')}</p>
+      {errors.salary?.message && (
+        <ErrorMessage message={errors.salary.message} />
+      )}
+    </FormField>
+  );
+};

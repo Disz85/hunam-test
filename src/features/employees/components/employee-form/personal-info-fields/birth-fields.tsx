@@ -1,4 +1,5 @@
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { ErrorMessage } from '@/components/ui/error/error-message';
 import { FormField } from '@/components/ui/form/form-field';
@@ -14,20 +15,24 @@ type BirthFieldsProps = {
 /**
  * Birth date and place fields component
  */
-export const BirthFields = ({ register, errors }: BirthFieldsProps) => (
-  <>
-    <FormField label="Date of Birth" required colSpan={3}>
-      <FormInput type="date" {...register('dateOfBirth')} />
-      {errors.dateOfBirth?.message && (
-        <ErrorMessage message={errors.dateOfBirth.message} />
-      )}
-    </FormField>
+export const BirthFields = ({ register, errors }: BirthFieldsProps) => {
+  const { t } = useTranslation('common');
 
-    <FormField label="Place of Birth" required colSpan={3}>
-      <FormInput {...register('placeOfBirth')} />
-      {errors.placeOfBirth?.message && (
-        <ErrorMessage message={errors.placeOfBirth.message} />
-      )}
-    </FormField>
-  </>
-);
+  return (
+    <>
+      <FormField label={t('fields.dateOfBirth')} required colSpan={3}>
+        <FormInput type="date" {...register('dateOfBirth')} />
+        {errors.dateOfBirth?.message && (
+          <ErrorMessage message={errors.dateOfBirth.message} />
+        )}
+      </FormField>
+
+      <FormField label={t('fields.placeOfBirth')} required colSpan={3}>
+        <FormInput {...register('placeOfBirth')} />
+        {errors.placeOfBirth?.message && (
+          <ErrorMessage message={errors.placeOfBirth.message} />
+        )}
+      </FormField>
+    </>
+  );
+};

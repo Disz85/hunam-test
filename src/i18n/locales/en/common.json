@@ -1,0 +1,99 @@
+{
+  "loading": "Loading...",
+  "save": "Save",
+  "cancel": "Cancel",
+  "signIn": "Sign in to your account",
+  "total": "total",
+  "appName": "Employee Management",
+  "closeSidebar": "Close sidebar",
+  "openSidebar": "Open sidebar",
+  "back": "Back",
+  "user": "User",
+  "actions": "Actions",
+  "dashboard": {
+    "description": "Welcome to the admin dashboard. Manage your employees and view system overview.",
+    "comingSoon": "Coming Soon...",
+    "newFeatures": "New features"
+  },
+  "form": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "create": "Create",
+    "update": "Update",
+    "delete": "Delete",
+    "edit": "Edit",
+    "required": "Required",
+    "optional": "Optional"
+  },
+  "sections": {
+    "personalInformation": "Personal Information",
+    "personalInformationDesc": "Basic personal details about the employee.",
+    "addressInformation": "Address Information",
+    "addressInformationDesc": "Complete address details for the employee.",
+    "paymentInformation": "Payment Information",
+    "paymentInformationDesc": "Salary and payment method details."
+  },
+  "fields": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phoneNumber": "Phone Number",
+    "phonePlaceholder": "e.g. +36 20 123 4567",
+    "sex": "Sex",
+    "sexPlaceholder": "Select sex",
+    "education": "Education Level",
+    "educationPlaceholder": "Select education level",
+    "dateOfBirth": "Date of Birth",
+    "placeOfBirth": "Place of Birth",
+    "mothersFirstName": "Mother's First Name",
+    "mothersLastName": "Mother's Last Name",
+    "country": "Country",
+    "zipCode": "ZIP Code",
+    "city": "City",
+    "houseNumber": "House Number",
+    "parcelNumber": "Parcel Number",
+    "administrativeArea": "Administrative Area",
+    "administrativeAreaType": "Administrative Area Type",
+    "building": "Building",
+    "staircase": "Staircase",
+    "floor": "Floor",
+    "door": "Door",
+    "paymentMethod": "Payment Method",
+    "salary": "Salary (HUF)",
+    "bankAccountNumber": "Bank Account Number",
+    "moneyDispatchAddress": "Money Dispatch Address",
+    "moneyDispatchAddressPlaceholder": "Enter the complete address where salary should be sent...",
+    "moneyDispatchAddressDesc": "Complete address where the salary should be sent",
+    "cashPaymentDay": "Cash Payment Day",
+    "cashPaymentDayDesc": "Day of the month (1-31) when cash payment is made",
+    "salaryDesc": "Must be between 200,000 and 500,000 HUF",
+    "bankAccountNumberDesc": "Required for bank transfer payments",
+    "streetAddress": "Street Address"
+  },
+  "formLabels": {
+    "selectPaymentMethod": "Select payment method"
+  },
+  "modals": {
+    "deleteEmployee": "Delete Employee",
+    "deleteEmployeeConfirm": "Are you sure you want to delete",
+    "deleteEmployeeWarning": "This action cannot be undone.",
+    "deleting": "Deleting...",
+    "confirm": "Confirm"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "dashboardDesc": "Overview and statistics",
+    "employees": "Employees",
+    "employeesDesc": "Manage employees"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "Sorry, we couldn't find the page you're looking for.",
+    "goToEmployees": "Go to Employees",
+    "backToLogin": "Back to Login"
+  }
+}

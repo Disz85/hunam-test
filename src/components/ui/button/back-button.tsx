@@ -1,6 +1,7 @@
 import { Button } from '@headlessui/react';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 
 import { cn } from '@/lib/cn';
 
@@ -14,6 +15,7 @@ const BASE_BUTTON_CLASSES =
  */
 export const BackButton = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation('common');
 
   const handleBack = () => {
     void navigate({ to: '/admin/employees' });
@@ -22,7 +24,7 @@ export const BackButton = () => {
   return (
     <Button onClick={handleBack} className={cn(BASE_BUTTON_CLASSES)}>
       <ArrowLeftIcon className="size-5" aria-hidden="true" />
-      <span>Back</span>
+      <span>{t('back')}</span>
     </Button>
   );
 };

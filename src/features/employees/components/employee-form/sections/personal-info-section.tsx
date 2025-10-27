@@ -1,5 +1,6 @@
 import { UserIcon } from '@heroicons/react/24/outline';
 import { useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { Card } from '@/components/ui/card/card';
 import { FormSection } from '@/components/ui/form/form-section';
@@ -17,12 +18,13 @@ import { NameFields } from '../personal-info-fields/name-fields';
 export const PersonalInfoSection = () => {
   const { register, formState } = useFormContext<CreateEmployeeFormData>();
   const { errors } = formState;
+  const { t } = useTranslation('common');
 
   return (
     <Card>
       <FormSection
-        title="Personal Information"
-        description="Basic personal details about the employee."
+        title={t('sections.personalInformation')}
+        description={t('sections.personalInformationDesc')}
         icon={UserIcon}
       >
         <NameFields register={register} errors={errors} />

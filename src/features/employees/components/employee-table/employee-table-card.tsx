@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type { EmployeeDto } from '@/api';
 
@@ -18,18 +19,22 @@ type FieldConfig = {
  * Field configuration for employee details
  * Makes it easy to add/remove/reorder fields
  */
-const FIELD_CONFIG: FieldConfig[] = [
-  {
-    label: 'Email',
-    getValue: employee => employee.email,
-    isVisible: employee => !!employee.email,
-  },
-  {
-    label: 'Phone',
-    getValue: employee => employee.phone,
-    isVisible: employee => !!employee.phone,
-  },
-];
+const useFieldConfig = (): FieldConfig[] => {
+  const { t } = useTranslation('common');
+
+  return [
+    {
+      label: t('fields.email'),
+      getValue: employee => employee.email,
+      isVisible: employee => !!employee.email,
+    },
+    {
+      label: t('fields.phoneNumber'),
+      getValue: employee => employee.phone,
+      isVisible: employee => !!employee.phone,
+    },
+  ];
+};
 
 /**
  * Card Header - Employee name and actions
@@ -64,7 +69,9 @@ const FieldItem = ({ label, value }: FieldItemProps) => (
  * Card Details - Employee information fields
  */
 const CardDetails = ({ employee }: { employee: EmployeeDto }) => {
-  const visibleFields = FIELD_CONFIG.filter(
+  const fieldConfig = useFieldConfig();
+
+  const visibleFields = fieldConfig.filter(
     field => !field.isVisible || field.isVisible(employee)
   );
 

@@ -82,7 +82,7 @@ export const EmployeeListPage = () => {
         </EmployeeListContent>
 
         {total > 0 && (
-          <div className="mt-6">
+          <div className="mt-6 pb-20 sm:pb-0">
             <Pagination
               currentPage={page}
               totalPages={totalPages}

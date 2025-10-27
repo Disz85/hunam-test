@@ -56,7 +56,6 @@ export const Pagination = ({
   return (
     <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
       <div className="flex items-center justify-between px-4 py-3 sm:px-6">
-        {/* Mobile: Simple prev/next */}
         <MobilePagination
           canGoPrev={canGoPrev}
           canGoNext={canGoNext}
@@ -64,7 +63,6 @@ export const Pagination = ({
           onNext={handleNextPage}
         />
 
-        {/* Desktop: Full pagination */}
         <DesktopPagination
           startItem={startItem}
           endItem={endItem}

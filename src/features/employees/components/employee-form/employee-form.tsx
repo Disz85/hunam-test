@@ -7,6 +7,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { employeeService } from '@/api/employees';
 import { ErrorAlert } from '@/components/ui/error/error-alert';
 import { PageSpinner } from '@/components/ui/loading/page-spinner';
+import { getErrorMessage } from '@/lib/error-messages';
 
 import { mapEmployeeDtoToFormData } from '../../domain/mappers/employee-mapper';
 import { employeeQueryKeys } from '../../domain/query-keys/employee-query-keys';
@@ -93,7 +94,9 @@ export const EmployeeForm = ({
   // Determine error message
   const errorMessage = employeeError
     ? 'Failed to load employee data. Please try again.'
-    : mutation.error?.message;
+    : mutation.error
+      ? getErrorMessage(mutation.error)
+      : undefined;
 
   return (
     <main className="mx-auto">

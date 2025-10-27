@@ -23,31 +23,6 @@ type FormSelectProps = ComponentProps<'select'> & {
  * Styled select dropdown with error state handling.
  * Can render options automatically via `options` prop or use children.
  *
- * @example
- * ```tsx
- * // With array options
- * <FormSelect
- *   options={[
- *     { value: 1, label: 'Male' },
- *     { value: 2, label: 'Female' }
- *   ]}
- *   placeholder="Select sex"
- *   {...register('sex')}
- * />
- *
- * // With enum labels (Record)
- * <FormSelect
- *   options={SexLabels}
- *   placeholder="Select sex"
- *   {...register('sex')}
- * />
- *
- * // With children (manual)
- * <FormSelect {...register('sex')}>
- *   <option value="">Select sex</option>
- *   <option value="1">Male</option>
- * </FormSelect>
- * ```
  */
 export const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
   (

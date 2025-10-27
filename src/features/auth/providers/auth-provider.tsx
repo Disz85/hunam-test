@@ -3,6 +3,7 @@ import { type ReactNode } from 'react';
 
 import { authService } from '@/api';
 import { ApiError } from '@/lib/api-error';
+import { getErrorMessage } from '@/lib/error-messages';
 
 import { AuthContext } from '../context/auth-context';
 import type { AuthState, LoginCredentials } from '../domain/types/auth-state';
@@ -79,9 +80,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       user !== null && user !== undefined && user.length > 0 && error === null,
 
     // Error message from failed login
-    error: loginMutation.error
-      ? ApiError.getMessage(loginMutation.error)
-      : null,
+    error: loginMutation.error ? getErrorMessage(loginMutation.error) : null,
 
     // Auth methods
     login: async credentials => {

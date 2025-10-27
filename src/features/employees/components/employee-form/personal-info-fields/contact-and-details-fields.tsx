@@ -34,26 +34,20 @@ export const ContactAndDetailsFields = ({
     </FormField>
 
     <FormField label="Sex" required colSpan={3}>
-      <FormSelect {...register('sex', { valueAsNumber: true })}>
-        <option value="">Select sex</option>
-        {Object.entries(SexLabels).map(([value, label]) => (
-          <option key={value} value={value}>
-            {label}
-          </option>
-        ))}
-      </FormSelect>
+      <FormSelect
+        options={SexLabels}
+        placeholder="Select sex"
+        {...register('sex', { valueAsNumber: true })}
+      />
       {errors.sex?.message && <ErrorMessage message={errors.sex.message} />}
     </FormField>
 
     <FormField label="Education Level" required colSpan={3}>
-      <FormSelect {...register('education', { valueAsNumber: true })}>
-        <option value="">Select education level</option>
-        {Object.entries(EducationLabels).map(([value, label]) => (
-          <option key={value} value={value}>
-            {label}
-          </option>
-        ))}
-      </FormSelect>
+      <FormSelect
+        options={EducationLabels}
+        placeholder="Select education level"
+        {...register('education', { valueAsNumber: true })}
+      />
       {errors.education?.message && (
         <ErrorMessage message={errors.education.message} />
       )}

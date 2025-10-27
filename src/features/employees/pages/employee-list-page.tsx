@@ -1,6 +1,7 @@
 import { useNavigate, useSearch } from '@tanstack/react-router';
 
 import { AdminPageLayout } from '@/components/layouts/admin-page-layout';
+import { Pagination } from '@/components/ui/pagination/pagination';
 
 import { EmployeeListContent } from '../components/employee-list/employee-list-content';
 import { EmployeeListSearchHeader } from '../components/employee-list/employee-list-search-header';
@@ -49,8 +50,20 @@ export const EmployeeListPage = () => {
     });
   };
 
+  // Handle page change
+  const handlePageChange = (newPage: number) => {
+    void navigate({
+      to: '/admin/employees',
+      search: {
+        ...searchParams,
+        page: newPage,
+      },
+    });
+  };
+
   const employees = data?.data ?? [];
   const total = data?.total ?? 0;
+  const totalPages = Math.ceil(total / limit);
 
   return (
     <AdminPageLayout
@@ -67,6 +80,18 @@ export const EmployeeListPage = () => {
         <EmployeeListContent total={total}>
           <EmployeeTable data={employees} columns={columns} />
         </EmployeeListContent>
+
+        {total > 0 && (
+          <div className="mt-6">
+            <Pagination
+              currentPage={page}
+              totalPages={totalPages}
+              totalItems={total}
+              itemsPerPage={limit}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        )}
       </EmployeeListStates>
     </AdminPageLayout>
   );

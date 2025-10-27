@@ -5,6 +5,7 @@ export type NavigationItem = {
   href: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   description?: string;
+  exactMatch?: boolean;
 };
 
 /**
@@ -19,6 +20,7 @@ export const adminNavigation: NavigationItem[] = [
     href: '/admin',
     icon: ChartBarIcon,
     description: 'Overview and statistics',
+    exactMatch: true,
   },
   {
     name: 'Employees',

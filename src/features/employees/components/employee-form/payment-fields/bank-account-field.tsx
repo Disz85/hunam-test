@@ -2,7 +2,7 @@ import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { ErrorMessage } from '@/components/ui/error/error-message';
 import { FormField } from '@/components/ui/form/form-field';
-import { FormInput } from '@/components/ui/form/form-input';
+import { FormMaskedInput } from '@/components/ui/form/form-masked-input';
 
 import type { CreateEmployeeFormData } from '../../../schemas/create-employee-schema';
 
@@ -19,7 +19,8 @@ export const BankAccountField = ({
   errors,
 }: BankAccountFieldProps) => (
   <FormField label="Bank Account Number" required colSpan="full">
-    <FormInput
+    <FormMaskedInput
+      maskType="bankAccount"
       placeholder="e.g. 12345678-12345678-12345678"
       {...register('bankAccountNumber')}
     />

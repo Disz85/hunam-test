@@ -2,7 +2,7 @@ import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { ErrorMessage } from '@/components/ui/error/error-message';
 import { FormField } from '@/components/ui/form/form-field';
-import { FormInput } from '@/components/ui/form/form-input';
+import { FormMaskedInput } from '@/components/ui/form/form-masked-input';
 import { FormSelect } from '@/components/ui/form/form-select';
 
 import { EducationLabels } from '../../../domain/enums/education-enum';
@@ -23,7 +23,13 @@ export const ContactAndDetailsFields = ({
 }: ContactAndDetailsFieldsProps) => (
   <>
     <FormField label="Phone Number" required colSpan={3}>
-      <FormInput type="tel" autoComplete="tel" {...register('phone')} />
+      <FormMaskedInput
+        maskType="phone"
+        type="tel"
+        autoComplete="tel"
+        placeholder="e.g. +36 20 123 4567"
+        {...register('phone')}
+      />
       {errors.phone?.message && <ErrorMessage message={errors.phone.message} />}
     </FormField>
 

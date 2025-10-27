@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { employeeService } from '@/api/employees';
 
-import { employeeListKeys } from './use-employee-list';
+import { employeeQueryKeys } from '../domain/query-keys/employee-query-keys';
 
 /**
  * Hook for deleting an employee
@@ -21,9 +21,9 @@ export const useDeleteEmployee = () => {
   return useMutation({
     mutationFn: (id: number) => employeeService.delete(id),
     onSuccess: () => {
-      // Invalidate all employee lists to refetch data
+      // Invalidate all employee queries (both lists and details)
       void queryClient.invalidateQueries({
-        queryKey: employeeListKeys.lists(),
+        queryKey: employeeQueryKeys.all,
       });
     },
   });

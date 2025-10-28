@@ -26,12 +26,12 @@ const useFieldConfig = (): FieldConfig[] => {
     {
       label: t('fields.email'),
       getValue: employee => employee.email,
-      isVisible: employee => !!employee.email,
+      isVisible: employee => Boolean(employee.email),
     },
     {
       label: t('fields.phoneNumber'),
       getValue: employee => employee.phone,
-      isVisible: employee => !!employee.phone,
+      isVisible: employee => Boolean(employee.phone),
     },
   ];
 };

@@ -13,7 +13,7 @@ dist-ssr
 *.local
 
 # TanStack Router generated files
-route-tree.gen.ts
+# route-tree.gen.ts - NOT ignored (committed for CI/CD)
 .tanstack/
 
 # Environment variables

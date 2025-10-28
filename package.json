@@ -10,7 +10,7 @@
   "scripts": {
     "generate:api": "orval --config ./orval.config.ts",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

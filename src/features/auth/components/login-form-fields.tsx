@@ -10,7 +10,7 @@ import type { LoginCredentials } from '../domain/types/auth-state';
 type LoginFormFieldsProps = {
   register: UseFormRegister<LoginCredentials>;
   errors: FieldErrors<LoginCredentials>;
-  error: Error | null;
+  error: string | null;
   clearError: () => void;
 };
 

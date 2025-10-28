@@ -59,7 +59,8 @@ export const createEmployeeSchema = z
       })
       .refine(val => val >= 1, { message: 'errors.required' })
       .refine(val => val <= 31, { message: 'errors.required' })
-      .optional(),
+      .optional()
+      .catch(undefined),
   })
   .refine(
     data => {

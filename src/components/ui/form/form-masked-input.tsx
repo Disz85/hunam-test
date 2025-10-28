@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import InputMask from 'react-input-mask';
+import { IMaskInput, type ReactElementProps } from 'react-imask';
 
 import { cn } from '@/lib/cn';
 
@@ -9,16 +9,14 @@ type MaskType = 'phone' | 'bankAccount';
  * Mask patterns for different input types
  */
 const MASK_PATTERNS: Record<MaskType, string> = {
-  phone: '+36 99 999 9999',
-  bankAccount: '99999999-99999999-99999999',
+  phone: '+36 00 000 0000',
+  bankAccount: '00000000-00000000-00000000',
 };
 
-type FormMaskedInputProps = Omit<
-  React.ComponentProps<typeof InputMask>,
-  'mask'
-> & {
+interface FormMaskedInputProps
+  extends Omit<ReactElementProps<HTMLInputElement>, 'mask'> {
   maskType: MaskType;
-};
+}
 
 /**
  * Masked Input Component
@@ -27,7 +25,7 @@ type FormMaskedInputProps = Omit<
  * - phone: Hungarian phone numbers (+36 XX XXX XXXX)
  * - bankAccount: Hungarian bank account (XXXXXXXX-XXXXXXXX-XXXXXXXX)
  *
- * Uses react-input-mask for masking functionality.
+ * Uses imask for masking functionality.
  *
  * @example
  * ```tsx
@@ -43,19 +41,14 @@ export const FormMaskedInput = forwardRef<
   FormMaskedInputProps
 >(({ maskType, className, ...props }, ref) => {
   return (
-    <InputMask mask={MASK_PATTERNS[maskType]} maskChar={null} {...props}>
-      {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
-        <input
-          {...inputProps}
-          ref={ref}
-          className={cn(
-            'block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200 sm:text-sm sm:leading-6',
-            className
-          )}
-        />
+    <IMaskInput
+      {...props}
+      inputRef={ref}
+      mask={MASK_PATTERNS[maskType]}
+      className={cn(
+        'block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200 sm:text-sm sm:leading-6',
+        className
       )}
-    </InputMask>
+    />
   );
 });
-
-FormMaskedInput.displayName = 'FormMaskedInput';

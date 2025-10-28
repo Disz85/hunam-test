@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from '@tanstack/react-router';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ResponsiveActionButton } from '@/components/ui/button/responsive-action-button';
@@ -31,29 +31,43 @@ export const EmployeeListSearchHeader = ({
   const navigate = useNavigate();
   const [localSearch, setLocalSearch] = useState(searchValue);
 
+  // Store onSearchChange in ref to avoid dependency issues
+  const onSearchChangeRef = useRef(onSearchChange);
+  onSearchChangeRef.current = onSearchChange;
+
   // Debounce the search input
   const debouncedSearch = useDebounce(localSearch, 300);
 
   // Trigger search when debounced value changes
   useEffect(() => {
     if (debouncedSearch !== searchValue) {
-      onSearchChange(debouncedSearch);
+      onSearchChangeRef.current(debouncedSearch);
     }
-  }, [debouncedSearch, searchValue, onSearchChange]);
+  }, [debouncedSearch, searchValue]);
 
   // Sync local state when searchValue changes from outside
   useEffect(() => {
     setLocalSearch(searchValue);
   }, [searchValue]);
 
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSearchChange(localSearch);
-  };
+  const handleSearchSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      onSearchChange(localSearch);
+    },
+    [localSearch, onSearchChange]
+  );
 
-  const handleCreateClick = () => {
+  const handleCreateClick = useCallback(() => {
     void navigate({ to: '/admin/employees/new' });
-  };
+  }, [navigate]);
+
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setLocalSearch(e.target.value);
+    },
+    []
+  );
 
   return (
     <div className="flex w-full items-center justify-between gap-x-4">
@@ -69,9 +83,7 @@ export const EmployeeListSearchHeader = ({
             <FormInput
               type="search"
               value={localSearch}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setLocalSearch(e.target.value)
-              }
+              onChange={handleInputChange}
               placeholder={t('search')}
               className="pl-10"
             />

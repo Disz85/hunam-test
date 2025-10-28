@@ -174,6 +174,49 @@ The project uses a **hybrid approach** for API integration:
 
 This combines the benefits of automated type generation (guaranteed sync with backend, no manual typing errors) with custom business logic and error handling that demonstrates architectural understanding and production-ready patterns.
 
+## Deployment
+
+This project is configured for **Vercel** deployment with a `vercel.json` configuration file.
+
+### Deploy to Vercel
+
+1. **Push to GitHub:**
+
+   ```bash
+   git push origin main
+   ```
+
+2. **Go to Vercel:**
+   - Visit [vercel.com](https://vercel.com) and sign in with GitHub
+   - Click "Add New Project"
+   - Import your repository: `Disz85/hunam-test`
+
+3. **Configure environment variables:**
+   - Add the following environment variable:
+     ```
+     VITE_API_BASE_URL=https://interview.hyperplane.hu
+     ```
+
+4. **Deploy:**
+   - Vercel will automatically detect Vite and use the existing `vercel.json`
+   - Click "Deploy"
+   - Your app will be live in ~2 minutes!
+
+### Build Settings (Auto-detected)
+
+Vercel automatically detects:
+
+- **Framework**: Vite
+- **Build Command**: `bun run build`
+- **Output Directory**: `dist`
+- **Node.js Version**: 22.x
+
+### After Deployment
+
+- Vercel provides a free HTTPS domain
+- Automatic deployments on every push to `main`
+- Preview deployments for pull requests
+
 ## Git Hooks (Husky)
 
 The project uses Husky for automatic validation:

@@ -2,6 +2,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { GlobeAltIcon, LanguageIcon } from '@heroicons/react/24/solid';
 
 import { LANGUAGES, useLanguage } from '@/hooks/use-language';
+import { cn } from '@/lib/cn';
 
 /**
  * Language Switcher Component
@@ -35,14 +36,18 @@ export const LanguageSwitcher = () => {
               <MenuItem key={lang.code}>
                 <button
                   onClick={() => handleLanguageChange(lang.code)}
-                  className={`group flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm ${
+                  className={cn(
+                    'group flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm data-focus:bg-indigo-50 data-hover:bg-indigo-50 data-hover:text-indigo-600',
                     isActive
                       ? 'bg-indigo-50 text-indigo-600'
                       : 'bg-white text-gray-700'
-                  } data-focus:bg-indigo-50 data-hover:bg-indigo-50 data-hover:text-indigo-600`}
+                  )}
                 >
                   <GlobeAltIcon
-                    className={`size-4 ${isActive ? 'text-indigo-600' : 'text-gray-400'}`}
+                    className={cn(
+                      'size-4',
+                      isActive ? 'text-indigo-600' : 'text-gray-400'
+                    )}
                     aria-hidden="true"
                   />
                   {lang.nativeLabel}

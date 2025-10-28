@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 
+import { cn } from '@/lib/cn';
+
 /**
  * Card props
  */
@@ -13,10 +15,13 @@ type CardProps = {
  *
  * Provides a consistent card container with shadow and border
  */
-export const Card = ({ children, className = '' }: CardProps) => {
+export const Card = ({ children, className }: CardProps) => {
   return (
     <div
-      className={`rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-900/5 ${className}`}
+      className={cn(
+        'rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-900/5',
+        className
+      )}
     >
       {children}
     </div>

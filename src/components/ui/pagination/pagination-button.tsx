@@ -1,9 +1,10 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
+import type { ReactNode } from 'react';
 
 import { cn } from '@/lib/cn';
 
-type PaginationButtonVariant = 'page' | 'nav' | 'ellipsis';
-type PaginationButtonPosition = 'left' | 'right' | 'middle';
+export type PaginationButtonVariant = 'page' | 'nav' | 'ellipsis';
+export type PaginationButtonPosition = 'left' | 'right' | 'middle';
 
 type PaginationButtonProps = {
   variant: PaginationButtonVariant;
@@ -11,7 +12,7 @@ type PaginationButtonProps = {
   isActive?: boolean;
   disabled?: boolean;
   onClick?: () => void;
-  children?: React.ReactNode;
+  children?: ReactNode;
   ariaLabel?: string;
 };
 
@@ -20,15 +21,15 @@ const BASE_CLASSES =
 
 const VARIANT_CLASSES: Record<PaginationButtonVariant, string> = {
   page: 'px-4 py-2',
-  nav: 'px-2 py-2 inset-ring inset-ring-gray-300 focus:outline-offset-0',
-  ellipsis: 'px-4 py-2 text-gray-700 inset-ring inset-ring-gray-300',
+  nav: 'px-2 py-2 ring-1 ring-inset ring-gray-300 focus:outline-offset-0',
+  ellipsis: 'px-4 py-2 text-gray-700 ring-1 ring-inset ring-gray-300',
 };
 
 const STATE_CLASSES = {
   active:
     'z-10 bg-indigo-600 text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer',
   inactive:
-    'text-gray-900 inset-ring inset-ring-gray-300 hover:bg-gray-50 focus:outline-offset-0 cursor-pointer',
+    'text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0 cursor-pointer',
   navEnabled: 'text-gray-400 hover:bg-gray-50 cursor-pointer',
   navDisabled: 'cursor-not-allowed text-gray-300',
 };

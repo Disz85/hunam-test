@@ -5,8 +5,8 @@ import { cn } from '@/lib/cn';
 
 import { Spinner } from '../loading/spinner';
 
-type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success';
-type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success';
+export type ButtonSize = 'sm' | 'md' | 'lg';
 
 type ButtonProps = {
   variant?: ButtonVariant;

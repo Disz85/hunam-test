@@ -37,7 +37,6 @@ export const NavigationItems = ({
           })
         );
 
-        // Get translated name
         const translationKey =
           item.href === '/admin'
             ? 'navigation.dashboard'

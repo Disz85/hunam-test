@@ -1,3 +1,5 @@
+import { cn } from '@/lib/cn';
+
 /**
  * Spinner props
  */
@@ -23,6 +25,11 @@ const getSizeClasses = (size: SpinnerProps['size']) => {
   }
 };
 
+const VARIANT_COLOR_CLASSES = {
+  primary: 'border-indigo-600 border-r-transparent',
+  secondary: 'border-white border-r-transparent',
+};
+
 /**
  * Spinner component
  *
@@ -32,17 +39,19 @@ export const Spinner = ({
   text,
   size = 'md',
   variant = 'primary',
-  className = '',
+  className,
 }: SpinnerProps) => {
   const sizeClasses = getSizeClasses(size);
-  const colorClasses =
-    variant === 'secondary'
-      ? 'border-white border-r-transparent'
-      : 'border-indigo-600 border-r-transparent';
+  const colorClasses = VARIANT_COLOR_CLASSES[variant];
 
   const spinnerElement = (
     <div
-      className={`inline-block ${sizeClasses} animate-spin rounded-full border-4 border-solid ${colorClasses} ${className}`}
+      className={cn(
+        'inline-block animate-spin rounded-full border-4 border-solid',
+        sizeClasses,
+        colorClasses,
+        className
+      )}
       role="status"
       aria-label="Loading"
     />

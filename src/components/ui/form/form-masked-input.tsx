@@ -3,6 +3,8 @@ import { IMaskInput, type ReactElementProps } from 'react-imask';
 
 import { cn } from '@/lib/cn';
 
+import { FORM_BASE_STYLES, FORM_PLACEHOLDER_STYLES } from './form-styles';
+
 type MaskType = 'phone' | 'bankAccount';
 
 /**
@@ -46,7 +48,9 @@ export const FormMaskedInput = forwardRef<
       inputRef={ref}
       mask={MASK_PATTERNS[maskType]}
       className={cn(
-        'block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200 sm:text-sm sm:leading-6',
+        FORM_BASE_STYLES,
+        FORM_PLACEHOLDER_STYLES,
+        'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200 sm:text-sm sm:leading-6',
         className
       )}
     />

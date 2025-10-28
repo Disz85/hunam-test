@@ -1,3 +1,4 @@
+import { Fieldset, Legend } from '@headlessui/react';
 import type { ComponentType, ReactNode } from 'react';
 
 /**
@@ -22,17 +23,17 @@ export const FormSection = ({
   children,
 }: FormSectionProps) => {
   return (
-    <fieldset>
-      <legend className="flex items-center gap-2 text-base font-semibold leading-7 text-gray-900">
+    <Fieldset>
+      <Legend className="flex items-center gap-2 text-base font-semibold leading-7 text-gray-900">
         {Icon && <Icon className="h-5 w-5 text-indigo-600" />}
         {title}
-      </legend>
+      </Legend>
       {description && (
         <p className="mt-1 text-sm leading-6 text-gray-600">{description}</p>
       )}
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
         {children}
       </div>
-    </fieldset>
+    </Fieldset>
   );
 };

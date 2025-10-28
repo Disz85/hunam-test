@@ -1,4 +1,9 @@
+import { Select } from '@headlessui/react';
 import { type ComponentProps, forwardRef } from 'react';
+
+import { cn } from '@/lib/cn';
+
+import { FORM_BASE_STYLES, getFormErrorClasses } from './form-styles';
 
 /**
  * Option type for select dropdowns
@@ -20,28 +25,16 @@ type FormSelectProps = ComponentProps<'select'> & {
 /**
  * FormSelect component
  *
- * Styled select dropdown with error state handling.
+ * Styled select dropdown with error state handling using Headless UI Select.
  * Can render options automatically via `options` prop or use children.
  *
+ * Uses Headless UI Select component for better accessibility and state management.
  */
 export const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
   (
-    {
-      hasError = false,
-      className = '',
-      options,
-      placeholder,
-      children,
-      ...props
-    },
+    { hasError = false, className, options, placeholder, children, ...props },
     ref
   ) => {
-    const baseClasses =
-      'block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 focus:outline-2 focus:-outline-offset-2';
-    const errorClasses = hasError
-      ? 'outline-red-300 focus:outline-red-500'
-      : 'outline-gray-300 focus:outline-indigo-600';
-
     // Convert options to array if it's a Record
     const optionsArray: SelectOption[] | undefined = options
       ? Array.isArray(options)
@@ -53,10 +46,14 @@ export const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
       : undefined;
 
     return (
-      <select
+      <Select
         ref={ref}
-        className={`${baseClasses} ${errorClasses} ${className}`}
-        aria-invalid={hasError}
+        invalid={hasError}
+        className={cn(
+          FORM_BASE_STYLES,
+          getFormErrorClasses(hasError),
+          className
+        )}
         {...props}
       >
         {placeholder && <option value="">{placeholder}</option>}
@@ -67,7 +64,7 @@ export const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
               </option>
             ))
           : children}
-      </select>
+      </Select>
     );
   }
 );

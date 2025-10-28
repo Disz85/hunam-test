@@ -28,7 +28,7 @@ export const CashPaymentDayField = ({
         min="1"
         max="31"
         placeholder="e.g. 15"
-        {...register('cashPaymentDay', { valueAsNumber: true })}
+        {...register('cashPaymentDay')}
       />
       <p className="mt-1 text-xs text-gray-500">
         {t('fields.cashPaymentDayDesc')}

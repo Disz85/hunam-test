@@ -26,7 +26,7 @@ export const SalaryField = ({ register, errors }: SalaryFieldProps) => {
         max="500000"
         step="1000"
         placeholder="e.g. 300000"
-        {...register('salary', { valueAsNumber: true })}
+        {...register('salary')}
       />
       <p className="mt-1 text-xs text-gray-500">{t('fields.salaryDesc')}</p>
       {errors.salary?.message && (

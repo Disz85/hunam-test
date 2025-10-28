@@ -19,21 +19,31 @@ type ErrorMessageProps = {
 export const ErrorMessage = ({ message, id }: ErrorMessageProps) => {
   const { t } = useTranslation();
 
-  // Check if message is an i18n key (contains a dot and starts with namespace prefixes)
-  const isI18nKey = message.includes('.');
+  function extractTranslationInfo(key: string): {
+    translationKey: string;
+    namespace: string;
+  } {
+    const [namespace, ...keyParts] = key.split('.');
+    const translationKey = keyParts.join('.');
 
-  // Translate if it's an i18n key, otherwise use the message as-is
-  const displayMessage = isI18nKey
-    ? t(message, { ns: getNamespace(message) })
-    : message;
+    const nsMap: Record<string, string> = {
+      errors: 'errors',
+      auth: 'auth',
+      employees: 'employees',
+      common: 'common',
+    };
 
-  // Helper to determine namespace from message key
-  function getNamespace(key: string): string {
-    if (key.startsWith('errors.')) return 'errors';
-    if (key.startsWith('auth.')) return 'auth';
-    if (key.startsWith('employees.')) return 'employees';
-    return 'common'; // fallback to default namespace
+    return {
+      translationKey,
+      namespace: nsMap[namespace] || 'common',
+    };
   }
+
+  const displayMessage = (() => {
+    if (!message.includes('.')) return message;
+    const { translationKey, namespace } = extractTranslationInfo(message);
+    return t(translationKey, { ns: namespace });
+  })();
 
   return (
     <Description

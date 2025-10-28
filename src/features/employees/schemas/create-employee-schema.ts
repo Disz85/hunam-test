@@ -41,15 +41,25 @@ export const createEmployeeSchema = z
     paymentMethod: z.nativeEnum(PaymentMethod, {
       message: 'errors.required',
     }),
-    salary: z
+    salary: z.coerce
       .number()
-      .min(200000, 'errors.salaryMin')
-      .max(500000, 'errors.salaryMax'),
+      .refine(val => !isNaN(val) && isFinite(val), {
+        message: 'errors.invalidNumber',
+      })
+      .refine(val => val >= 200000, { message: 'errors.salaryMin' })
+      .refine(val => val <= 500000, { message: 'errors.salaryMax' }),
 
     // Conditional fields
     bankAccountNumber: z.string().optional(),
     moneyDispatchAddress: z.string().optional(),
-    cashPaymentDay: z.number().min(1).max(31).optional(),
+    cashPaymentDay: z.coerce
+      .number()
+      .refine(val => !isNaN(val) && isFinite(val), {
+        message: 'errors.invalidNumber',
+      })
+      .refine(val => val >= 1, { message: 'errors.required' })
+      .refine(val => val <= 31, { message: 'errors.required' })
+      .optional(),
   })
   .refine(
     data => {

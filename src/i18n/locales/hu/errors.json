@@ -2,6 +2,7 @@
   "required": "Ez a mező kötelező",
   "invalidEmail": "Érvénytelen email cím",
   "invalidPhone": "Érvénytelen telefonszám",
+  "invalidNumber": "Kérlek adj meg egy érvényes számot",
   "genericError": "Hiba történt. Kérlek próbáld újra.",
   "loadingEmployees": "Hiba az alkalmazottak betöltésekor",
   "unknown": "Ismeretlen hiba",

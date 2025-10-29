@@ -1,3 +1,9 @@
+/**
+ * Layout components module
+ *
+ * @module components/layouts/admin-header
+ */
+
 import { Button } from '@headlessui/react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import type { ReactNode } from 'react';
@@ -5,16 +11,35 @@ import { useTranslation } from 'react-i18next';
 
 import { LanguageSwitcher } from '../ui/switcher/language-switcher';
 
+/**
+ * Admin header component props
+ */
 type AdminHeaderProps = {
+  /** Optional header content */
   children?: ReactNode;
+  /** Optional page title */
   title?: string;
 };
 
 /**
  * Admin header component
  *
- * Provides consistent header with hamburger menu for mobile
- * Automatically handles sidebar opening using Headless UI Button
+ * Provides consistent header with hamburger menu for mobile navigation.
+ * Automatically handles sidebar opening using Headless UI Button and custom events.
+ * Includes language switcher for internationalization.
+ *
+ * @param {AdminHeaderProps} props - Component props
+ * @param {ReactNode} [props.children] - Optional header content
+ * @param {string} [props.title] - Optional page title
+ *
+ * @example
+ * ```tsx
+ * import { AdminHeader } from '@/components/layouts/admin-header';
+ *
+ * <AdminHeader>
+ *   <UserInfo />
+ * </AdminHeader>
+ * ```
  */
 export const AdminHeader = ({ children }: AdminHeaderProps) => {
   const { t } = useTranslation('common');

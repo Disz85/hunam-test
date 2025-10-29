@@ -1,3 +1,9 @@
+/**
+ * Delete employee hooks module
+ *
+ * @module features/employees/hooks/use-delete-employee
+ */
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { employeeService } from '@/api/employees';
@@ -7,12 +13,20 @@ import { employeeQueryKeys } from '../domain/query-keys/employee-query-keys';
 /**
  * Hook for deleting an employee
  *
- * @returns React Query mutation for employee deletion
+ * Provides mutation functionality for deleting an employee.
+ * Automatically invalidates employee queries after successful deletion.
+ *
+ * @returns {UseMutationResult<EmployeeDto, Error, number>} React Query mutation for employee deletion
  *
  * @example
  * ```tsx
+ * import { useDeleteEmployee } from '@/features/employees/hooks/use-delete-employee';
+ *
  * const deleteMutation = useDeleteEmployee();
- * deleteMutation.mutate(employeeId);
+ *
+ * const handleDelete = (id: number) => {
+ *   deleteMutation.mutate(id);
+ * };
  * ```
  */
 export const useDeleteEmployee = () => {

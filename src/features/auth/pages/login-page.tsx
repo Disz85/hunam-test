@@ -1,3 +1,9 @@
+/**
+ * Authentication pages module
+ *
+ * @module features/auth/pages/login-page
+ */
+
 import { LanguageSwitcher } from '@/components/ui/switcher/language-switcher';
 
 import { DecorativeBackground } from '../components/decorative-background';
@@ -7,7 +13,25 @@ import { LoginPageHeader } from '../components/login-page-header';
 /**
  * Login page component
  *
- * Displays the login form with decorative background
+ * Main login page with decorative background, header, and login form.
+ * Includes language switcher for internationalization.
+ *
+ * Features:
+ * - Decorative gradient background for visual appeal
+ * - Page header with app name and subtitle
+ * - Login form with validation
+ * - Language switcher in top right corner
+ * - Fully responsive design
+ *
+ * @example
+ * ```tsx
+ * import { LoginPage } from '@/features/auth/pages/login-page';
+ *
+ * // Used as a route component
+ * export const Route = createFileRoute('/login')({
+ *   component: LoginPage,
+ * });
+ * ```
  */
 export const LoginPage = () => {
   return (

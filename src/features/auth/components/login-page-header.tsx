@@ -1,9 +1,23 @@
+/**
+ * Authentication components module
+ *
+ * @module features/auth/components/login-page-header
+ */
+
 import { useTranslation } from 'react-i18next';
 
 /**
  * Login page header component
  *
- * Displays the page title and subtitle
+ * Displays the application name and sign-in subtitle.
+ * Fully responsive with text balancing for better readability.
+ *
+ * @example
+ * ```tsx
+ * import { LoginPageHeader } from '@/features/auth/components/login-page-header';
+ *
+ * <LoginPageHeader />
+ * ```
  */
 export const LoginPageHeader = () => {
   const { t } = useTranslation('common');

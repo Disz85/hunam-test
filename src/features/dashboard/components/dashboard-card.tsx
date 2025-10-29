@@ -1,13 +1,27 @@
+/**
+ * Dashboard components module
+ *
+ * @module features/dashboard/components/dashboard-card
+ */
+
 import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 
 import { cn } from '@/lib/cn';
 
+/**
+ * Dashboard card component props
+ */
 type DashboardCardProps = {
+  /** Card title */
   title: string;
+  /** Card description */
   description: string;
+  /** Icon to display */
   icon: ReactNode;
+  /** Optional link destination (makes card clickable) */
   to?: string;
+  /** Whether the card is disabled */
   disabled?: boolean;
 };
 
@@ -33,8 +47,37 @@ const DESCRIPTION_DISABLED_CLASSES = 'text-sm text-gray-400';
 /**
  * Dashboard card component
  *
- * Displays a feature card with icon, title, and description
- * Can be clickable (Link) or static (div)
+ * Displays a feature card with icon, title, and description.
+ * Can be clickable (Link) or static (div) based on props.
+ *
+ * Features:
+ * - Clickable cards with hover effects and navigation
+ * - Disabled state with grayed-out appearance
+ * - Responsive design with smooth transitions
+ *
+ * @param {DashboardCardProps} props - Component props
+ *
+ * @example
+ * ```tsx
+ * import { DashboardCard } from '@/features/dashboard/components/dashboard-card';
+ * import { UsersIcon } from '@heroicons/react/24/outline';
+ *
+ * // Clickable card
+ * <DashboardCard
+ *   title="Employees"
+ *   description="Manage employee records"
+ *   icon={<UsersIcon />}
+ *   to="/admin/employees"
+ * />
+ *
+ * // Disabled card (coming soon)
+ * <DashboardCard
+ *   title="Coming Soon"
+ *   description="New features"
+ *   icon={<ChartIcon />}
+ *   disabled
+ * />
+ * ```
  */
 export const DashboardCard = ({
   title,

@@ -1,5 +1,13 @@
 /**
- * Employee education level enum (feature domain)
+ * Employee domain enums module
+ *
+ * @module features/employees/domain/enums/education-enum
+ */
+
+/**
+ * Employee education level enum
+ *
+ * Feature-level domain enum for employee education levels.
  */
 export enum Education {
   Elementary = 0,
@@ -13,7 +21,9 @@ export enum Education {
 }
 
 /**
- * Labels for Education enum (UI display)
+ * Labels for Education enum
+ *
+ * Maps enum values to display labels for form selects and UI components.
  */
 export const EducationLabels = {
   [Education.Elementary]: 'Elementary School',

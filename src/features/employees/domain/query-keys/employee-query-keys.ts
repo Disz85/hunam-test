@@ -1,3 +1,9 @@
+/**
+ * Employee domain query keys module
+ *
+ * @module features/employees/domain/query-keys/employee-query-keys
+ */
+
 import type { GetApiEmployeesParams } from '@/api';
 
 /**
@@ -10,7 +16,18 @@ import type { GetApiEmployeesParams } from '@/api';
  * - details: ['employees', 'detail'] - all detail queries
  * - detail: ['employees', 'detail', id] - specific employee detail
  *
- * @see https://tanstack.com/query/latest/docs/react/guides/query-keys#query-key-factories
+ * @see {@link https://tanstack.com/query/latest/docs/react/guides/query-keys#query-key-factories}
+ *
+ * @example
+ * ```typescript
+ * import { employeeQueryKeys } from '@/features/employees/domain/query-keys/employee-query-keys';
+ *
+ * // Invalidate all employee queries
+ * queryClient.invalidateQueries({ queryKey: employeeQueryKeys.all });
+ *
+ * // Invalidate specific employee detail
+ * queryClient.invalidateQueries({ queryKey: employeeQueryKeys.detail(123) });
+ * ```
  */
 export const employeeQueryKeys = {
   all: ['employees'] as const,

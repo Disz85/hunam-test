@@ -1,3 +1,9 @@
+/**
+ * Authentication providers module
+ *
+ * @module features/auth/providers/auth-provider
+ */
+
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { type ReactNode } from 'react';
 
@@ -10,13 +16,16 @@ import type { AuthState, LoginCredentials } from '../domain/types/auth-state';
 
 /**
  * Cache configuration
+ *
+ * Defines how long authentication data should be considered fresh in the cache.
  */
 const AUTH_CACHE_TIME = 5 * 60 * 1000; // 5 minutes
 
 /**
- * AuthProvider props
+ * AuthProvider component props
  */
 type AuthProviderProps = {
+  /** Child components to wrap */
   children: ReactNode;
 };
 
@@ -25,6 +34,27 @@ type AuthProviderProps = {
  *
  * Manages authentication state using React Query for data fetching
  * and provides centralized auth methods for the entire app.
+ *
+ * Features:
+ * - User authentication with login/logout methods
+ * - Automatic token management via HttpOnly cookies
+ * - Centralized loading and error state handling
+ * - Context-based state management for easy access
+ *
+ * @param {AuthProviderProps} props - Component props
+ *
+ * @example
+ * ```tsx
+ * import { AuthProvider } from '@/features/auth/providers/auth-provider';
+ *
+ * function App() {
+ *   return (
+ *     <AuthProvider>
+ *       <Router />
+ *     </AuthProvider>
+ *   );
+ * }
+ * ```
  */
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const queryClient = useQueryClient();

@@ -1,3 +1,9 @@
+/**
+ * Employee schemas module
+ *
+ * @module features/employees/schemas/create-employee-schema
+ */
+
 import { z } from 'zod';
 
 import { Education } from '@/features/employees/domain/enums/education-enum';
@@ -7,8 +13,24 @@ import { Sex } from '@/features/employees/domain/enums/sex-enum';
 /**
  * Employee form validation schema
  *
- * Validates employee data with conditional fields based on PaymentMethod
- * Note: Error messages use i18n keys, actual translations happen in form components
+ * Validates employee data with conditional fields based on PaymentMethod.
+ * Error messages use i18n keys; actual translations happen in form components.
+ *
+ * Features:
+ * - Personal information validation
+ * - Address information validation
+ * - Payment method with conditional fields (Transfer/Cash/Dispatch)
+ * - Salary validation (200k-500k HUF range)
+ *
+ * @example
+ * ```typescript
+ * import { createEmployeeSchema } from '@/features/employees/schemas/create-employee-schema';
+ *
+ * const result = createEmployeeSchema.safeParse(formData);
+ * if (!result.success) {
+ *   console.error(result.error);
+ * }
+ * ```
  */
 export const createEmployeeSchema = z
   .object({
@@ -106,4 +128,9 @@ export const createEmployeeSchema = z
     }
   );
 
+/**
+ * Employee form data type
+ *
+ * TypeScript type inferred from the validation schema.
+ */
 export type CreateEmployeeFormData = z.infer<typeof createEmployeeSchema>;

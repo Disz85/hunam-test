@@ -1,7 +1,21 @@
 /**
+ * Authentication components module
+ *
+ * @module features/auth/components/decorative-background
+ */
+
+/**
  * Decorative background component
  *
- * Displays a gradient background blur effect
+ * Displays a gradient background blur effect for visual enhancement.
+ * Uses ARIA hidden attribute as it's purely decorative.
+ *
+ * @example
+ * ```tsx
+ * import { DecorativeBackground } from '@/features/auth/components/decorative-background';
+ *
+ * <DecorativeBackground />
+ * ```
  */
 export const DecorativeBackground = () => {
   return (

@@ -1,10 +1,33 @@
+/**
+ * Page components module
+ *
+ * @module components/pages/not-found-page
+ */
+
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 
 /**
  * 404 Not Found page component
  *
- * Displays when a route is not found
+ * Displays when a route is not found (404 error).
+ * Provides navigation options to return to main sections of the app.
+ *
+ * Features:
+ * - User-friendly 404 error message
+ * - Navigation links to dashboard and login
+ * - Fully responsive design
+ * - Internationalized text
+ *
+ * @example
+ * ```tsx
+ * import { NotFoundPage } from '@/components/pages/not-found-page';
+ *
+ * // Used in root route configuration
+ * export const Route = createRootRoute({
+ *   notFoundComponent: NotFoundPage,
+ * });
+ * ```
  */
 export const NotFoundPage = () => {
   const { t } = useTranslation('common');

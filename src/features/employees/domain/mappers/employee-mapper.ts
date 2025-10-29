@@ -1,3 +1,9 @@
+/**
+ * Employee domain mappers module
+ *
+ * @module features/employees/domain/mappers/employee-mapper
+ */
+
 import type { EmployeeDto } from '@/api';
 
 import type { CreateEmployeeFormData } from '../../schemas/create-employee-schema';
@@ -6,8 +12,19 @@ import { EMPLOYEE_DEFAULTS } from '../constants/employee-defaults';
 /**
  * Maps EmployeeDto to CreateEmployeeFormData
  *
- * Transforms backend DTO to form-compatible data structure
- * Handles null/undefined values by converting to appropriate defaults
+ * Transforms backend DTO to form-compatible data structure.
+ * Handles null/undefined values by converting to appropriate defaults.
+ *
+ * @param {EmployeeDto} employee - Employee data from the backend
+ * @returns {CreateEmployeeFormData} Form-compatible employee data
+ *
+ * @example
+ * ```typescript
+ * import { mapEmployeeDtoToFormData } from '@/features/employees/domain/mappers/employee-mapper';
+ *
+ * const employee = await employeeService.getById(id);
+ * const formData = mapEmployeeDtoToFormData(employee);
+ * ```
  */
 export const mapEmployeeDtoToFormData = (
   employee: EmployeeDto

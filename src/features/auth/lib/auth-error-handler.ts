@@ -1,3 +1,9 @@
+/**
+ * Authentication lib module
+ *
+ * @module features/auth/lib/auth-error-handler
+ */
+
 import { AxiosError } from 'axios';
 
 /**
@@ -6,8 +12,10 @@ import { AxiosError } from 'axios';
 type AuthErrorCallback = () => void;
 
 /**
- * Global authentication error callback (injected via dependency injection)
- * Set once during app initialization to avoid circular dependencies
+ * Global authentication error callback
+ *
+ * Injected via dependency injection during app initialization to avoid circular dependencies.
+ * Set once during app initialization.
  */
 let authErrorCallback: AuthErrorCallback | null = null;
 
@@ -17,10 +25,12 @@ let authErrorCallback: AuthErrorCallback | null = null;
  * Should be called once during app initialization to inject the router
  * dependency without creating circular dependencies between modules.
  *
- * @param callback - Function to call when a 401 error occurs
+ * @param {AuthErrorCallback} callback - Function to call when a 401 error occurs
  *
  * @example
- * ```ts
+ * ```typescript
+ * import { setAuthErrorHandler } from '@/features/auth/lib/auth-error-handler';
+ *
  * setAuthErrorHandler(() => {
  *   queryClient.removeQueries({ queryKey: ['auth'] });
  *   router.navigate({ to: '/login' });
@@ -37,7 +47,19 @@ export const setAuthErrorHandler = (callback: AuthErrorCallback): void => {
  * Used by React Query's QueryCache and MutationCache to centralize
  * authentication error handling across the application.
  *
- * @param error - Error object from React Query
+ * @param {unknown} error - Error object from React Query
+ *
+ * @example
+ * ```typescript
+ * import { handleAuthError } from '@/features/auth/lib/auth-error-handler';
+ *
+ * // Used in query client config
+ * const queryClient = new QueryClient({
+ *   queryCache: new QueryCache({
+ *     onError: handleAuthError,
+ *   }),
+ * });
+ * ```
  */
 export const handleAuthError = (error: unknown): void => {
   if (!(error instanceof AxiosError)) {

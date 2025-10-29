@@ -1,3 +1,9 @@
+/**
+ * Employee list hooks module
+ *
+ * @module features/employees/hooks/use-employee-list
+ */
+
 import { useQuery } from '@tanstack/react-query';
 
 import type { GetApiEmployeesParams } from '@/api';
@@ -7,6 +13,8 @@ import { employeeQueryKeys } from '../domain/query-keys/employee-query-keys';
 
 /**
  * Cache configuration
+ *
+ * Defines how long employee list data should be considered fresh in the cache.
  */
 export const EMPLOYEE_LIST_CACHE_TIME = 5 * 60 * 1000; // 5 minutes
 const EMPLOYEE_LIST_RETRY_COUNT = 1;
@@ -14,16 +22,25 @@ const EMPLOYEE_LIST_RETRY_COUNT = 1;
 /**
  * Hook for fetching employee list with filters
  *
- * @param params - Query parameters (search, orderBy, pagination)
- * @returns React Query result with employee data
+ * Fetches a paginated list of employees from the API with optional search and sorting.
+ * Supports caching and automatic refetching.
+ *
+ * @param {GetApiEmployeesParams} [params={}] - Query parameters for filtering and pagination
+ * @returns {UseQueryResult<EmployeeDtoPagination>} React Query result with employee list data, loading state, and error
  *
  * @example
  * ```tsx
- * const { data, isLoading, error } = useEmployeeList({
- *   Search: 'John',
- *   OrderBy: 'firstName',
- *   Limit: 10,
- *   Offset: 0,
+ * import { useEmployeeList } from '@/features/employees/hooks/use-employee-list';
+ *
+ * // Basic usage
+ * const { data, isLoading, error } = useEmployeeList();
+ *
+ * // With filters and pagination
+ * const { data, isLoading } = useEmployeeList({
+ *   search: 'John',
+ *   orderBy: 'firstName',
+ *   page: 1,
+ *   pageSize: 10,
  * });
  * ```
  */

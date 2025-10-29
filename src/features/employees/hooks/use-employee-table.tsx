@@ -1,3 +1,9 @@
+/**
+ * Employee table hooks module
+ *
+ * @module features/employees/hooks/use-employee-table
+ */
+
 import type { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -7,7 +13,20 @@ import type { EmployeeDto } from '@/api';
 import { EmployeeTableActions } from '../components/employee-table/employee-table-actions';
 
 /**
- * Employee table columns definition
+ * Hook for generating employee table columns
+ *
+ * Returns TanStack Table column definitions for the employee table.
+ * Columns are memoized to prevent unnecessary re-renders.
+ *
+ * @returns {ColumnDef<EmployeeDto>[]} Array of column definitions for the employee table
+ *
+ * @example
+ * ```tsx
+ * import { useEmployeeTableColumns } from '@/features/employees/hooks/use-employee-table';
+ *
+ * const columns = useEmployeeTableColumns();
+ * return <Table columns={columns} data={employees} />;
+ * ```
  */
 export const useEmployeeTableColumns = (): ColumnDef<EmployeeDto>[] => {
   const { t } = useTranslation('common');

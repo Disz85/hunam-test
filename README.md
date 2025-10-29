@@ -2,6 +2,8 @@
 
 React + TypeScript + Vite application with employee CRUD functionality.
 
+📚 [View Full API Documentation](https://disz85.github.io/hunam-test/)
+
 ## Tech Stack
 
 - **React 18.3** + **Vite**
@@ -69,6 +71,11 @@ Note: While this project uses Bun for package management and running scripts, Or
 - `bun run build` - Create production build (TypeScript type-check + build)
 - `bun run preview` - Preview production build locally
 
+### Documentation
+
+- `bun run docs:generate` - Generate TypeDoc documentation from JSDoc comments
+- `bun run docs:open` - Open documentation in default browser
+
 ### Code Quality
 
 - `bun run lint` - Run ESLint on all files
@@ -90,36 +97,62 @@ Note: While this project uses Bun for package management and running scripts, Or
 ## Folder Structure
 
 ```
-src/
-├── api/                            # API layer (client, base, services, generated types)
-│   ├── api-client.ts               # Axios client (cookie-based auth, interceptors)
-│   ├── base-service.ts             # Shared error handling (ApiError mapping)
-│   ├── auth/                       # Auth services
-│   │   ├── auth-service.ts
-│   │   └── index.ts
-│   ├── employees/                  # Employee services
-│   │   ├── employee-service.ts
-│   │   └── index.ts
-│   └── __generated__/              # Orval-generated types and endpoint defs (types source)
-├── components/
-│   └── ui/                         # Reusable, headless UI primitives
-├── features/                       # Feature-based domain structure
-│   ├── auth/
-│   │   ├── components/ pages/ schemas/ hooks/ context/ providers/
-│   │   └── domain/                 # enums, types, mappers (feature-level)
-│   └── employees/
-│       ├── components/ pages/ schemas/ hooks/ api/
-│       └── domain/                 # enums, types, mappers (feature-level)
-├── hooks/                          # App-wide reusable hooks
-├── i18n/
-│   └── locales/                    # en, hu locales
-├── lib/                            # Helpers (ApiError, etc.)
-├── providers/                      # App-level providers (Query, Auth, i18n)
-├── routes/                         # TanStack Router file-based routes
-│   └── employees/$id/
-├── config/
-│   └── env.ts                      # Zod-validated env config (fail-fast)
-└── types/                          # Global TypeScript types (if needed)
+hunam-test/
+├── .github/workflows/              # GitHub Actions workflows
+│   └── docs.yml                    # Automated documentation deployment
+├── docs/                           # TypeDoc generated documentation (gitignored)
+├── public/                         # Static assets
+├── src/
+│   ├── api/                        # API layer (client, base, services, generated types)
+│   │   ├── api-client.ts           # Axios client (cookie-based auth, interceptors)
+│   │   ├── base-service.ts         # Shared error handling (ApiError mapping)
+│   │   ├── auth/                   # Auth services
+│   │   │   ├── auth-service.ts
+│   │   │   └── index.ts
+│   │   ├── employees/              # Employee services
+│   │   │   ├── employee-service.ts
+│   │   │   └── index.ts
+│   │   ├── errors/                 # Error handling utilities
+│   │   └── __generated__/          # Orval-generated types (types source)
+│   ├── components/
+│   │   ├── layouts/                # Layout components
+│   │   ├── navigation/             # Navigation components
+│   │   ├── pages/                  # Page-level components
+│   │   └── ui/                     # Reusable, headless UI primitives
+│   ├── features/                   # Feature-based domain structure
+│   │   ├── auth/                   # Authentication feature
+│   │   │   ├── components/         # Auth UI components
+│   │   │   ├── context/            # Auth context
+│   │   │   ├── domain/             # Auth domain logic (types, enums, mappers)
+│   │   │   ├── hooks/              # Auth-specific hooks
+│   │   │   ├── lib/                # Auth utilities
+│   │   │   ├── pages/              # Auth pages
+│   │   │   ├── providers/          # Auth providers
+│   │   │   └── schemas/            # Auth validation schemas
+│   │   ├── dashboard/              # Dashboard feature
+│   │   │   ├── components/
+│   │   │   └── pages/
+│   │   └── employees/              # Employees feature
+│   │       ├── components/         # Employee UI components
+│   │       │   ├── employee-form/  # Employee form components
+│   │       │   ├── employee-list/  # Employee list components
+│   │       │   └── employee-table/ # Employee table components
+│   │       ├── domain/             # Employee domain logic
+│   │       │   ├── constants/      # Employee constants
+│   │       │   ├── enums/          # Employee enums (Sex, Education, PaymentMethod)
+│   │       │   ├── mappers/        # Data mappers
+│   │       │   └── query-keys/     # React Query keys
+│   │       ├── hooks/              # Employee-specific hooks
+│   │       ├── pages/              # Employee pages
+│   │       └── schemas/            # Employee validation schemas
+│   ├── hooks/                      # App-wide reusable hooks
+│   ├── i18n/
+│   │   └── locales/                # Translation files (en, hu)
+│   ├── lib/                        # Utility functions
+│   ├── providers/                  # App-level providers (Query, Auth, i18n)
+│   ├── routes/                     # TanStack Router file-based routes
+    ├── config/                     # Configuration files
+    └── main.tsx                    # Application entry point
 ```
 
 ## Path Aliases
@@ -173,6 +206,36 @@ The project uses a **hybrid approach** for API integration:
 **Why This Approach?**
 
 This combines the benefits of automated type generation (guaranteed sync with backend, no manual typing errors) with custom business logic and error handling that demonstrates architectural understanding and production-ready patterns.
+
+## Documentation
+
+The project includes comprehensive API documentation generated from JSDoc comments using TypeDoc.
+
+### Generate Documentation Locally
+
+```bash
+bun run docs:generate
+```
+
+This generates static HTML documentation in the `docs/` folder.
+
+### View Documentation
+
+Open the generated documentation in your browser:
+
+```bash
+bun run docs:open
+```
+
+Or visit: https://disz85.github.io/hunam-test/
+
+### Automatic Deployment
+
+The documentation is automatically deployed to GitHub Pages whenever:
+
+- You push changes to TypeScript/TSX files in `src/`
+- The `typedoc.json` configuration changes
+- The GitHub Actions workflow is manually triggered
 
 ## Deployment
 

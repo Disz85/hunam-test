@@ -1,3 +1,9 @@
+/**
+ * Authentication components module
+ *
+ * @module features/auth/components/login-form
+ */
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
@@ -14,7 +20,21 @@ import { LoginFormFields } from './login-form-fields';
 /**
  * Login form component
  *
- * Handles login form state, validation, and submission
+ * Handles login form state, validation, and submission with React Hook Form and Zod.
+ * Integrates with authentication context for login functionality.
+ *
+ * Features:
+ * - Form validation using Zod schema
+ * - Error handling and display
+ * - Loading state management
+ * - Automatic navigation on success
+ *
+ * @example
+ * ```tsx
+ * import { LoginForm } from '@/features/auth/components/login-form';
+ *
+ * <LoginForm />
+ * ```
  */
 export const LoginForm = () => {
   const {

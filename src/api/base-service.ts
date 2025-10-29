@@ -1,6 +1,6 @@
 import type { AxiosInstance } from 'axios';
 
-import { ApiError } from '@/lib/api-error';
+import { ApiError } from '@/api/errors/api-error';
 
 /**
  * BaseService

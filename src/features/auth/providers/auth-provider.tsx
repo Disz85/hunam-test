@@ -2,8 +2,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { type ReactNode } from 'react';
 
 import { authService } from '@/api';
-import { ApiError } from '@/lib/api-error';
-import { getErrorMessage } from '@/lib/error-messages';
+import { ApiError } from '@/api/errors/api-error';
+import { getErrorMessage } from '@/api/errors/error-messages';
 
 import { AuthContext } from '../context/auth-context';
 import type { AuthState, LoginCredentials } from '../domain/types/auth-state';

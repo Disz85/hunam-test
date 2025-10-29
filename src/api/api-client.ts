@@ -2,10 +2,12 @@
  * API Client module - Singleton axios instance with interceptors
  *
  * Provides centralized HTTP client with:
- * - Automatic auth token injection (via request interceptor)
- * - Auto-logout on 401 errors (via response interceptor)
+ * - HttpOnly cookie-based authentication (withCredentials)
  * - Development error logging
  * - Configurable timeout and retry logic
+ *
+ * Note: Global error handling (401, etc.) is managed by React Query's
+ * QueryCache/MutationCache listeners in query-client-config.ts
  *
  * @example
  * ```typescript
@@ -82,25 +84,6 @@ export class ApiClient {
   }
 
   /**
-   * Handle 401 Unauthorized errors by clearing token and redirecting to login
-   *
-   * @private
-   * @param {AxiosError} error - Axios error object
-   */
-  private static handleUnauthorizedError(error: AxiosError): void {
-    if (error.response?.status !== 401) {
-      return;
-    }
-
-    // Don't redirect if already on login page
-    if (window.location.pathname === '/login') {
-      return;
-    }
-
-    window.location.href = '/login';
-  }
-
-  /**
    * Setup request interceptor
    *
    * For HttpOnly cookie-based auth, we don't need to inject tokens manually.
@@ -123,6 +106,9 @@ export class ApiClient {
   /**
    * Setup response interceptor for global error handling
    *
+   * Note: Authentication (401) errors are handled globally by React Query's
+   * QueryCache/MutationCache listeners in query-client-config.ts
+   *
    * @private
    * @param {AxiosInstance} client - Axios instance to configure
    */
@@ -131,7 +117,6 @@ export class ApiClient {
       response => response,
       (error: AxiosError) => {
         this.logErrorInDevelopment(error);
-        this.handleUnauthorizedError(error);
         return Promise.reject(error);
       }
     );

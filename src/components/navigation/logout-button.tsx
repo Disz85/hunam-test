@@ -10,7 +10,7 @@ type LogoutButtonProps = {
 };
 
 const BASE_BUTTON_CLASSES =
-  'group flex w-full gap-x-3 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900 disabled:opacity-50';
+  'group flex w-full gap-x-3 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50';
 
 const ICON_CLASSES =
   'size-5 shrink-0 text-gray-400 transition-colors group-hover:text-gray-600';

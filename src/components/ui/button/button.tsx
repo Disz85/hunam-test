@@ -18,7 +18,7 @@ type ButtonProps = {
 } & Omit<ComponentProps<typeof HeadlessButton>, 'className'>;
 
 const BASE_CLASSES =
-  'inline-flex items-center justify-center gap-2 rounded-md font-semibold shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50';
+  'inline-flex items-center justify-center gap-2 rounded-md font-semibold shadow-sm cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50';
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:

@@ -1,4 +1,10 @@
 /**
+ * API error handling module
+ *
+ * @module api/errors/api-error
+ */
+
+/**
  * API Error utilities for structured error handling
  *
  * Provides a simple, type-safe approach to handling API errors
@@ -13,7 +19,22 @@ import type { ObjectAppError } from '@/api';
  * Custom API Error class
  *
  * Represents an HTTP API error with structured backend information.
- * All utilities are contained within this class as static methods.
+ * All utilities are contained within this class as static methods for type-safe error handling.
+ *
+ * @example
+ * ```typescript
+ * import { ApiError } from '@/api/errors/api-error';
+ *
+ * try {
+ *   await apiCall();
+ * } catch (error: unknown) {
+ *   if (ApiError.isAxiosError(error)) {
+ *     const apiError = ApiError.fromAxiosError(error);
+ *     console.log(apiError.message);
+ *     console.log(apiError.statusCode);
+ *   }
+ * }
+ * ```
  */
 export class ApiError extends Error {
   public readonly statusCode: number;

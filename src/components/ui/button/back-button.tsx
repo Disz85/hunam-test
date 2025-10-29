@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/cn';
 
 const BASE_BUTTON_CLASSES =
-  'flex items-center gap-x-2 text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700';
+  'flex items-center gap-x-2 text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 cursor-pointer';
 
 /**
  * Back button component

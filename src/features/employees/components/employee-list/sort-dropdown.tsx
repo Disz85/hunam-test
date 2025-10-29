@@ -26,11 +26,11 @@ const SORT_CONFIG = [
 
 // Style constants
 const BUTTON_CLASSES =
-  'flex items-center gap-2 rounded-md border border-gray-300 bg-white px-2 py-2 sm:px-3 sm:py-2 text-sm font-medium text-gray-700 data-hover:bg-gray-50';
+  'flex items-center gap-2 rounded-md border border-gray-300 bg-white px-2 py-2 sm:px-3 sm:py-2 text-sm font-medium text-gray-700 cursor-pointer data-hover:bg-gray-50';
 const MENU_ITEMS_CLASS =
   'z-50 w-56 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5';
 const MENU_ITEM_CLASS =
-  'group flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm data-focus:bg-gray-100';
+  'group flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm cursor-pointer data-focus:bg-gray-100';
 
 /**
  * Get sort icon based on sort direction

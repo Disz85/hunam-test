@@ -1,4 +1,10 @@
 /**
+ * Error messages module
+ *
+ * @module api/errors/error-messages
+ */
+
+/**
  * Error message mapping for backend error IDs
  *
  * Provides user-friendly error messages based on backend error IDs.
@@ -10,7 +16,8 @@ import { ApiError } from './api-error';
 /**
  * Error ID to message mapping
  *
- * Based on backend error IDs from swagger documentation
+ * Based on backend error IDs from swagger documentation.
+ * Maps technical backend error IDs to user-friendly messages.
  */
 const ERROR_MESSAGE_MAP: Record<string, string> = {
   // Employee errors
@@ -34,8 +41,23 @@ const ERROR_MESSAGE_MAP: Record<string, string> = {
 /**
  * Get user-friendly error message from API error
  *
- * @param error - The error object (ApiError or unknown)
- * @returns User-friendly error message
+ * Attempts to map the error to a user-friendly message based on error ID.
+ * Falls back to the error's message or a generic error message.
+ *
+ * @param {unknown} error - The error object (ApiError or unknown)
+ * @returns {string} User-friendly error message
+ *
+ * @example
+ * ```typescript
+ * import { getErrorMessage } from '@/api/errors/error-messages';
+ *
+ * try {
+ *   await apiCall();
+ * } catch (error) {
+ *   const message = getErrorMessage(error);
+ *   console.error(message);
+ * }
+ * ```
  */
 export const getErrorMessage = (error: unknown): string => {
   // If it's an ApiError, check for specific error ID
@@ -58,9 +80,18 @@ export const getErrorMessage = (error: unknown): string => {
 /**
  * Check if error is a specific error ID
  *
- * @param error - The error object
- * @param errorId - The error ID to check for
- * @returns True if error matches the error ID
+ * @param {unknown} error - The error object
+ * @param {string} errorId - The error ID to check for
+ * @returns {boolean} True if error matches the error ID
+ *
+ * @example
+ * ```typescript
+ * import { isErrorId } from '@/api/errors/error-messages';
+ *
+ * if (isErrorId(error, 'Employee.EmailAlreadyExists')) {
+ *   // Handle email already exists error
+ * }
+ * ```
  */
 export const isErrorId = (error: unknown, errorId: string): boolean => {
   return error instanceof ApiError && error.errorId === errorId;

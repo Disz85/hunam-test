@@ -1,3 +1,9 @@
+/**
+ * Language configuration module
+ *
+ * @module config/language-config
+ */
+
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
@@ -13,8 +19,20 @@ import errorsHu from '@/i18n/locales/hu/errors.json';
 /**
  * i18next configuration
  *
- * Initializes i18next with react-i18next for React integration
- * Supports multiple namespaces: common, auth, employees, errors
+ * Initializes i18next with react-i18next for React integration.
+ * Supports multiple namespaces: common, auth, employees, errors.
+ * Currently supports English (en) and Hungarian (hu) languages.
+ *
+ * @example
+ * ```typescript
+ * import i18n from '@/config/language-config';
+ *
+ * // Change language
+ * await i18n.changeLanguage('hu');
+ *
+ * // Use in non-React code
+ * const message = i18n.t('common.save');
+ * ```
  */
 void i18n.use(initReactI18next).init({
   resources: {

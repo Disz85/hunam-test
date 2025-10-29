@@ -41,7 +41,7 @@ export const AdminSidebarLayout = () => {
       {sidebarOpen && (
         <button
           type="button"
-          className="fixed inset-0 z-40 bg-gray-900/80 lg:hidden"
+          className="fixed inset-0 z-40 bg-gray-900/80 cursor-pointer lg:hidden"
           onClick={() => setSidebarOpen(false)}
           aria-label={t('closeSidebar')}
         />
@@ -59,7 +59,7 @@ export const AdminSidebarLayout = () => {
             </h1>
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5 text-indigo-600 hover:text-indigo-500 lg:hidden"
+              className="-m-2.5 rounded-md p-2.5 text-indigo-600 hover:text-indigo-500 cursor-pointer lg:hidden"
               onClick={() => setSidebarOpen(false)}
             >
               <span className="sr-only">{t('closeSidebar')}</span>

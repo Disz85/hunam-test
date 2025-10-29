@@ -16,6 +16,9 @@ dist-ssr
 # route-tree.gen.ts - NOT ignored (committed for CI/CD)
 .tanstack/
 
+# TypeDoc generated documentation
+docs/
+
 # Environment variables
 .env
 .env.local

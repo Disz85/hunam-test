@@ -1,3 +1,9 @@
+/**
+ * Query client configuration module
+ *
+ * @module config/query-client-config
+ */
+
 import { MutationCache, QueryCache, QueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
@@ -9,12 +15,22 @@ import { handleAuthError } from '@/features/auth/lib/auth-error-handler';
  * Configured with global error handlers for authentication errors.
  * Uses QueryCache and MutationCache listeners to centralize 401 handling.
  *
+ * Features:
+ * - 5 minute stale time for cached data
+ * - 10 minute garbage collection time
+ * - No retry on authentication errors (401)
+ * - No refetch on window focus
+ * - Global error handler for auth errors
+ *
  * @example
- * ```ts
+ * ```typescript
  * import { queryClient } from '@/config/query-client-config';
  *
  * // Manual cache invalidation
  * queryClient.invalidateQueries({ queryKey: ['employees'] });
+ *
+ * // Get cached data
+ * const data = queryClient.getQueryData(['employees']);
  * ```
  */
 export const queryClient = new QueryClient({

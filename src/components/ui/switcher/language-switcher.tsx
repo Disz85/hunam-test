@@ -37,7 +37,7 @@ export const LanguageSwitcher = () => {
                 <button
                   onClick={() => handleLanguageChange(lang.code)}
                   className={cn(
-                    'group flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm data-focus:bg-indigo-50 data-hover:bg-indigo-50 data-hover:text-indigo-600',
+                    'group flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm cursor-pointer data-focus:bg-indigo-50 data-hover:bg-indigo-50 data-hover:text-indigo-600',
                     isActive
                       ? 'bg-indigo-50 text-indigo-600'
                       : 'bg-white text-gray-700'

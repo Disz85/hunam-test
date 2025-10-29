@@ -1,0 +1,20 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src"],
+  "out": "docs",
+  "entryPointStrategy": "expand",
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/route-tree.gen.ts",
+    "src/api/__generated__/**"
+  ],
+  "excludeExternals": true,
+  "includeVersion": true,
+  "hideGenerator": false,
+  "sort": ["source-order", "alphabetical"],
+  "readme": "README.md",
+  "gitRevision": "main",
+  "plugin": [],
+  "theme": "default"
+}

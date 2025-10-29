@@ -20,7 +20,9 @@
     "commit:retry": "git commit --amend",
     "check": "bunx tsc --noEmit && bunx eslint . && bunx prettier --check .",
     "format": "bunx prettier --write .",
-    "clean": "rm -rf dist node_modules/.vite"
+    "clean": "rm -rf dist node_modules/.vite",
+    "docs:generate": "typedoc --skipErrorChecking",
+    "docs:open": "open docs/index.html"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
@@ -76,6 +78,7 @@
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "tailwindcss": "^4.1.14",
+    "typedoc": "^0.28.14",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0",
     "vite": "^7.1.7",

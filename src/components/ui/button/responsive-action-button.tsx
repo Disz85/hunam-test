@@ -13,7 +13,7 @@ type ResponsiveActionButtonProps = {
 } & Omit<ComponentProps<typeof Button>, 'className'>;
 
 const BASE_CLASSES =
-  'flex flex-shrink-0 items-center justify-center bg-indigo-600 text-white transition-all hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600';
+  'flex flex-shrink-0 items-center justify-center bg-indigo-600 text-white transition-all hover:bg-indigo-500 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600';
 
 const RESPONSIVE_CLASSES =
   'fixed bottom-6 right-6 z-50 size-14 rounded-full shadow-lg sm:static sm:size-auto sm:gap-x-2 sm:rounded-md sm:px-3.5 sm:py-2.5 sm:shadow-sm';

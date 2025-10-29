@@ -28,7 +28,7 @@ export const AdminHeader = ({ children }: AdminHeaderProps) => {
     <header className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:px-6 lg:px-8">
       <Button
         type="button"
-        className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
+        className="-m-2.5 p-2.5 text-gray-700 cursor-pointer lg:hidden"
         onClick={handleMenuOpen}
       >
         <span className="sr-only">{t('openSidebar')}</span>
